@@ -1,0 +1,57 @@
+{
+  "name": "rusalka-nadmorzem-resort-website",
+  "version": "1.0.0",
+  "description": "Comprehensive Polish seaside resort website with multilingual support, AI chat, booking system, admin dashboard, and PWA features",
+  "author": "czak89",
+  "private": true,
+  "keywords": [
+    "resort",
+    "seaside",
+    "booking",
+    "nextjs",
+    "typescript",
+    "poland",
+    "multilingual",
+    "ai-chat",
+    "pwa"
+  ],
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0 --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "bunx biome lint --write && bunx tsc --noEmit",
+    "format": "bunx biome format --write"
+  },
+  "dependencies": {
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-popover": "^1.1.14",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-switch": "^1.2.5",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.475.0",
+    "next": "^15.3.2",
+    "react": "^18.3.1",
+    "react-day-picker": "8.10.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.3.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@biomejs/biome": "1.9.4",
+    "@types/node": "^22.10.1",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^15.3.2",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.5.3",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
