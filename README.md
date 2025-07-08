@@ -16,11 +16,11 @@ A comprehensive Polish seaside resort website built with modern web technologies
 - SEO-optimized URLs for each language
 
 ### 🤖 AI-Powered Chat Assistant
-- Integration with OpenAI API
+- Integration with OpenAI API (local LLM option on the way)
 - 24/7 customer support automation
 - Multilingual responses
 - Resort-specific knowledge base
-- Booking assistance and information queries
+- Simple booking systems integration and information queries
 
 ### 📅 Advanced Booking System
 - Interactive calendar with availability checking
@@ -98,7 +98,7 @@ A comprehensive Polish seaside resort website built with modern web technologies
 
 ### Backend & APIs
 - **Next.js API Routes** - Serverless functions
-- **OpenAI API** - AI chat functionality
+- **OpenAI compatible API or Ollama intergration** - AI chat functionality
 
 ### Development Tools
 - **Biome** - Fast linter and formatter
@@ -113,8 +113,8 @@ A comprehensive Polish seaside resort website built with modern web technologies
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/czak89/rusalka-nadmorzem-resort-website.git
-cd rusalka-nadmorzem-resort-website
+git clone https://github.com/czak89/owrusalka-pl.git
+cd owrusalka-pl
 ```
 
 ### 2. Install Dependencies
@@ -205,7 +205,7 @@ Visit `http://localhost:3000` to see your application.
 ## 📁 Project Structure
 
 ```
-rusalka-nadmorzem-resort-website/
+owrusalka-pl/
 ├── public/                 # Static assets
 │   ├── images/            # Resort images
 │   ├── icons/             # PWA icons
@@ -276,8 +276,8 @@ This project is private and proprietary. All rights reserved.
 ## 🆘 Support
 
 For support, please contact:
-- **Email**: your-email@domain.com
-- **GitHub Issues**: [Create an issue](https://github.com/czak89/rusalka-nadmorzem-resort-website/issues)
+- **Email**: recepcja@owrusalka.pl
+- **GitHub Issues**: [Create an issue](https://github.com/czak89/owrusalka-pl/issues)
 
 ## 🙏 Acknowledgments
 
