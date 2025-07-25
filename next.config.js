@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: true,
+    unoptimized: false,
+    formats: ['image/webp'],
     domains: [
       "source.unsplash.com",
       "images.unsplash.com",
@@ -33,6 +34,11 @@ const nextConfig = {
   },
   env: {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
+  },
+  // Optymalizacja
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
 };
 
