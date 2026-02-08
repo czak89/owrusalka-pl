@@ -39,6 +39,7 @@ export default function AdminDashboard() {
     type: "success" | "error";
     message: string;
   } | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleFormChange = (field: keyof typeof form, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -60,6 +61,8 @@ export default function AdminDashboard() {
       setNotice({ type: "error", message: "Room name is required." });
       return;
     }
+
+    setIsSaving(true);
 
     const capacity = Number(form.capacity) || 1;
     const pricePerNightPln = Number(form.pricePerNightPln) || 0;
@@ -89,6 +92,7 @@ export default function AdminDashboard() {
       type: "success",
       message: editingRoomId ? "Room updated." : "Room draft saved.",
     });
+    setIsSaving(false);
   };
 
   const handleEditRoom = (room: Room) => {
@@ -251,14 +255,23 @@ export default function AdminDashboard() {
                 />
               </div>
               <div className="flex flex-wrap gap-2">
-                <Button size="sm" onClick={handleSaveDraft}>
-                  {editingRoomId ? "Update Room" : "Save Draft"}
+                <Button size="sm" onClick={handleSaveDraft} disabled={isSaving}>
+                  {isSaving
+                    ? "Saving..."
+                    : editingRoomId
+                      ? "Update Room"
+                      : "Save Draft"}
                 </Button>
-                <Button size="sm" variant="outline">
+                <Button size="sm" variant="outline" disabled={isSaving}>
                   Publish
                 </Button>
                 {editingRoomId && (
-                  <Button size="sm" variant="ghost" onClick={resetForm}>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={resetForm}
+                    disabled={isSaving}
+                  >
                     Cancel
                   </Button>
                 )}
