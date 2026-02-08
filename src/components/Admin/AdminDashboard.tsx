@@ -35,6 +35,10 @@ export default function AdminDashboard() {
     pricePerNightPln: "",
     highlights: "",
   });
+  const [notice, setNotice] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
 
   const handleFormChange = (field: keyof typeof form, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -53,6 +57,7 @@ export default function AdminDashboard() {
 
   const handleSaveDraft = () => {
     if (!form.name.trim()) {
+      setNotice({ type: "error", message: "Room name is required." });
       return;
     }
 
@@ -80,6 +85,10 @@ export default function AdminDashboard() {
       return [newRoom, ...prev];
     });
     resetForm();
+    setNotice({
+      type: "success",
+      message: editingRoomId ? "Room updated." : "Room draft saved.",
+    });
   };
 
   const handleEditRoom = (room: Room) => {
@@ -98,6 +107,7 @@ export default function AdminDashboard() {
     if (editingRoomId === roomId) {
       resetForm();
     }
+    setNotice({ type: "success", message: "Room removed." });
   };
 
   return (
@@ -119,6 +129,17 @@ export default function AdminDashboard() {
           </Button>
         </div>
       </div>
+      {notice && (
+        <div
+          className={`rounded-md border px-4 py-3 text-sm ${
+            notice.type === "success"
+              ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+              : "border-rose-200 bg-rose-50 text-rose-700"
+          }`}
+        >
+          {notice.message}
+        </div>
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
