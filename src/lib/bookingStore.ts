@@ -25,6 +25,11 @@ export function saveBooking(booking: Booking) {
   return booking;
 }
 
+export function getBookingById(bookingId: string) {
+  const store = globalForBookings.__bookingsStore!;
+  return store.bookings.find((booking) => booking.id === bookingId) ?? null;
+}
+
 export function deleteBooking(bookingId: string) {
   const store = globalForBookings.__bookingsStore!;
   store.bookings = store.bookings.filter((booking) => booking.id !== bookingId);
