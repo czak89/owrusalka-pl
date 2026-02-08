@@ -11,7 +11,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { getAdminOverview } from "@/lib/mockData";
+import { getAdminOverview, rooms as initialRooms, type Room } from "@/lib/mockData";
+import { useState } from "react";
 
 const statusStyles = {
   confirmed: "bg-emerald-100 text-emerald-700",
@@ -21,6 +22,50 @@ const statusStyles = {
 
 export default function AdminDashboard() {
   const { stats, recentBookings } = getAdminOverview();
+  const [rooms, setRooms] = useState<Room[]>(initialRooms);
+  const [form, setForm] = useState({
+    name: "",
+    type: "",
+    capacity: "",
+    pricePerNightPln: "",
+    highlights: "",
+  });
+
+  const handleFormChange = (field: keyof typeof form, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSaveDraft = () => {
+    if (!form.name.trim()) {
+      return;
+    }
+
+    const capacity = Number(form.capacity) || 1;
+    const pricePerNightPln = Number(form.pricePerNightPln) || 0;
+    const amenities = form.highlights
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean);
+
+    const newRoom: Room = {
+      id: `room-${Date.now()}`,
+      name: form.name.trim(),
+      type: (form.type || "standard") as Room["type"],
+      capacity,
+      pricePerNightPln,
+      amenities: amenities.length ? amenities : ["New listing"],
+      nextAvailable: "TBD",
+    };
+
+    setRooms((prev) => [newRoom, ...prev]);
+    setForm({
+      name: "",
+      type: "",
+      capacity: "",
+      pricePerNightPln: "",
+      highlights: "",
+    });
+  };
 
   return (
     <div className="mx-auto w-full max-w-6xl p-6 space-y-6">
@@ -100,31 +145,61 @@ export default function AdminDashboard() {
             <CardContent className="space-y-3">
               <div className="space-y-1">
                 <Label htmlFor="room-name">Room name</Label>
-                <Input id="room-name" placeholder="Sea View Suite" />
+                <Input
+                  id="room-name"
+                  placeholder="Sea View Suite"
+                  value={form.name}
+                  onChange={(event) => handleFormChange("name", event.target.value)}
+                />
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 <div className="space-y-1">
                   <Label htmlFor="room-type">Type</Label>
-                  <Input id="room-type" placeholder="suite" />
+                  <Input
+                    id="room-type"
+                    placeholder="suite"
+                    value={form.type}
+                    onChange={(event) => handleFormChange("type", event.target.value)}
+                  />
                 </div>
                 <div className="space-y-1">
                   <Label htmlFor="room-capacity">Capacity</Label>
-                  <Input id="room-capacity" placeholder="2" type="number" min="1" />
+                  <Input
+                    id="room-capacity"
+                    placeholder="2"
+                    type="number"
+                    min="1"
+                    value={form.capacity}
+                    onChange={(event) => handleFormChange("capacity", event.target.value)}
+                  />
                 </div>
               </div>
               <div className="space-y-1">
                 <Label htmlFor="room-price">Price per night (PLN)</Label>
-                <Input id="room-price" placeholder="580" type="number" min="0" />
+                <Input
+                  id="room-price"
+                  placeholder="580"
+                  type="number"
+                  min="0"
+                  value={form.pricePerNightPln}
+                  onChange={(event) =>
+                    handleFormChange("pricePerNightPln", event.target.value)
+                  }
+                />
               </div>
               <div className="space-y-1">
                 <Label htmlFor="room-notes">Highlights</Label>
                 <Textarea
                   id="room-notes"
                   placeholder="Balcony, king bed, sea view..."
+                  value={form.highlights}
+                  onChange={(event) => handleFormChange("highlights", event.target.value)}
                 />
               </div>
               <div className="flex flex-wrap gap-2">
-                <Button size="sm">Save Draft</Button>
+                <Button size="sm" onClick={handleSaveDraft}>
+                  Save Draft
+                </Button>
                 <Button size="sm" variant="outline">
                   Publish
                 </Button>
@@ -165,22 +240,14 @@ export default function AdminDashboard() {
               <CardDescription>Current inventory snapshot.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2 text-sm">
-              <div className="flex items-center justify-between">
-                <span>Sea View Suite</span>
-                <span className="text-muted-foreground">680 PLN</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Family Room</span>
-                <span className="text-muted-foreground">520 PLN</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Standard Double</span>
-                <span className="text-muted-foreground">380 PLN</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Garden Studio</span>
-                <span className="text-muted-foreground">450 PLN</span>
-              </div>
+              {rooms.map((room) => (
+                <div key={room.id} className="flex items-center justify-between">
+                  <span>{room.name}</span>
+                  <span className="text-muted-foreground">
+                    {room.pricePerNightPln} PLN
+                  </span>
+                </div>
+              ))}
               <Button size="sm" variant="outline" className="mt-2 w-full">
                 Manage Rooms
               </Button>
