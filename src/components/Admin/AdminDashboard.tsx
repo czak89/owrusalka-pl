@@ -11,7 +11,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { getAdminOverview, rooms as initialRooms, type Room } from "@/lib/mockData";
+import {
+  getAdminOverview,
+  rooms as initialRooms,
+  type Room,
+} from "@/lib/mockData";
 import { useState } from "react";
 
 const statusStyles = {
@@ -23,6 +27,7 @@ const statusStyles = {
 export default function AdminDashboard() {
   const { stats, recentBookings } = getAdminOverview();
   const [rooms, setRooms] = useState<Room[]>(initialRooms);
+  const [editingRoomId, setEditingRoomId] = useState<string | null>(null);
   const [form, setForm] = useState({
     name: "",
     type: "",
@@ -33,6 +38,17 @@ export default function AdminDashboard() {
 
   const handleFormChange = (field: keyof typeof form, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const resetForm = () => {
+    setForm({
+      name: "",
+      type: "",
+      capacity: "",
+      pricePerNightPln: "",
+      highlights: "",
+    });
+    setEditingRoomId(null);
   };
 
   const handleSaveDraft = () => {
@@ -48,7 +64,7 @@ export default function AdminDashboard() {
       .filter(Boolean);
 
     const newRoom: Room = {
-      id: `room-${Date.now()}`,
+      id: editingRoomId ?? `room-${Date.now()}`,
       name: form.name.trim(),
       type: (form.type || "standard") as Room["type"],
       capacity,
@@ -57,14 +73,31 @@ export default function AdminDashboard() {
       nextAvailable: "TBD",
     };
 
-    setRooms((prev) => [newRoom, ...prev]);
-    setForm({
-      name: "",
-      type: "",
-      capacity: "",
-      pricePerNightPln: "",
-      highlights: "",
+    setRooms((prev) => {
+      if (editingRoomId) {
+        return prev.map((room) => (room.id === editingRoomId ? newRoom : room));
+      }
+      return [newRoom, ...prev];
     });
+    resetForm();
+  };
+
+  const handleEditRoom = (room: Room) => {
+    setEditingRoomId(room.id);
+    setForm({
+      name: room.name,
+      type: room.type,
+      capacity: String(room.capacity),
+      pricePerNightPln: String(room.pricePerNightPln),
+      highlights: room.amenities.join(", "),
+    });
+  };
+
+  const handleDeleteRoom = (roomId: string) => {
+    setRooms((prev) => prev.filter((room) => room.id !== roomId));
+    if (editingRoomId === roomId) {
+      resetForm();
+    }
   };
 
   return (
@@ -198,11 +231,16 @@ export default function AdminDashboard() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <Button size="sm" onClick={handleSaveDraft}>
-                  Save Draft
+                  {editingRoomId ? "Update Room" : "Save Draft"}
                 </Button>
                 <Button size="sm" variant="outline">
                   Publish
                 </Button>
+                {editingRoomId && (
+                  <Button size="sm" variant="ghost" onClick={resetForm}>
+                    Cancel
+                  </Button>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -241,11 +279,27 @@ export default function AdminDashboard() {
             </CardHeader>
             <CardContent className="space-y-2 text-sm">
               {rooms.map((room) => (
-                <div key={room.id} className="flex items-center justify-between">
-                  <span>{room.name}</span>
-                  <span className="text-muted-foreground">
-                    {room.pricePerNightPln} PLN
-                  </span>
+                <div
+                  key={room.id}
+                  className="flex flex-col gap-2 rounded-lg border px-3 py-2 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div>
+                    <div className="text-sm font-medium">{room.name}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {room.capacity} guests • {room.type}
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-sm text-muted-foreground">
+                      {room.pricePerNightPln} PLN
+                    </span>
+                    <Button size="sm" variant="outline" onClick={() => handleEditRoom(room)}>
+                      Edit
+                    </Button>
+                    <Button size="sm" variant="ghost" onClick={() => handleDeleteRoom(room.id)}>
+                      Delete
+                    </Button>
+                  </div>
                 </div>
               ))}
               <Button size="sm" variant="outline" className="mt-2 w-full">
