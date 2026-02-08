@@ -245,7 +245,7 @@ owrusalka-pl/
 ## 🎨 Customization
 
 ### Styling
-- Modify `tailwind.config.ts` for theme customization
+- Modify `tailwind.config.cjs` for theme customization
 - Update `src/app/globals.css` for global styles
 - Components use Tailwind CSS classes for styling
 
