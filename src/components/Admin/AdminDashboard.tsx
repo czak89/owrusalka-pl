@@ -8,66 +8,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { getAdminOverview } from "@/lib/mockData";
 
-type Stat = {
-  label: string;
-  value: string;
-  change: string;
-};
-
-type Booking = {
-  id: string;
-  guest: string;
-  room: string;
-  dates: string;
-  status: "confirmed" | "pending" | "cancelled";
-};
-
-const stats: Stat[] = [
-  { label: "Active Bookings", value: "18", change: "+2 today" },
-  { label: "Occupancy", value: "76%", change: "+5% this week" },
-  { label: "New Inquiries", value: "11", change: "Last 24h" },
-  { label: "Revenue (MTD)", value: "42,300 PLN", change: "+8% MoM" },
-];
-
-const bookings: Booking[] = [
-  {
-    id: "BK-1042",
-    guest: "Anna Kowalska",
-    room: "Sea View Suite",
-    dates: "Mar 12–15",
-    status: "confirmed",
-  },
-  {
-    id: "BK-1043",
-    guest: "Jan Nowak",
-    room: "Family Room",
-    dates: "Mar 14–18",
-    status: "pending",
-  },
-  {
-    id: "BK-1044",
-    guest: "Marta Zielińska",
-    room: "Standard Double",
-    dates: "Mar 20–22",
-    status: "confirmed",
-  },
-  {
-    id: "BK-1045",
-    guest: "Piotr Lewandowski",
-    room: "Garden Studio",
-    dates: "Mar 21–24",
-    status: "cancelled",
-  },
-];
-
-const statusStyles: Record<Booking["status"], string> = {
+const statusStyles = {
   confirmed: "bg-emerald-100 text-emerald-700",
   pending: "bg-amber-100 text-amber-700",
   cancelled: "bg-rose-100 text-rose-700",
-};
+} as const;
 
 export default function AdminDashboard() {
+  const { stats, recentBookings } = getAdminOverview();
+
   return (
     <div className="mx-auto w-full max-w-6xl p-6 space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -111,7 +62,7 @@ export default function AdminDashboard() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            {bookings.map((booking) => (
+            {recentBookings.map((booking) => (
               <div
                 key={booking.id}
                 className="flex flex-col gap-2 rounded-lg border px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
@@ -119,7 +70,7 @@ export default function AdminDashboard() {
                 <div>
                   <div className="text-sm font-medium">{booking.guest}</div>
                   <div className="text-xs text-muted-foreground">
-                    {booking.room} • {booking.dates}
+                    {booking.roomName} • {booking.dates}
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
