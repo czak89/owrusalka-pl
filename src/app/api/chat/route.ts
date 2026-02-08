@@ -10,6 +10,10 @@ interface ChatRequest {
   language: string;
 }
 
+const DEFAULT_LANGUAGE = 'pl';
+const MAX_MESSAGES = 12;
+const DEFAULT_TIMEOUT_MS = 15000;
+
 // Resort-specific knowledge base
 const resortInfo = {
   pl: {
@@ -52,8 +56,20 @@ const resortInfo = {
 
 export async function POST(request: NextRequest) {
   try {
-    const { messages, language = 'pl' }: ChatRequest = await request.json();
-    
+    let payload: ChatRequest;
+    try {
+      payload = await request.json();
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON payload' }, { status: 400 });
+    }
+
+    const messages = Array.isArray(payload?.messages) ? payload.messages : [];
+    const language = payload?.language || DEFAULT_LANGUAGE;
+
+    if (messages.length === 0) {
+      return NextResponse.json({ error: 'Messages are required' }, { status: 400 });
+    }
+
     const lastMessage = messages[messages.length - 1];
     if (!lastMessage || lastMessage.role !== 'user') {
       return NextResponse.json(
@@ -61,9 +77,15 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    if (typeof lastMessage.content !== 'string' || lastMessage.content.trim().length === 0) {
+      return NextResponse.json(
+        { error: 'Message content is required' },
+        { status: 400 }
+      );
+    }
 
     // Get resort info for the specified language
-    const info = resortInfo[language as keyof typeof resortInfo] || resortInfo.pl;
+    const info = resortInfo[language as keyof typeof resortInfo] || resortInfo[DEFAULT_LANGUAGE];
     
     // Create context-aware system prompt
     const systemPrompt = `You are a helpful assistant for ${info.name}, a ${info.description} located in ${info.location}. 
@@ -88,30 +110,57 @@ Always be helpful, friendly, and provide accurate information about the resort. 
       // Use configurable base URL (defaults to OpenAI if not set)
       const apiBaseUrl = process.env.OPENAI_API_BASE_URL || 'https://api.openai.com/v1';
       const apiModel = process.env.OPENAI_MODEL || 'gpt-3.5-turbo';
+      const timeoutMs = Number(process.env.OPENAI_TIMEOUT_MS) || DEFAULT_TIMEOUT_MS;
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
-      const response = await fetch(`${apiBaseUrl}/chat/completions`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: apiModel,
-          messages: [
-            { role: 'system', content: systemPrompt },
-            ...messages
-          ],
-          max_tokens: 300,
-          temperature: 0.7,
-        }),
-      });
+      let response: Response;
+      try {
+        response = await fetch(`${apiBaseUrl}/chat/completions`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            model: apiModel,
+            messages: [
+              { role: 'system', content: systemPrompt },
+              ...messages.slice(-MAX_MESSAGES),
+            ],
+            max_tokens: 300,
+            temperature: 0.7,
+          }),
+          signal: controller.signal,
+        });
+      } catch (error) {
+        if (error instanceof Error && error.name === 'AbortError') {
+          return NextResponse.json(
+            { error: 'Upstream timeout' },
+            { status: 504 }
+          );
+        }
+        console.error('OpenAI API request failed:', error);
+        return NextResponse.json(
+          { error: 'Upstream request failed' },
+          { status: 502 }
+        );
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       if (!response.ok) {
-        throw new Error('OpenAI API request failed');
+        const errorText = await response.text();
+        return NextResponse.json(
+          { error: 'Upstream error', details: errorText.slice(0, 500) },
+          { status: 502 }
+        );
       }
 
       const data = await response.json();
-      const assistantMessage = data.choices[0]?.message?.content || 'I\'m sorry, I couldn\'t process your request.';
+      const assistantMessage =
+        data?.choices?.[0]?.message?.content ||
+        "I'm sorry, I couldn't process your request.";
 
       return NextResponse.json({ message: assistantMessage });
     } else {
