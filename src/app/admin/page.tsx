@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
-import AdminDashboard from "@/components/admin/AdminDashboard";
+import AdminDashboard from "@/components/Admin/AdminDashboard";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -83,3 +83,4 @@ export default function AdminPage() {
     </div>
   );
 }
+
