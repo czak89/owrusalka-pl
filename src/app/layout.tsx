@@ -1,1 +1,78 @@
-import type { Metadata } from \"next\";\nimport { Geist, Geist_Mono } from \"next/font/google\";\nimport \"./globals.css\";\nimport ClientBody from \"./ClientBody\";\nimport { StructuredData } from \"@/components/StructuredData\";\nimport { Analytics } from \"@/components/Analytics\";\n\nconst geistSans = Geist({\n  variable: \"--font-geist-sans\",\n  subsets: [\"latin\"],\n});\n\nconst geistMono = Geist_Mono({\n  variable: \"--font-geist-mono\",\n  subsets: [\"latin\"],\n});\n\nexport const metadata: Metadata = {\n  title: \"Rusałka nad morzem - Ośrodek Wypoczynkowy | Hotel nad Bałtykiem\",\n  description: \"Luksusowy ośrodek wypoczynkowy nad Morzem Bałtyckim w Łazach. Komfortowe pokoje z widokiem na morze, restauracja, SPA, prywatna plaża. Rezerwuj online!\",\n  keywords: \"hotel nad morzem, ośrodek wypoczynkowy, Bałtyk, Łazy, pokoje z widokiem na morze, SPA, plaża, wakacje nad morzem, resort nadmorski\",\n  authors: [{ name: \"Rusałka nad morzem\" }],\n  creator: \"Rusałka nad morzem\",\n  publisher: \"Rusałka nad morzem\",\n  robots: \"index, follow\",\n  openGraph: {\n    type: \"website\",\n    locale: \"pl_PL\",\n    url: \"https://rusalka-nadmorzem.pl\",\n    siteName: \"Rusałka nad morzem\",\n    title: \"Rusałka nad morzem - Luksusowy Ośrodek Wypoczynkowy nad Bałtykiem\",\n    description: \"Odkryj magię Bałtyku w naszym wyjątkowym ośrodku wypoczynkowym. Komfortowe pokoje, SPA, restauracja i prywatna plaża czekają na Ciebie.\",\n    images: [\n      {\n        url: \"https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1200&h=630&fit=crop\",\n        width: 1200,\n        height: 630,\n        alt: \"Rusałka nad morzem - Resort nad Bałtykiem\",\n      },\n    ],\n  },\n  twitter: {\n    card: \"summary_large_image\",\n    title: \"Rusałka nad morzem - Luksusowy Ośrodek Wypoczynkowy\",\n    description: \"Odkryj magię Bałtyku w naszym wyjątkowym ośrodku wypoczynkowym.\",\n    images: [\"https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1200&h=630&fit=crop\"],\n  },\n  alternates: {\n    canonical: \"https://rusalka-nadmorzem.pl\",\n    languages: {\n      'pl': 'https://rusalka-nadmorzem.pl',\n      'en': 'https://rusalka-nadmorzem.pl/en',\n      'de': 'https://rusalka-nadmorzem.pl/de',\n    },\n  },\n};\n\nexport default function RootLayout({\n  children,\n}: {\n  children: React.ReactNode;\n}) {\n  return (\n    <html lang=\"pl\">\n      <head>\n        <StructuredData />\n        <Analytics />\n      </head>\n      <body\n        className={`${geistSans.variable} ${geistMono.variable} antialiased`}\n      >\n        <ClientBody>{children}</ClientBody>\n      </body>\n    </html>\n  );\n}
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import type { ReactNode } from "react";
+
+import "./globals.css";
+
+import ClientBody from "./ClientBody";
+import { StructuredData } from "@/components/StructuredData";
+import { Analytics } from "@/components/Analytics";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Rusałka nad morzem - Ośrodek Wypoczynkowy | Hotel nad Bałtykiem",
+  description:
+    "Luksusowy ośrodek wypoczynkowy nad Morzem Bałtyckim w Łazach. Komfortowe pokoje z widokiem na morze, restauracja, SPA, prywatna plaża. Rezerwuj online!",
+  keywords:
+    "hotel nad morzem, ośrodek wypoczynkowy, Bałtyk, Łazy, pokoje z widokiem na morze, SPA, plaża, wakacje nad morzem, resort nadmorski",
+  authors: [{ name: "Rusałka nad morzem" }],
+  creator: "Rusałka nad morzem",
+  publisher: "Rusałka nad morzem",
+  robots: "index, follow",
+  openGraph: {
+    type: "website",
+    locale: "pl_PL",
+    url: "https://rusalka-nadmorzem.pl",
+    siteName: "Rusałka nad morzem",
+    title: "Rusałka nad morzem - Luksusowy Ośrodek Wypoczynkowy nad Bałtykiem",
+    description:
+      "Odkryj magię Bałtyku w naszym wyjątkowym ośrodku wypoczynkowym. Komfortowe pokoje, SPA, restauracja i prywatna plaża czekają na Ciebie.",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1200&h=630&fit=crop",
+        width: 1200,
+        height: 630,
+        alt: "Rusałka nad morzem - Resort nad Bałtykiem",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rusałka nad morzem - Luksusowy Ośrodek Wypoczynkowy",
+    description: "Odkryj magię Bałtyku w naszym wyjątkowym ośrodku wypoczynkowym.",
+    images: [
+      "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1200&h=630&fit=crop",
+    ],
+  },
+  alternates: {
+    canonical: "https://rusalka-nadmorzem.pl",
+    languages: {
+      pl: "https://rusalka-nadmorzem.pl",
+      en: "https://rusalka-nadmorzem.pl/en",
+      de: "https://rusalka-nadmorzem.pl/de",
+    },
+  },
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="pl">
+      <head>
+        <StructuredData />
+        <Analytics />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ClientBody>{children}</ClientBody>
+      </body>
+    </html>
+  );
+}
