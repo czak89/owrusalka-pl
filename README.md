@@ -235,7 +235,7 @@ owrusalka-pl/
 │   └── lib/               # Utilities
 │       └── utils.ts       # Helper functions
 ├── package.json           # Dependencies
-├── tailwind.config.ts     # Tailwind configuration
+├── tailwind.config.cjs    # Tailwind configuration
 ├── tsconfig.json          # TypeScript configuration
 ├── next.config.js         # Next.js configuration
 ├── components.json        # shadcn/ui configuration
