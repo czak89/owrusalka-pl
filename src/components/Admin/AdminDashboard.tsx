@@ -11,12 +11,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  getAdminOverview,
-  rooms as initialRooms,
-  type Room,
-} from "@/lib/mockData";
-import { useState } from "react";
+import { getAdminOverview, type Room } from "@/lib/mockData";
+import { useEffect, useState } from "react";
 
 const statusStyles = {
   confirmed: "bg-emerald-100 text-emerald-700",
@@ -26,7 +22,7 @@ const statusStyles = {
 
 export default function AdminDashboard() {
   const { stats, recentBookings } = getAdminOverview();
-  const [rooms, setRooms] = useState<Room[]>(initialRooms);
+  const [rooms, setRooms] = useState<Room[]>([]);
   const [editingRoomId, setEditingRoomId] = useState<string | null>(null);
   const [form, setForm] = useState({
     name: "",
@@ -40,6 +36,32 @@ export default function AdminDashboard() {
     message: string;
   } | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    const loadRooms = async () => {
+      try {
+        const response = await fetch("/api/admin/rooms");
+        if (!response.ok) {
+          throw new Error("Failed to load rooms");
+        }
+        const data = await response.json();
+        if (active) {
+          setRooms(Array.isArray(data.rooms) ? data.rooms : []);
+        }
+      } catch (error) {
+        console.error("Failed to fetch rooms:", error);
+        if (active) {
+          setNotice({ type: "error", message: "Failed to load rooms." });
+        }
+      }
+    };
+
+    loadRooms();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const handleFormChange = (field: keyof typeof form, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -56,7 +78,7 @@ export default function AdminDashboard() {
     setEditingRoomId(null);
   };
 
-  const handleSaveDraft = () => {
+  const handleSaveDraft = async () => {
     if (!form.name.trim()) {
       setNotice({ type: "error", message: "Room name is required." });
       return;
@@ -81,18 +103,35 @@ export default function AdminDashboard() {
       nextAvailable: "TBD",
     };
 
-    setRooms((prev) => {
-      if (editingRoomId) {
-        return prev.map((room) => (room.id === editingRoomId ? newRoom : room));
+    try {
+      const response = await fetch("/api/admin/rooms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newRoom),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to save room");
       }
-      return [newRoom, ...prev];
-    });
-    resetForm();
-    setNotice({
-      type: "success",
-      message: editingRoomId ? "Room updated." : "Room draft saved.",
-    });
-    setIsSaving(false);
+      const data = await response.json();
+      setRooms((prev) => {
+        if (editingRoomId) {
+          return prev.map((room) =>
+            room.id === editingRoomId ? data.room : room
+          );
+        }
+        return [data.room, ...prev];
+      });
+      resetForm();
+      setNotice({
+        type: "success",
+        message: editingRoomId ? "Room updated." : "Room draft saved.",
+      });
+    } catch (error) {
+      console.error("Failed to save room:", error);
+      setNotice({ type: "error", message: "Failed to save room." });
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleEditRoom = (room: Room) => {
@@ -106,12 +145,29 @@ export default function AdminDashboard() {
     });
   };
 
-  const handleDeleteRoom = (roomId: string) => {
-    setRooms((prev) => prev.filter((room) => room.id !== roomId));
-    if (editingRoomId === roomId) {
-      resetForm();
+  const handleDeleteRoom = async (roomId: string) => {
+    setIsSaving(true);
+    try {
+      const response = await fetch("/api/admin/rooms", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: roomId }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to delete room");
+      }
+      const data = await response.json();
+      setRooms(Array.isArray(data.rooms) ? data.rooms : []);
+      if (editingRoomId === roomId) {
+        resetForm();
+      }
+      setNotice({ type: "success", message: "Room removed." });
+    } catch (error) {
+      console.error("Failed to delete room:", error);
+      setNotice({ type: "error", message: "Failed to remove room." });
+    } finally {
+      setIsSaving(false);
     }
-    setNotice({ type: "success", message: "Room removed." });
   };
 
   return (
