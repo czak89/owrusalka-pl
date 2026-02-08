@@ -8,6 +8,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { getAdminOverview } from "@/lib/mockData";
 
 const statusStyles = {
@@ -91,6 +94,46 @@ export default function AdminDashboard() {
         <div className="space-y-4">
           <Card>
             <CardHeader>
+              <CardTitle>Add Room</CardTitle>
+              <CardDescription>Draft a new room entry (mock).</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="space-y-1">
+                <Label htmlFor="room-name">Room name</Label>
+                <Input id="room-name" placeholder="Sea View Suite" />
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="space-y-1">
+                  <Label htmlFor="room-type">Type</Label>
+                  <Input id="room-type" placeholder="suite" />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="room-capacity">Capacity</Label>
+                  <Input id="room-capacity" placeholder="2" type="number" min="1" />
+                </div>
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="room-price">Price per night (PLN)</Label>
+                <Input id="room-price" placeholder="580" type="number" min="0" />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="room-notes">Highlights</Label>
+                <Textarea
+                  id="room-notes"
+                  placeholder="Balcony, king bed, sea view..."
+                />
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Button size="sm">Save Draft</Button>
+                <Button size="sm" variant="outline">
+                  Publish
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
               <CardTitle>Today&apos;s Tasks</CardTitle>
               <CardDescription>Quick admin checklist.</CardDescription>
             </CardHeader>
@@ -118,22 +161,29 @@ export default function AdminDashboard() {
 
           <Card>
             <CardHeader>
-              <CardTitle>System Status</CardTitle>
-              <CardDescription>Operational signals.</CardDescription>
+              <CardTitle>Rooms</CardTitle>
+              <CardDescription>Current inventory snapshot.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2 text-sm">
               <div className="flex items-center justify-between">
-                <span>Website</span>
-                <span className="text-emerald-600">Healthy</span>
+                <span>Sea View Suite</span>
+                <span className="text-muted-foreground">680 PLN</span>
               </div>
               <div className="flex items-center justify-between">
-                <span>Payments</span>
-                <span className="text-emerald-600">Healthy</span>
+                <span>Family Room</span>
+                <span className="text-muted-foreground">520 PLN</span>
               </div>
               <div className="flex items-center justify-between">
-                <span>AI Chat</span>
-                <span className="text-amber-600">Degraded</span>
+                <span>Standard Double</span>
+                <span className="text-muted-foreground">380 PLN</span>
               </div>
+              <div className="flex items-center justify-between">
+                <span>Garden Studio</span>
+                <span className="text-muted-foreground">450 PLN</span>
+              </div>
+              <Button size="sm" variant="outline" className="mt-2 w-full">
+                Manage Rooms
+              </Button>
             </CardContent>
           </Card>
         </div>
