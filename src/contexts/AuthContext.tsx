@@ -1,11 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import type React from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 interface User {
   id: string;
   username: string;
-  role: 'admin' | 'user';
+  role: "admin" | "user";
 }
 
 interface AuthContextType {
@@ -23,53 +24,58 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Check for existing session
-    const savedUser = localStorage.getItem('user');
+    const savedUser = localStorage.getItem("user");
     if (savedUser) {
       try {
         setUser(JSON.parse(savedUser));
       } catch (error) {
-        console.error('Error parsing saved user:', error);
-        localStorage.removeItem('user');
+        console.error("Error parsing saved user:", error);
+        localStorage.removeItem("user");
       }
     }
   }, []);
 
-  const login = async (username: string, password: string): Promise<boolean> => {
+  const login = async (
+    username: string,
+    password: string,
+  ): Promise<boolean> => {
     // Simple authentication - in production, this would call an API
-    const adminUsername = process.env.NEXT_PUBLIC_ADMIN_USERNAME || 'admin';
-    const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'password';
-    
+    const adminUsername = process.env.NEXT_PUBLIC_ADMIN_USERNAME || "admin";
+    const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "password";
+
     if (username === adminUsername && password === adminPassword) {
       const adminUser: User = {
-        id: '1',
+        id: "1",
         username: username,
-        role: 'admin',
+        role: "admin",
       };
-      
+
       setUser(adminUser);
-      localStorage.setItem('user', JSON.stringify(adminUser));
+      localStorage.setItem("user", JSON.stringify(adminUser));
       return true;
     }
-    
+
     return false;
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
   };
 
   const isAuthenticated = !!user;
-  const isAdmin = user?.role === 'admin';
+  const isAdmin = user?.role === "admin";
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      login,
-      logout,
-      isAuthenticated,
-      isAdmin,
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        logout,
+        isAuthenticated,
+        isAdmin,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -78,7 +84,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }

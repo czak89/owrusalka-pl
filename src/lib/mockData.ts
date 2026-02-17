@@ -92,17 +92,31 @@ export const bookings: Booking[] = [
 ];
 
 export function getAdminOverview() {
-  const confirmedCount = bookings.filter((b) => b.status === "confirmed").length;
+  const confirmedCount = bookings.filter(
+    (b) => b.status === "confirmed",
+  ).length;
   const pendingCount = bookings.filter((b) => b.status === "pending").length;
   const occupancy = Math.min(92, 60 + confirmedCount * 4);
   const revenueMtd = confirmedCount * 2350;
 
   return {
     stats: [
-      { label: "Active Bookings", value: String(confirmedCount), change: "+2 today" },
+      {
+        label: "Active Bookings",
+        value: String(confirmedCount),
+        change: "+2 today",
+      },
       { label: "Occupancy", value: `${occupancy}%`, change: "+5% this week" },
-      { label: "New Inquiries", value: String(pendingCount + 7), change: "Last 24h" },
-      { label: "Revenue (MTD)", value: `${revenueMtd.toLocaleString("pl-PL")} PLN`, change: "+8% MoM" },
+      {
+        label: "New Inquiries",
+        value: String(pendingCount + 7),
+        change: "Last 24h",
+      },
+      {
+        label: "Revenue (MTD)",
+        value: `${revenueMtd.toLocaleString("pl-PL")} PLN`,
+        change: "+8% MoM",
+      },
     ],
     recentBookings: bookings,
   };

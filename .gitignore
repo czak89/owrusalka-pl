@@ -94,3 +94,12 @@ logs
 
 # Sentry Config File
 .sentryclirc
+
+# Old site backup & migration artifacts
+/old-site/
+/exports/
+/output/
+/tmp/
+/tmp-export-test/
+/tmp-export-test-pdf/
+*.bak

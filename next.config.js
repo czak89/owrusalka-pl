@@ -7,6 +7,8 @@ const nextConfig = {
     unoptimized: false,
     formats: ["image/webp"],
     remotePatterns: [
+      { protocol: "https", hostname: "owrusalka.pl", pathname: "/**" },
+      { protocol: "https", hostname: "www.owrusalka.pl", pathname: "/**" },
       { protocol: "https", hostname: "source.unsplash.com", pathname: "/**" },
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
       { protocol: "https", hostname: "ext.same-assets.com", pathname: "/**" },

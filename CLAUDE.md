@@ -4,9 +4,9 @@
 **Rusałka nad Morzem** - Comprehensive Polish seaside resort website
 
 ## Tech Stack
-- **Framework**: Next.js 15.3.2 with App Router
+- **Framework**: Next.js 16.1.6 with App Router
 - **Language**: TypeScript 5.7.2
-- **Styling**: Tailwind CSS 4.1.11
+- **Styling**: Tailwind CSS 4.1.18
 - **UI Components**: shadcn/ui + Radix UI
 - **Runtime**: Bun (recommended) or Node.js 18+
 - **Linting**: Biome 1.9.4
@@ -46,6 +46,8 @@ See `.env.example` for required configuration:
 - `OPENAI_API_KEY` - AI chat functionality
 - `NEXT_PUBLIC_GA_ID` - Google Analytics (optional)
 - `ADMIN_USERNAME` / `ADMIN_PASSWORD` - Admin dashboard auth
+- `RESEND_API_KEY` / `CONTACT_TO_EMAIL` - Contact form email delivery
+- `CONTACT_WEBHOOK_URL` - Optional fallback for contact submissions
 
 ## Important Notes
 - This is a Git repository
@@ -53,4 +55,4 @@ See `.env.example` for required configuration:
 - Contact: recepcja@owrusalka.pl
 
 ---
-*Last updated: 2025-12-13*
+*Last updated: 2026-02-17*

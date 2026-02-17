@@ -1,3 +1,3 @@
 export default function SocialFeed() {
-  return <div />
+  return <div />;
 }

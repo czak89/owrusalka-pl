@@ -58,14 +58,16 @@ export async function PATCH(request: Request) {
   }
 
   if (!payload || typeof payload !== "object") {
-    return NextResponse.json(createApiError("Booking payload must be an object"), {
-      status: 400,
-    });
+    return NextResponse.json(
+      createApiError("Booking payload must be an object"),
+      {
+        status: 400,
+      },
+    );
   }
 
   const candidate = payload as { id?: unknown; status?: unknown };
-  const bookingId =
-    typeof candidate.id === "string" ? candidate.id.trim() : "";
+  const bookingId = typeof candidate.id === "string" ? candidate.id.trim() : "";
 
   if (!bookingId) {
     return NextResponse.json(createApiError("Booking id is required", "id"), {
@@ -74,9 +76,12 @@ export async function PATCH(request: Request) {
   }
 
   if (!isBookingStatus(candidate.status)) {
-    return NextResponse.json(createApiError("Invalid booking status", "status"), {
-      status: 400,
-    });
+    return NextResponse.json(
+      createApiError("Invalid booking status", "status"),
+      {
+        status: 400,
+      },
+    );
   }
 
   const existingBooking = getBookingById(bookingId);
@@ -105,14 +110,16 @@ export async function DELETE(request: Request) {
   }
 
   if (!payload || typeof payload !== "object") {
-    return NextResponse.json(createApiError("Booking payload must be an object"), {
-      status: 400,
-    });
+    return NextResponse.json(
+      createApiError("Booking payload must be an object"),
+      {
+        status: 400,
+      },
+    );
   }
 
   const candidate = payload as { id?: unknown };
-  const bookingId =
-    typeof candidate.id === "string" ? candidate.id.trim() : "";
+  const bookingId = typeof candidate.id === "string" ? candidate.id.trim() : "";
 
   if (!bookingId) {
     return NextResponse.json(createApiError("Booking id is required", "id"), {

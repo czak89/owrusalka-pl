@@ -6,27 +6,33 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function AdminPage() {
   const { user, login, isAuthenticated } = useAuth();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
-    
+    setError("");
+
     try {
       const success = await login(username, password);
       if (!success) {
-        setError('Invalid credentials');
+        setError("Invalid credentials");
       }
     } catch (err) {
-      setError('Login failed');
+      setError("Login failed");
     } finally {
       setIsLoading(false);
     }
@@ -64,11 +70,9 @@ export default function AdminPage() {
                   required
                 />
               </div>
-              {error && (
-                <div className="text-red-600 text-sm">{error}</div>
-              )}
+              {error && <div className="text-red-600 text-sm">{error}</div>}
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Logging in...' : 'Login'}
+                {isLoading ? "Logging in..." : "Login"}
               </Button>
             </form>
           </CardContent>
@@ -83,4 +87,3 @@ export default function AdminPage() {
     </div>
   );
 }
-

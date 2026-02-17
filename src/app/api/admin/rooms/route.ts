@@ -24,7 +24,8 @@ export async function POST(request: Request) {
   }
 
   const candidate = payload as Partial<Room>;
-  const roomName = typeof candidate.name === "string" ? candidate.name.trim() : "";
+  const roomName =
+    typeof candidate.name === "string" ? candidate.name.trim() : "";
 
   if (!roomName) {
     return NextResponse.json(createApiError("Room name is required", "name"), {

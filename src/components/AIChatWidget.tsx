@@ -1,3 +1,3 @@
 export default function AIChatWidget() {
-  return <div />
+  return <div />;
 }

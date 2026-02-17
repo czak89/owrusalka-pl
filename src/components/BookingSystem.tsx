@@ -25,7 +25,9 @@ export default function BookingSystem() {
                 <CardTitle className="text-lg">{room.name}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2 text-sm text-muted-foreground">
-                <div>{room.capacity} guests • {room.type}</div>
+                <div>
+                  {room.capacity} guests • {room.type}
+                </div>
                 <div>From {room.pricePerNightPln} PLN / night</div>
                 <div>Next available: {room.nextAvailable}</div>
                 <div className="text-xs text-muted-foreground">

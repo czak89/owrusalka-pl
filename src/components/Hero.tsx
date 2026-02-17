@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import { ChevronDown, Phone, Calendar } from 'lucide-react'
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { ChevronDown, Phone, Calendar } from "lucide-react";
 
 const heroImages = [
-  '/wp-content/uploads/2023/01/DJI_0263-HDR.webp',
-  '/wp-content/uploads/2023/01/Zdjecia-z-drona-4_1-scaled.webp',
-  '/wp-content/uploads/2023/01/z-gory-2.webp',
-  '/wp-content/uploads/2023/01/DSC0195-scaled.webp',
-  '/wp-content/uploads/2023/01/pexels-asad-photo-maldives-1024968-scaled.webp',
-]
+  "/wp-content/uploads/2023/01/DJI_0263-HDR.webp",
+  "/wp-content/uploads/2023/01/Zdjecia-z-drona-4_1-scaled.webp",
+  "/wp-content/uploads/2023/01/z-gory-2.webp",
+  "/wp-content/uploads/2023/01/DSC0195-scaled.webp",
+  "/wp-content/uploads/2023/01/pexels-asad-photo-maldives-1024968-scaled.webp",
+];
 
 export default function Hero() {
-  const [currentImage, setCurrentImage] = useState(0)
+  const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % heroImages.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
+      setCurrentImage((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    element?.scrollIntoView({ behavior: 'smooth' })
-  }
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section className="relative h-screen overflow-hidden">
@@ -34,7 +34,7 @@ export default function Hero() {
         <div
           key={index}
           className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentImage ? 'opacity-100' : 'opacity-0'
+            index === currentImage ? "opacity-100" : "opacity-0"
           }`}
         >
           <Image
@@ -73,14 +73,14 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-600">
-          <button 
-            onClick={() => scrollToSection('rezerwacja')}
+          <button
+            onClick={() => scrollToSection("rezerwacja")}
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center gap-2 transition-all hover:scale-105"
           >
             <Calendar size={20} />
             Zarezerwuj pobyt
           </button>
-          <a 
+          <a
             href="tel:+48602441188"
             className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center gap-2 transition-all hover:scale-105"
           >
@@ -91,9 +91,9 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div 
+      <div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
-        onClick={() => scrollToSection('o-nas')}
+        onClick={() => scrollToSection("o-nas")}
       >
         <ChevronDown size={48} />
       </div>
@@ -105,11 +105,11 @@ export default function Hero() {
             key={index}
             onClick={() => setCurrentImage(index)}
             className={`w-3 h-3 rounded-full transition-all ${
-              index === currentImage ? 'bg-white w-8' : 'bg-white bg-opacity-50'
+              index === currentImage ? "bg-white w-8" : "bg-white bg-opacity-50"
             }`}
           />
         ))}
       </div>
     </section>
-  )
+  );
 }

@@ -16,7 +16,9 @@ export function getBookings() {
 
 export function saveBooking(booking: Booking) {
   const store = globalForBookings.__bookingsStore!;
-  const existingIndex = store.bookings.findIndex((item) => item.id === booking.id);
+  const existingIndex = store.bookings.findIndex(
+    (item) => item.id === booking.id,
+  );
   if (existingIndex >= 0) {
     store.bookings[existingIndex] = booking;
   } else {

@@ -116,7 +116,7 @@ export default function AdminDashboard() {
       setRooms((prev) => {
         if (editingRoomId) {
           return prev.map((room) =>
-            room.id === editingRoomId ? data.room : room
+            room.id === editingRoomId ? data.room : room,
           );
         }
         return [data.room, ...prev];
@@ -263,7 +263,9 @@ export default function AdminDashboard() {
                   id="room-name"
                   placeholder="Sea View Suite"
                   value={form.name}
-                  onChange={(event) => handleFormChange("name", event.target.value)}
+                  onChange={(event) =>
+                    handleFormChange("name", event.target.value)
+                  }
                 />
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -273,7 +275,9 @@ export default function AdminDashboard() {
                     id="room-type"
                     placeholder="suite"
                     value={form.type}
-                    onChange={(event) => handleFormChange("type", event.target.value)}
+                    onChange={(event) =>
+                      handleFormChange("type", event.target.value)
+                    }
                   />
                 </div>
                 <div className="space-y-1">
@@ -284,7 +288,9 @@ export default function AdminDashboard() {
                     type="number"
                     min="1"
                     value={form.capacity}
-                    onChange={(event) => handleFormChange("capacity", event.target.value)}
+                    onChange={(event) =>
+                      handleFormChange("capacity", event.target.value)
+                    }
                   />
                 </div>
               </div>
@@ -307,7 +313,9 @@ export default function AdminDashboard() {
                   id="room-notes"
                   placeholder="Balcony, king bed, sea view..."
                   value={form.highlights}
-                  onChange={(event) => handleFormChange("highlights", event.target.value)}
+                  onChange={(event) =>
+                    handleFormChange("highlights", event.target.value)
+                  }
                 />
               </div>
               <div className="flex flex-wrap gap-2">
@@ -383,10 +391,18 @@ export default function AdminDashboard() {
                     <span className="text-sm text-muted-foreground">
                       {room.pricePerNightPln} PLN
                     </span>
-                    <Button size="sm" variant="outline" onClick={() => handleEditRoom(room)}>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleEditRoom(room)}
+                    >
                       Edit
                     </Button>
-                    <Button size="sm" variant="ghost" onClick={() => handleDeleteRoom(room.id)}>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => handleDeleteRoom(room.id)}
+                    >
                       Delete
                     </Button>
                   </div>

@@ -37,7 +37,7 @@ export function isBookingStatus(value: unknown): value is BookingStatus {
 function asRequiredTrimmedString(
   value: unknown,
   field: string,
-  label: string
+  label: string,
 ): ValidationResult<string> {
   if (typeof value !== "string") {
     return { ok: false, error: createApiError(`${label} is required`, field) };
@@ -51,7 +51,9 @@ function asRequiredTrimmedString(
   return { ok: true, value: normalized };
 }
 
-export function validateCreateBookingPayload(payload: unknown): ValidationResult<{
+export function validateCreateBookingPayload(
+  payload: unknown,
+): ValidationResult<{
   id?: string;
   guest: string;
   roomId: string;
@@ -81,7 +83,7 @@ export function validateCreateBookingPayload(payload: unknown): ValidationResult
   const roomName = asRequiredTrimmedString(
     candidate.roomName,
     "roomName",
-    "Room name"
+    "Room name",
   );
   if (!roomName.ok) {
     return roomName;

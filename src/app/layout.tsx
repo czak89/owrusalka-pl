@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import type { ReactNode } from "react";
 
 import "./globals.css";
@@ -8,58 +8,55 @@ import ClientBody from "./ClientBody";
 import { StructuredData } from "@/components/StructuredData";
 import { Analytics } from "@/components/Analytics";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Rusałka nad morzem - Ośrodek Wypoczynkowy | Hotel nad Bałtykiem",
+  title: "Osrodek Wypoczynkowy Rusalka | Lazy kolo Mielna",
   description:
-    "Luksusowy ośrodek wypoczynkowy nad Morzem Bałtyckim w Łazach. Komfortowe pokoje z widokiem na morze, restauracja, SPA, prywatna plaża. Rezerwuj online!",
+    "Rodzinny osrodek wypoczynkowy 50 m od plazy w Lazach. Pokoje, studia rodzinne, animacje dla dzieci i szybki kontakt telefoniczny.",
   keywords:
-    "hotel nad morzem, ośrodek wypoczynkowy, Bałtyk, Łazy, pokoje z widokiem na morze, SPA, plaża, wakacje nad morzem, resort nadmorski",
-  authors: [{ name: "Rusałka nad morzem" }],
-  creator: "Rusałka nad morzem",
-  publisher: "Rusałka nad morzem",
+    "noclegi Lazy, osrodek wypoczynkowy Lazy, noclegi Mielno, wakacje nad Baltykiem, animacje dla dzieci",
+  authors: [{ name: "Osrodek Wypoczynkowy Rusalka" }],
+  creator: "Osrodek Wypoczynkowy Rusalka",
+  publisher: "Osrodek Wypoczynkowy Rusalka",
   robots: "index, follow",
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    url: "https://rusalka-nadmorzem.pl",
-    siteName: "Rusałka nad morzem",
-    title: "Rusałka nad morzem - Luksusowy Ośrodek Wypoczynkowy nad Bałtykiem",
+    url: "https://owrusalka.pl",
+    siteName: "Osrodek Wypoczynkowy Rusalka",
+    title: "Rusalka w Lazach - noclegi blisko morza",
     description:
-      "Odkryj magię Bałtyku w naszym wyjątkowym ośrodku wypoczynkowym. Komfortowe pokoje, SPA, restauracja i prywatna plaża czekają na Ciebie.",
+      "Sprawdz noclegi rodzinne, atrakcje i szybki kontakt z osrodkiem Rusalka.",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1200&h=630&fit=crop",
+        url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=630&fit=crop",
         width: 1200,
         height: 630,
-        alt: "Rusałka nad morzem - Resort nad Bałtykiem",
+        alt: "Plaza nad Baltykiem w okolicy Laz",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rusałka nad morzem - Luksusowy Ośrodek Wypoczynkowy",
-    description: "Odkryj magię Bałtyku w naszym wyjątkowym ośrodku wypoczynkowym.",
+    title: "Rusalka Lazy - rodzinne wakacje nad morzem",
+    description: "Osrodek 50 m od plazy z animacjami i pokojami rodzinnymi.",
     images: [
-      "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=1200&h=630&fit=crop",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=630&fit=crop",
     ],
   },
   alternates: {
-    canonical: "https://rusalka-nadmorzem.pl",
-    languages: {
-      pl: "https://rusalka-nadmorzem.pl",
-      en: "https://rusalka-nadmorzem.pl/en",
-      de: "https://rusalka-nadmorzem.pl/de",
-    },
+    canonical: "https://owrusalka.pl",
   },
 };
 
@@ -70,7 +67,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <StructuredData />
         <Analytics />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${manrope.variable} ${playfair.variable} antialiased`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground"
+        >
+          Przejdz do tresci
+        </a>
         <ClientBody>{children}</ClientBody>
       </body>
     </html>

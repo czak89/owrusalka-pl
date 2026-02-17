@@ -1,3 +1,3 @@
 export default function WeatherWidget() {
-  return <div />
+  return <div />;
 }
