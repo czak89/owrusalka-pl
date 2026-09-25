@@ -1,0 +1,24 @@
+name: Link check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress --root-dir "${{ github.workspace }}"
+            --exclude-path scraps --exclude-path source --exclude-path uploads
+            --exclude-path output --exclude-path .omc --exclude-path .omx
+            --exclude-path .playwright-cli
+            './**/*.html' './**/*.jsx' './**/*.css'
+          fail: true

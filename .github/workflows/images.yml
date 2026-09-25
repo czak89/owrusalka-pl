@@ -1,0 +1,36 @@
+name: Compress images
+
+on:
+  push:
+    branches: [main]
+    paths: ["**.jpg", "**.jpeg", "**.png", "**.webp"]
+  schedule:
+    - cron: "0 5 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  compress:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: calibre
+        uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          compressOnly: true
+          jpegQuality: "82"
+          pngQuality: "80"
+          webpQuality: "82"
+          ignorePaths: "scraps/**,source/**,output/**,.omc/**,.omx/**,.playwright-cli/**"
+      - if: steps.calibre.outputs.markdown != ''
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: "chore: compress images"
+          branch: chore/compress-images
+          commit-message: "chore: compress images"
+          body: ${{ steps.calibre.outputs.markdown }}
