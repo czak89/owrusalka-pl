@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rusałka · Wakacje rodzinne nad Bałtykiem w Łazach</title>
+  <meta name="description" content="Ośrodek Wypoczynkowy Rusałka w Łazach k/Mielna. 50 metrów od plaży, sosnowy las, domowa kuchnia. Rodzinne wakacje nad Bałtykiem." />
+
+  <!-- Code-referenced images (set via window.__resources in JSX) -->
+  <meta name="ext-resource-dependency" content="assets/logo-rusalka-full.png" data-resource-id="logoFull" />
+  <meta name="ext-resource-dependency" content="assets/logo-rusalka-on-dark.jpg" data-resource-id="logoDark" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="image-slot.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="kit.jsx"></script>
+  <script type="text/babel" src="sections.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+
+  <template id="__bundler_thumbnail" data-bg-color="#f4ead6">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="1200" height="800" fill="#f4ead6"/>
+      <circle cx="600" cy="300" r="120" fill="#ffd500"/>
+      <path d="M0 520 Q150 470 300 520 T600 520 T900 520 T1200 520 V800 H0 Z" fill="#0a9ccc"/>
+      <path d="M0 600 Q150 555 300 600 T600 600 T900 600 T1200 600 V800 H0 Z" fill="#2ec4a6" fill-opacity="0.85"/>
+      <text x="600" y="730" font-family="Pacifico, cursive" font-size="96" fill="#ff6f59" text-anchor="middle">Rusałka</text>
+    </svg>
+  </template>
+</body>
+</html>

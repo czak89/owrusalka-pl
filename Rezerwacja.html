@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rezerwacja pobytu — Ośrodek Wypoczynkowy „Rusałka"</title>
+
+  <link rel="stylesheet" href="colors_and_type.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="rez-styles.css" />
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="kit.jsx"></script>
+  <script type="text/babel" src="sections.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="rez-data.jsx"></script>
+  <script type="text/babel" src="rez-calendar.jsx"></script>
+  <script type="text/babel" src="rez-steps.jsx"></script>
+  <script type="text/babel" src="rez-app.jsx"></script>
+  <script type="text/babel" src="rez-page.jsx"></script>
+
+  <template id="__bundler_thumbnail" data-bg-color="#0A9CCC">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#0A9CCC"/>
+      <circle cx="600" cy="300" r="120" fill="#FFD500"/>
+      <rect x="380" y="440" width="440" height="300" rx="28" fill="#FFF8E8"/>
+      <rect x="430" y="500" width="150" height="24" rx="12" fill="#003B59"/>
+      <rect x="430" y="548" width="340" height="16" rx="8" fill="#E8D6A8"/>
+      <rect x="430" y="588" width="120" height="40" rx="20" fill="#FF6F3C"/>
+    </svg>
+  </template>
+</body>
+</html>

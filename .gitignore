@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+dist/
+.env*
+.omc/
+.omx/
+.playwright-cli/
+output/
+*.tar.gz
+*.sql
+*.mmdb
+wp-config.php
+Thumbs.db

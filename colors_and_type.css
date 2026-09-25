@@ -1,0 +1,306 @@
+/* =========================================================================
+   Rusałka — Colors & Type
+   Ośrodek Wypoczynkowy Rusałka, Łazy k/Mielna
+   Source palette: assets/palette-reference.svg (9 brand colors)
+   ========================================================================= */
+
+/* --- Webfonts ----------------------------------------------------------- */
+/* Script: Pacifico — OFFICIAL brand font (provided as fonts/Pacifico-Regular.ttf).
+   Display + Body: Newsreader + Nunito from Google Fonts — STILL substitutes
+   pending an official brand set. See README → "Type substitutions". */
+@font-face {
+  font-family: "Pacifico";
+  src: url("fonts/Pacifico-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Nunito:wght@400;500;600;700;800&display=swap");
+
+:root {
+  /* ---------- Palette (raw tokens) ------------------------------------- */
+  /* Base — the main five */
+  --c-light-sky:   #99E6FF; /* bright accents, soft fills */
+  --c-baltic-blue: #0A9CCC; /* main marine, links, primary surfaces */
+  --c-deep-sea:    #003B59; /* strong base, headings, dark fills */
+  --c-sun-yellow:  #FFD500; /* sun / energy, highlights */
+  --c-amber:       #FFAA00; /* warm accent, secondary CTA */
+
+  /* Additional — less frequently used */
+  --c-seafoam:     #2EC4A6; /* calm accent, success */
+  --c-coral:       #FF6F3C; /* CTA / social posts, warmth */
+
+  /* Neutral */
+  --c-paper:       #FFF8E8; /* dominant background — never pure white */
+  --c-ink:         #1B2A2F; /* body text, contrast */
+
+  /* Tonal extras — derived for surfaces, hovers, borders.
+     Stay on-brand: warm beiges + sea-tinted darks, never neutral grays. */
+  --c-paper-2:     #FBF1D8; /* card / slightly-recessed surface */
+  --c-paper-3:     #F4E6BF; /* sand band, hover on paper */
+  --c-paper-edge:  #E8D6A8; /* paper border / divider */
+  --c-ink-2:       #2C4047; /* secondary text */
+  --c-ink-3:       #5C6F77; /* tertiary text, captions */
+  --c-deep-sea-2:  #00547D; /* hover state for Deep Sea */
+  --c-baltic-2:    #0888B3; /* hover state for Baltic Blue */
+  --c-sun-2:       #FFC700; /* pressed state for Sun Yellow */
+  --c-coral-2:     #E65A28; /* pressed state for Coral */
+
+  /* Subtle tints for backgrounds and washes */
+  --c-sky-wash:    #E5F6FE;
+  --c-sand-wash:   #FFF3D6;
+  --c-foam-wash:   #DEF4EE;
+
+  /* ---------- Semantic color tokens ----------------------------------- */
+  --bg:            var(--c-paper);
+  --bg-elevated:   var(--c-paper-2);
+  --bg-sunken:     var(--c-paper-3);
+  --bg-dark:       var(--c-deep-sea);
+  --bg-marine:     var(--c-baltic-blue);
+
+  --fg:            var(--c-ink);
+  --fg-2:          var(--c-ink-2);
+  --fg-3:          var(--c-ink-3);
+  --fg-on-dark:    var(--c-paper);
+  --fg-on-marine:  var(--c-paper);
+
+  --accent:        var(--c-baltic-blue);
+  --accent-hover:  var(--c-baltic-2);
+  --accent-press:  var(--c-deep-sea);
+  --accent-warm:   var(--c-amber);
+  --accent-sun:    var(--c-sun-yellow);
+  --accent-cta:    var(--c-coral);
+  --accent-cta-hover: var(--c-coral-2);
+  --accent-success: var(--c-seafoam);
+
+  --border:        var(--c-paper-edge);
+  --border-strong: var(--c-deep-sea);
+
+  --link:          var(--c-baltic-blue);
+  --link-hover:    var(--c-deep-sea);
+
+  /* ---------- Typography ---------------------------------------------- */
+  --font-script:   "Pacifico", "Caveat", "Bradley Hand", "Segoe Script", cursive; /* official brand script — logo-feel and short callouts */
+
+  /* Pacifico ships TWO forms of Polish ł/Ł:
+     • default — macron OVER the l (Romanian-style, wrong for Polish).
+     • OpenType stylistic set 1 — proper diagonal stroke THROUGH the l.
+     The .script utility class below enables ss01 by default. Anywhere you set
+     font-family: var(--font-script) by hand, also set
+       font-feature-settings: "ss01" 1;
+     or use the .script class to pick it up. */
+  --font-display:  "Newsreader", "Lora", Georgia, "Times New Roman", serif; /* warm humanist serif — headings, hero copy */
+  --font-body:     "Nunito", "Avenir Next", "Helvetica Neue", Arial, sans-serif; /* rounded sans — body, UI */
+
+  /* Type scale (1.250 — major third, gentle) */
+  --fs-xs:    12px;
+  --fs-sm:    14px;
+  --fs-base:  16px;
+  --fs-md:    18px;
+  --fs-lg:    20px;
+  --fs-xl:    24px;
+  --fs-2xl:   30px;
+  --fs-3xl:   38px;
+  --fs-4xl:   48px;
+  --fs-5xl:   60px;
+  --fs-6xl:   76px;
+
+  --lh-tight: 1.1;
+  --lh-snug:  1.25;
+  --lh-base:  1.55;
+  --lh-loose: 1.7;
+
+  --tracking-tight: -0.01em;
+  --tracking-base:  0;
+  --tracking-wide:  0.04em;
+  --tracking-caps:  0.12em;
+
+  /* ---------- Spacing (8pt-ish, with a 4 baby step) ------------------ */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+
+  /* ---------- Radius — generous, soft, never sharp ------------------- */
+  --radius-sm:    6px;
+  --radius-md:    12px;
+  --radius-lg:    20px;
+  --radius-xl:    28px;
+  --radius-2xl:   40px;
+  --radius-pill:  999px;
+
+  /* ---------- Shadows — soft, warm, low-contrast --------------------- */
+  --shadow-sm:  0 1px 2px rgba(0, 59, 89, 0.08);
+  --shadow-md:  0 6px 18px -8px rgba(0, 59, 89, 0.18),
+                0 2px 4px rgba(0, 59, 89, 0.06);
+  --shadow-lg:  0 22px 40px -22px rgba(0, 59, 89, 0.32),
+                0 6px 12px -6px rgba(0, 59, 89, 0.12);
+  --shadow-glow-sun: 0 0 0 6px rgba(255, 213, 0, 0.18);
+
+  /* ---------- Motion -------------------------------------------------- */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur:      200ms;
+  --dur-slow: 400ms;
+}
+
+/* =========================================================================
+   Semantic element styles — drop-in defaults
+   ========================================================================= */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-5xl);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--c-deep-sea);
+  text-wrap: balance;
+  margin: 0 0 var(--space-4);
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-3xl);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--c-deep-sea);
+  text-wrap: balance;
+  margin: 0 0 var(--space-3);
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-2xl);
+  line-height: var(--lh-snug);
+  color: var(--c-deep-sea);
+  margin: 0 0 var(--space-3);
+}
+
+h4, .h4 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  color: var(--c-deep-sea);
+  margin: 0 0 var(--space-2);
+}
+
+p, .body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+  color: var(--fg);
+  margin: 0 0 var(--space-4);
+  text-wrap: pretty;
+}
+
+.lede {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  line-height: var(--lh-snug);
+  color: var(--fg-2);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--c-deep-sea);
+  /* Pacifico stylistic set 1 = proper Polish ł/Ł with diagonal stroke. */
+  font-feature-settings: "ss01" 1;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--c-baltic-blue);
+}
+
+.caption {
+  font-size: var(--fs-sm);
+  color: var(--fg-3);
+  line-height: var(--lh-snug);
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  transition: color var(--dur) var(--ease-out);
+}
+a:hover { color: var(--link-hover); }
+
+code, pre, kbd {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+}
+
+::selection { background: var(--c-sun-yellow); color: var(--c-deep-sea); }
+
+/* =========================================================================
+   Pacifico stylistic-set helper
+   Any element rendered in the script font should enable ss01 so Polish ł/Ł
+   come through correctly (default Pacifico draws a macron over l, not the
+   Polish diagonal stroke). The .script utility above already does this; this
+   class is a shorthand to apply on hero ribbons, signatures, etc.
+   ========================================================================= */
+.pacifico-ss01 { font-feature-settings: "ss01" 1; }
+
+/* =========================================================================
+   Legacy fallback — .faux-l helpers (DEPRECATED).
+   Kept only for environments that can't honour OpenType feature settings.
+   Prefer ss01 (see above) for every new use.
+   ========================================================================= */
+.faux-l-lower,
+.faux-l-upper {
+  position: relative;
+  display: inline-block;
+}
+.faux-l-lower::before {
+  content: "";
+  position: absolute;
+  width: 0.5em;
+  height: 0.07em;
+  background: currentColor;
+  top: 0.46em;
+  left: -0.1em;
+  transform: rotate(-22deg);
+  border-radius: 999px;
+  pointer-events: none;
+}
+.faux-l-upper::before {
+  content: "";
+  position: absolute;
+  width: 0.46em;
+  height: 0.08em;
+  background: currentColor;
+  top: 0.5em;
+  left: -0.02em;
+  transform: rotate(-22deg);
+  border-radius: 999px;
+  pointer-events: none;
+}
