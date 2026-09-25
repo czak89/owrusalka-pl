@@ -1,0 +1,498 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - link [ref=e5] [cursor=pointer]:
+        - /url: index.html
+        - img "Rusałka — Ośrodek Wypoczynkowy" [ref=e6]
+      - generic [ref=e18]: PL · EN
+      - button "Zarezerwuj" [ref=e19] [cursor=pointer]
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - generic [ref=e26]: witamy w Łazach
+      - heading [level=1] [ref=e27]:
+        - text: Wakacje, które pachną
+        - emphasis [ref=e28]: sosną
+        - text: i Bałtykiem.
+      - paragraph [ref=e30]: Pięćdziesiąt metrów do plaży. Domowa kuchnia, ognisko po kolacji, i ten szum, którego nie znajdziecie nigdzie indziej.
+      - generic [ref=e31]:
+        - button "Sprawdź wolne terminy" [ref=e32] [cursor=pointer]
+        - button "Zobacz na mapie" [ref=e36] [cursor=pointer]
+      - generic [ref=e41]:
+        - generic [ref=e42]: Sezon maj — wrzesień 2026
+        - generic [ref=e44]: Do 220 gości
+        - generic [ref=e46]: Wi-Fi w każdym pokoju
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic [ref=e51]: plaża
+          - generic:
+            - button "Replace"
+            - button "Remove"
+        - generic [ref=e58]: plaża, lipiec '24
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - generic [ref=e61]: obiad
+          - generic:
+            - button "Replace"
+            - button "Remove"
+        - generic [ref=e68]: obiad w jadalni
+      - generic [ref=e69]:
+        - generic [ref=e70]:
+          - generic [ref=e71]: dzieci
+          - generic:
+            - button "Replace"
+            - button "Remove"
+        - generic [ref=e78]: na placu zabaw
+  - generic [ref=e80]:
+    - generic [ref=e81]:
+      - generic [ref=e82]: 50m
+      - generic [ref=e83]: Do plaży
+    - generic [ref=e84]:
+      - generic [ref=e85]: "220"
+      - generic [ref=e86]: Gości w sezonie
+    - generic [ref=e87]: i ani jednego basenu
+  - generic [ref=e90]:
+    - generic [ref=e91] [cursor=pointer]:
+      - generic [ref=e92]: Przyjazd
+      - combobox "Przyjazd" [ref=e96]:
+        - option "18 lipca 2026" [selected]
+        - option "25 lipca 2026"
+        - option "1 sierpnia 2026"
+        - option "8 sierpnia 2026"
+        - option "15 sierpnia 2026"
+    - generic [ref=e97] [cursor=pointer]:
+      - generic [ref=e98]: Wyjazd
+      - combobox "Wyjazd" [ref=e102]:
+        - option "18 lipca 2026"
+        - option "25 lipca 2026" [selected]
+        - option "1 sierpnia 2026"
+        - option "8 sierpnia 2026"
+        - option "15 sierpnia 2026"
+    - generic [ref=e103] [cursor=pointer]:
+      - generic [ref=e104]: Goście
+      - combobox "Goście" [ref=e111]:
+        - option "2 dorosłych"
+        - option "2 dorosłych + 1 dziecko"
+        - option "2 dorosłych + 2 dzieci" [selected]
+        - option "4 dorosłych"
+        - option "4 dorosłych + 2 dzieci"
+    - generic [ref=e112] [cursor=pointer]:
+      - generic [ref=e113]: Typ pokoju
+      - combobox "Typ pokoju" [ref=e117]:
+        - option "Pokój Economy · 160 zł"
+        - option "Pokój rodzinny · 220 zł" [selected]
+        - option "Studio 2-pokojowe · 290 zł"
+    - button "Sprawdź" [ref=e118] [cursor=pointer]
+  - generic [ref=e123]:
+    - generic [ref=e124]:
+      - generic [ref=e125]:
+        - generic [ref=e126]: Nocleg nad Bałtykiem
+        - heading [level=2] [ref=e127]:
+          - text: Pokoje i studia
+          - emphasis [ref=e128]: rodzinne
+          - text: .
+        - paragraph [ref=e129]: Trzy układy — od najprostszego ekonomicznego po dwupokojowe studio dla większej rodziny. Wszystkie z łazienką, telewizorem i Wi-Fi.
+      - link [ref=e131] [cursor=pointer]:
+        - /url: pokoje.html
+        - button "Wszystkie pokoje" [ref=e132]
+    - tablist [ref=e136]:
+      - tab "Pokój Economy 60 pokoi" [ref=e137] [cursor=pointer]:
+        - text: Pokój Economy
+        - generic [ref=e138]: 60 pokoi
+      - tab "Pokój rodzinny 24 pokoje" [selected] [ref=e139] [cursor=pointer]:
+        - text: Pokój rodzinny
+        - generic [ref=e140]: 24 pokoje
+      - tab "Studio 2-pokojowe 8 studiów" [ref=e141] [cursor=pointer]:
+        - text: Studio 2-pokojowe
+        - generic [ref=e142]: 8 studiów
+    - generic [ref=e143]:
+      - generic [ref=e144]:
+        - generic [ref=e145]: Polecamy
+        - generic [ref=e147]: Pawilon główny · balkon lub taras
+      - generic [ref=e151]:
+        - heading "Pokój rodzinny" [level=3] [ref=e152]
+        - generic [ref=e153]: 20 m² · 2–4 osoby · Pawilon główny · balkon lub taras
+        - paragraph [ref=e154]: W budynku głównym, na parterze lub I piętrze. Sofy małżeńskie, łoża, łóżka sosnowe, lodówka, komplet mebli ogrodowych. Wszystkie pokoje mają balkon (góra) albo taras od strony placu zabaw (parter).
+        - generic [ref=e155]:
+          - generic [ref=e156]: Balkon/taras
+          - generic [ref=e157]: Lodówka
+          - generic [ref=e158]: Łóżeczko
+          - generic [ref=e159]: Ręczniki
+          - generic [ref=e160]: Wi-Fi
+        - generic [ref=e161]:
+          - generic [ref=e162]:
+            - generic [ref=e163]: od 220 zł / noc
+            - text: śniadanie w cenie · dziecko do 3 lat gratis
+          - button "Sprawdź dostępność" [ref=e164] [cursor=pointer]
+  - generic [ref=e169]:
+    - generic [ref=e170]:
+      - generic [ref=e171]:
+        - generic [ref=e172]: Cennik 2026
+        - heading [level=2] [ref=e173]:
+          - text: Ceny
+          - emphasis [ref=e174]: od ręki
+          - text: ", bez gwiazdek."
+        - paragraph [ref=e175]: Ceny za pokój / dobę, ze śniadaniem w cenie. Dziecko do 3 lat śpi z rodzicami za darmo.
+      - button "Pobierz cennik (PDF)" [ref=e177] [cursor=pointer]
+    - generic [ref=e182]:
+      - generic [ref=e183]:
+        - text: Pokój
+        - generic [ref=e184]: za dobę
+      - generic [ref=e185]:
+        - text: Maj — czerwiec
+        - generic [ref=e186]: 23.05 — 26.06
+      - generic [ref=e187]:
+        - text: Lipiec — sierpień
+        - generic [ref=e188]: 27.06 — 23.08
+      - generic [ref=e193]:
+        - text: Pokój Economy
+        - generic [ref=e194]: 15 m² · 2–4 os.
+      - generic [ref=e195]:
+        - text: "130"
+        - generic [ref=e196]: zł
+      - generic [ref=e197]:
+        - text: "180"
+        - generic [ref=e198]: zł
+      - generic [ref=e203]:
+        - text: Pokój rodzinny
+        - generic [ref=e204]: 20 m² · 2–4 os.
+      - generic [ref=e205]:
+        - text: "180"
+        - generic [ref=e206]: zł
+      - generic [ref=e207]:
+        - text: "240"
+        - generic [ref=e208]: zł
+      - generic [ref=e213]:
+        - text: Studio 2-pokojowe
+        - generic [ref=e214]: 30 m² · do 5 os.
+      - generic [ref=e215]:
+        - text: "240"
+        - generic [ref=e216]: zł
+      - generic [ref=e217]:
+        - text: "310"
+        - generic [ref=e218]: zł
+      - generic [ref=e223]: "* Ceny brutto. Pełne wyżywienie + 60 zł / osobę / dobę. Opłata klimatyczna 3 zł/os./dobę płatna na miejscu. Pies za zgodą gospodarzy — 30 zł / dobę."
+    - generic [ref=e224]:
+      - generic [ref=e231]:
+        - heading "Goście wracający — 10% taniej" [level=5] [ref=e232]
+        - paragraph [ref=e233]: Drugi pobyt w sezonie albo dowolny w przyszłym roku. Wystarczy przypomnieć przy rezerwacji.
+      - generic [ref=e240]:
+        - heading "Last minute — czerwiec i wrzesień" [level=5] [ref=e241]
+        - paragraph [ref=e242]: Pobyty 4-nocowe rezerwowane na 14 dni przed przyjazdem — 15% taniej. Z poranną kawą.
+  - generic [ref=e244]:
+    - generic [ref=e246]:
+      - generic [ref=e247]: Co tu robicie
+      - heading [level=2] [ref=e248]:
+        - text: Wakacje z duszą, bez sterylnego
+        - emphasis [ref=e249]: SPA
+        - text: .
+      - paragraph [ref=e250]: Kilka rzeczy, które robią różnicę między pobytem a wspomnieniem.
+    - generic [ref=e251]:
+      - generic [ref=e252]:
+        - heading "50 metrów do plaży" [level=4] [ref=e258]
+        - paragraph [ref=e259]: Szeroka, piaszczysta plaża w Łazach. Furtka i krótka alejka między sosnami.
+      - generic [ref=e260]:
+        - heading "Domowa kuchnia" [level=4] [ref=e265]
+        - paragraph [ref=e266]: Pełne wyżywienie albo HB. Po staremu, z talerza, bez kart QR i bufetu.
+      - generic [ref=e267]:
+        - generic [ref=e271]: 5ha
+        - heading "Sosnowy las za płotem" [level=4] [ref=e272]
+        - paragraph [ref=e273]: Pięć hektarów własnego terenu w lesie. Trasy spacerowe i rowerowe wprost spod recepcji. Latem cień, jesienią grzyby.
+      - generic [ref=e274]:
+        - heading "Ognisko z biesiadą" [level=4] [ref=e278]
+        - paragraph [ref=e279]: Co czwartek w sezonie. Kiełbaski w cenie, śpiewanie do woli.
+      - generic [ref=e280]:
+        - heading "Plac zabaw + animacje" [level=4] [ref=e285]
+        - paragraph [ref=e286]: "Duży, w cieniu sosen — i animator codziennie: gry, plastyka, podchody."
+      - generic [ref=e287]:
+        - generic [ref=e288]: w razie niepogody
+        - heading "Pożyczamy termowentylatory" [level=4] [ref=e289]
+        - paragraph [ref=e290]: Bałtyk umie zaskoczyć w lipcu. Mamy w recepcji termowentylatory za kaucją, parasole na ganku i podgrzewacz wody w pokoju Economy. Bez pytania o paragon.
+      - generic [ref=e291]:
+        - heading "Wi-Fi w pokoju" [level=4] [ref=e297]
+        - paragraph [ref=e298]: Bezpłatne w całym ośrodku. Bo czasem trzeba odpisać szefowi, że jednak nie wraca się w środę.
+      - generic [ref=e299]:
+        - heading "Parking w cenie" [level=4] [ref=e304]
+        - paragraph [ref=e305]: Strzeżony, w obrębie ośrodka. Miejsce dla każdego pokoju — nie szukacie nigdzie.
+  - generic [ref=e307]:
+    - generic [ref=e309]:
+      - generic [ref=e310]: Co się będzie działo
+      - heading [level=2] [ref=e311]:
+        - text: Lato 2026 — kalendarz
+        - emphasis [ref=e312]: biesiad
+        - text: .
+      - paragraph [ref=e313]: Cykl powtarzamy od kilku lat. Wracające rodziny już wiedzą, że czwartki to ognisko.
+    - generic [ref=e314]:
+      - generic [ref=e315]:
+        - generic [ref=e317]: maj
+        - heading "Otwarcie sezonu" [level=4] [ref=e318]
+        - paragraph [ref=e319]: Pierwsze ogniska, kawa na ganku, dzieci jeszcze w bluzach. Najspokojniejsze dwa tygodnie.
+        - generic [ref=e320]: "23.05"
+      - generic [ref=e324]:
+        - generic [ref=e326]: czerwiec
+        - heading "Dzień Dziecka u Rusałki" [level=4] [ref=e327]
+        - paragraph [ref=e328]: Konkursy plastyczne, zawody w piasku, lody dla wszystkich. Dla najmłodszych — drewniany medal.
+        - generic [ref=e329]: "01.06"
+      - generic [ref=e334]:
+        - generic [ref=e336]: lipiec
+        - heading "Biesiady przy ognisku" [level=4] [ref=e337]
+        - paragraph [ref=e338]: Kiełbaski, śpiewanie do gitary pani Krysi, dzieci puszczają lampiony. Sezon w pełni.
+        - generic [ref=e339]: co czwartek
+      - generic [ref=e342]:
+        - generic [ref=e344]: sierpień
+        - heading "Festyn rodzinny" [level=4] [ref=e345]
+        - paragraph [ref=e346]: Cały dzień zabaw, dmuchaniec, wata cukrowa i potańcówka pod sosną do 22:00.
+        - generic [ref=e347]: "15.08"
+  - generic [ref=e355]:
+    - generic [ref=e356]:
+      - generic [ref=e358]:
+        - generic [ref=e359]: ośrodek od strony plaży
+        - generic:
+          - button "Replace"
+          - button "Remove"
+      - generic [ref=e367]:
+        - generic [ref=e368]: gospodarze, lata 90.
+        - generic:
+          - button "Replace"
+          - button "Remove"
+    - generic [ref=e375]:
+      - generic [ref=e376]: trochę o nas
+      - heading [level=2] [ref=e377]:
+        - text: Prowadzimy
+        - emphasis [ref=e378]: „Rusałkę"
+        - text: rodzinnie.
+      - paragraph [ref=e379]: Łazy to malutka miejscowość kilka kilometrów od Mielna — sosny, plaża, cisza wieczorami. Nasz ośrodek stoi tu w spokoju, a my dbamy, żeby zachował swój dawny charakter rodzinnych wakacji nad morzem.
+      - paragraph [ref=e380]: Goście wracają do nas sezon po sezonie. Dzieci, które tu biegały po plaży, przyjeżdżają teraz z własnymi dziećmi. Trochę dłużej rośnie sosna, ale i tak rośnie szybciej niż my zmieniamy nazwy pokojów.
+      - paragraph [ref=e381]: Wczasy jak za dawnych lat — tyle tylko, że z Wi-Fi i bezpieczniejszym placem zabaw. I bez kolejki do bufetu.
+      - generic [ref=e382]: — gospodarze Rusałki
+  - generic [ref=e384]:
+    - generic [ref=e385]:
+      - generic [ref=e386]:
+        - generic [ref=e387]: Z naszego albumu
+        - heading [level=2] [ref=e388]:
+          - text: Lato w Łazach —
+          - emphasis [ref=e389]: kilka kadrów
+          - text: .
+        - paragraph [ref=e390]: Przeciągnijcie swoje zdjęcia na kafelki — pokażemy je nadesłane przez gości. Albo posłuchajcie tylko, jak pachnie morze.
+      - button "Wszystkie zdjęcia" [ref=e392] [cursor=pointer]
+    - generic [ref=e396]:
+      - generic [ref=e397]:
+        - generic [ref=e398]:
+          - generic [ref=e399]: plaża Łazy
+          - generic:
+            - button "Replace"
+            - button "Remove"
+        - generic: plaża, lipiec
+      - generic [ref=e406]:
+        - generic [ref=e407]:
+          - generic [ref=e408]: ganek pokoju
+          - generic:
+            - button "Replace"
+            - button "Remove"
+        - generic: ganek
+      - generic [ref=e415]:
+        - generic [ref=e416]:
+          - generic [ref=e417]: zachód słońca
+          - generic:
+            - button "Replace"
+            - button "Remove"
+        - generic: zachód słońca
+      - generic [ref=e424]:
+        - generic [ref=e425]:
+          - generic [ref=e426]: domowy obiad
+          - generic:
+            - button "Replace"
+            - button "Remove"
+        - generic: obiad w jadalni
+      - generic [ref=e433]:
+        - generic [ref=e434]:
+          - generic [ref=e435]: las sosnowy
+          - generic:
+            - button "Replace"
+            - button "Remove"
+        - generic: sosny
+      - generic [ref=e442]:
+        - generic [ref=e443]:
+          - generic [ref=e444]: ognisko
+          - generic:
+            - button "Replace"
+            - button "Remove"
+        - generic: ognisko
+      - generic [ref=e451]:
+        - generic [ref=e452]:
+          - generic [ref=e453]: plac zabaw
+          - generic:
+            - button "Replace"
+            - button "Remove"
+        - generic: plac zabaw
+  - generic [ref=e461]:
+    - generic [ref=e463]:
+      - generic [ref=e464]: Mówią o nas goście
+      - heading [level=2] [ref=e465]:
+        - text: 200+ pięciogwiazdkowych
+        - emphasis [ref=e466]: opinii
+        - text: w Google.
+      - paragraph [ref=e467]: Bez konkursów, bez kuponów — po prostu wracają.
+    - generic [ref=e468]:
+      - generic [ref=e469]:
+        - text: „
+        - generic [ref=e470]: ★★★★★
+        - paragraph [ref=e471]: Wracamy szósty rok z rzędu. Dzieci od razu pytają o panią Basię z kuchni i czy w środę będzie ognisko. Tak — będzie.
+        - generic [ref=e472]:
+          - generic [ref=e473]: RW
+          - generic [ref=e474]:
+            - generic [ref=e475]: Rodzina Wiśniewskich
+            - generic [ref=e476]: Kraków · pobyt sierpień 2025
+      - generic [ref=e477]:
+        - text: „
+        - generic [ref=e478]: ★★★★★
+        - paragraph [ref=e479]: Pokój prosty, ale wszystko działa. Plaża rzeczywiście pięć minut. Cena jak za stare czasy. Polecam każdemu, kto ma dosyć udawanych all-inclusive.
+        - generic [ref=e480]:
+          - generic [ref=e481]: MK
+          - generic [ref=e482]:
+            - generic [ref=e483]: Marek K.
+            - generic [ref=e484]: Wrocław · pobyt lipiec 2025
+      - generic [ref=e485]:
+        - text: „
+        - generic [ref=e486]: ★★★★★
+        - paragraph [ref=e487]: Najlepsze leniwe wakacje od lat. Bez animatorów krzyczących przez głośnik — tylko sosny, plaża i fale. Studio z tarasem na plac zabaw — strzał w dziesiątkę.
+        - generic [ref=e488]:
+          - generic [ref=e489]: AD
+          - generic [ref=e490]:
+            - generic [ref=e491]: Aleksandra D.
+            - generic [ref=e492]: Warszawa · pobyt sierpień 2025
+      - generic [ref=e493]:
+        - text: „
+        - generic [ref=e494]: ★★★★★
+        - paragraph [ref=e495]: Najmłodszy uczył się chodzić po piasku. Najstarsza po raz pierwszy popłynęła sama. Pani z recepcji znała wszystkich po imieniu do końca tygodnia.
+        - generic [ref=e496]:
+          - generic [ref=e497]: EP
+          - generic [ref=e498]:
+            - generic [ref=e499]: Ewa P.
+            - generic [ref=e500]: Poznań · pobyt czerwiec 2025
+    - generic [ref=e501]:
+      - generic [ref=e502]:
+        - strong [ref=e503]: "4.9"
+        - text: / 5,0 z 218 opinii
+      - generic [ref=e504]: Google · Booking.com · Facebook
+  - generic [ref=e506]:
+    - generic [ref=e508]:
+      - generic [ref=e509]: Znajdziecie nas tutaj
+      - heading [level=2] [ref=e510]:
+        - text: 76-002 Łazy, ul.
+        - emphasis [ref=e511]: Leśna 22
+        - text: .
+      - paragraph [ref=e512]: Niedaleko Mielna, na końcu Leśnej, między sosnami a wydmą.
+    - generic [ref=e513]:
+      - 'img "Mapa: Rusałka w Łazach k. Mielna" [ref=e514]':
+        - generic [ref=e520]: Bałtyk
+        - generic [ref=e521]: Mielno →
+        - generic [ref=e522]: Łazy
+        - generic [ref=e523]: Rusałka · Leśna 22
+        - generic [ref=e532]: "N"
+        - button "Trasa w Google Maps" [ref=e534] [cursor=pointer]
+      - generic [ref=e538]:
+        - heading "Zadzwońcie, napiszcie." [level=2] [ref=e539]
+        - paragraph [ref=e540]: Odpisujemy w ciągu doby. W lipcu czasem dłużej — sezon i pomidor.
+        - generic [ref=e545]:
+          - heading "Recepcja" [level=4] [ref=e546]
+          - paragraph [ref=e547]: +48 94 318 29 76+48 790 529 189 · +48 511 114 207
+        - generic [ref=e553]:
+          - heading "E-mail" [level=4] [ref=e554]
+          - paragraph [ref=e555]:
+            - link "recepcja@owrusalka.pl" [ref=e556] [cursor=pointer]:
+              - /url: mailto:recepcja@owrusalka.pl
+        - generic [ref=e562]:
+          - heading "Adres" [level=4] [ref=e563]
+          - paragraph [ref=e564]: ul. Leśna 22, 76-002 Łazyk. Mielna · woj. zachodniopomorskie
+  - contentinfo [ref=e565]:
+    - generic [ref=e566]:
+      - generic [ref=e567]:
+        - generic [ref=e568]:
+          - img "Rusałka" [ref=e569]
+          - paragraph [ref=e570]: „Złóż się tu cieniem sosny." Rodzinne wakacje nad Bałtykiem.
+        - generic [ref=e571]:
+          - heading "Nocleg" [level=5] [ref=e572]
+          - list [ref=e573]:
+            - listitem [ref=e574]:
+              - link "Pokoje Economy" [ref=e575] [cursor=pointer]:
+                - /url: pokoje.html
+            - listitem [ref=e576]:
+              - link "Pokoje rodzinne" [ref=e577] [cursor=pointer]:
+                - /url: pokoje.html
+            - listitem [ref=e578]:
+              - link "Studia 2-pokojowe" [ref=e579] [cursor=pointer]:
+                - /url: pokoje.html
+            - listitem [ref=e580]:
+              - link "Cennik 2026" [ref=e581] [cursor=pointer]:
+                - /url: "#cennik"
+        - generic [ref=e582]:
+          - heading "Wakacje" [level=5] [ref=e583]
+          - list [ref=e584]:
+            - listitem [ref=e585]:
+              - link "Atrakcje" [ref=e586] [cursor=pointer]:
+                - /url: "#atrakcje"
+            - listitem [ref=e587]:
+              - link "Lato 2026" [ref=e588] [cursor=pointer]:
+                - /url: "#lato"
+            - listitem [ref=e589]:
+              - link "Galeria" [ref=e590] [cursor=pointer]:
+                - /url: "#galeria"
+            - listitem [ref=e591]:
+              - link "Last minute" [ref=e592] [cursor=pointer]:
+                - /url: "#cennik"
+        - generic [ref=e593]:
+          - heading "Kontakt" [level=5] [ref=e594]
+          - list [ref=e595]:
+            - listitem [ref=e596]: ul. Leśna 22, 76-002 Łazy
+            - listitem [ref=e597]: +48 94 318 29 76
+            - listitem [ref=e598]:
+              - link "recepcja@owrusalka.pl" [ref=e599] [cursor=pointer]:
+                - /url: mailto:recepcja@owrusalka.pl
+            - listitem [ref=e600]:
+              - link "Polityka prywatności" [ref=e601] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=e602]:
+        - generic [ref=e603]: © 2026 Ośrodek Wypoczynkowy „Rusałka"
+        - generic [ref=e604]: Łazy · Bałtyk
+  - button "Zarezerwuj pobyt" [ref=e606] [cursor=pointer]
+  - generic:
+    - generic:
+      - button "Zamknij" [active]
+      - heading "Sprawdźmy dostępność" [level=3]
+      - paragraph: Krok 1 z 3 — termin i pokój
+      - generic:
+        - generic:
+          - generic: Przyjazd
+          - textbox "Przyjazd": 18 lipca 2026
+        - generic:
+          - generic: Wyjazd
+          - textbox "Wyjazd": 25 lipca 2026
+      - generic:
+        - generic: Goście
+        - combobox "Goście":
+          - option "2 dorosłych"
+          - option "2 dorosłych + 1 dziecko"
+          - option "2 dorosłych + 2 dzieci" [selected]
+          - option "4 dorosłych"
+      - generic: Typ pokoju
+      - generic:
+        - generic:
+          - generic:
+            - heading "Pokój Economy" [level=5]
+            - generic: 15 m² · 2–4 osoby
+          - generic: 160 zł / noc
+        - generic:
+          - generic:
+            - heading "Pokój rodzinny" [level=5]
+            - generic: 20 m² · 2–4 osoby
+          - generic: 220 zł / noc
+        - generic:
+          - generic:
+            - heading "Studio 2-pokojowe" [level=5]
+            - generic: 30 m² · do 5 osób
+          - generic: 290 zł / noc
+      - generic:
+        - button "Anuluj"
+        - generic:
+          - button "Dalej"

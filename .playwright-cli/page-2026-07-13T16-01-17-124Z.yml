@@ -1,0 +1,264 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - navigation "Główne menu":
+      - link "Przejdź do głownej zawartości" [ref=f3e3] [cursor=pointer]:
+        - /url: "#wpbody-content"
+      - link "Przejdź do paska narzędzi" [ref=f3e4] [cursor=pointer]:
+        - /url: "#wp-toolbar"
+      - list [ref=f3e7]:
+        - listitem [ref=f3e8]:
+          - link "Kokpit" [ref=f3e9] [cursor=pointer]:
+            - /url: index.php
+            - generic [ref=f3e10]: 
+          - list [ref=f3e12]:
+            - listitem [ref=f3e13]:
+              - link "Strona główna" [ref=f3e14] [cursor=pointer]:
+                - /url: index.php
+            - listitem [ref=f3e15]:
+              - link "Aktualizacje 1" [ref=f3e16] [cursor=pointer]:
+                - /url: update-core.php
+                - text: Aktualizacje
+                - generic [ref=f3e17]: "1"
+        - listitem [ref=f3e18]
+        - listitem [ref=f3e20]:
+          - link "Wpisy" [ref=f3e21] [cursor=pointer]:
+            - /url: edit.php
+            - generic [ref=f3e22]: 
+          - list [ref=f3e24]:
+            - listitem [ref=f3e25]:
+              - link "Wszystkie wpisy" [ref=f3e26] [cursor=pointer]:
+                - /url: edit.php
+            - listitem [ref=f3e27]:
+              - link "Dodaj wpis" [ref=f3e28] [cursor=pointer]:
+                - /url: post-new.php
+            - listitem [ref=f3e29]:
+              - link "Kategorie" [ref=f3e30] [cursor=pointer]:
+                - /url: edit-tags.php?taxonomy=category
+            - listitem [ref=f3e31]:
+              - link "Tagi" [ref=f3e32] [cursor=pointer]:
+                - /url: edit-tags.php?taxonomy=post_tag
+        - listitem [ref=f3e33]:
+          - link "Media" [ref=f3e34] [cursor=pointer]:
+            - /url: upload.php
+            - generic [ref=f3e35]: 
+          - list [ref=f3e37]:
+            - listitem [ref=f3e38]:
+              - link "Biblioteka" [ref=f3e39] [cursor=pointer]:
+                - /url: upload.php
+            - listitem [ref=f3e40]:
+              - link "Dodaj plik mediów" [ref=f3e41] [cursor=pointer]:
+                - /url: media-new.php
+        - listitem [ref=f3e42]:
+          - link "Strony" [ref=f3e43] [cursor=pointer]:
+            - /url: edit.php?post_type=page
+            - generic [ref=f3e44]: 
+          - list [ref=f3e46]:
+            - listitem [ref=f3e47]:
+              - link "Wszystkie strony" [ref=f3e48] [cursor=pointer]:
+                - /url: edit.php?post_type=page
+            - listitem [ref=f3e49]:
+              - link "Dodaj stronę" [ref=f3e50] [cursor=pointer]:
+                - /url: post-new.php?post_type=page
+        - listitem [ref=f3e51]:
+          - link "Komentarze" [ref=f3e52] [cursor=pointer]:
+            - /url: edit-comments.php
+            - generic [ref=f3e53]: 
+        - listitem [ref=f3e55]
+        - listitem [ref=f3e57]:
+          - link "Wygląd" [ref=f3e58] [cursor=pointer]:
+            - /url: themes.php
+            - generic [ref=f3e59]: 
+          - list [ref=f3e61]:
+            - listitem [ref=f3e62]:
+              - link "Motywy" [ref=f3e63] [cursor=pointer]:
+                - /url: themes.php
+            - listitem [ref=f3e64]:
+              - link "Edytor" [ref=f3e65] [cursor=pointer]:
+                - /url: site-editor.php
+            - listitem [ref=f3e66]:
+              - link "Fonty" [ref=f3e67] [cursor=pointer]:
+                - /url: font-library.php
+            - listitem [ref=f3e68]:
+              - link "Menu" [ref=f3e69] [cursor=pointer]:
+                - /url: nav-menus.php
+        - listitem [ref=f3e70]:
+          - link "Wtyczki" [ref=f3e71] [cursor=pointer]:
+            - /url: plugins.php
+            - generic [ref=f3e72]: 
+          - list [ref=f3e74]:
+            - listitem [ref=f3e75]:
+              - link "Zainstalowane wtyczki" [ref=f3e76] [cursor=pointer]:
+                - /url: plugins.php
+            - listitem [ref=f3e77]:
+              - link "Dodaj wtyczkę" [ref=f3e78] [cursor=pointer]:
+                - /url: plugin-install.php
+        - listitem [ref=f3e79]:
+          - link "Użytkownicy" [ref=f3e80] [cursor=pointer]:
+            - /url: users.php
+            - generic [ref=f3e81]: 
+          - list [ref=f3e83]:
+            - listitem [ref=f3e84]:
+              - link "Wszyscy użytkownicy" [ref=f3e85] [cursor=pointer]:
+                - /url: users.php
+            - listitem [ref=f3e86]:
+              - link "Dodaj użytkownika" [ref=f3e87] [cursor=pointer]:
+                - /url: user-new.php
+            - listitem [ref=f3e88]:
+              - link "Profil" [ref=f3e89] [cursor=pointer]:
+                - /url: profile.php
+        - listitem [ref=f3e90]:
+          - link "Narzędzia" [ref=f3e91] [cursor=pointer]:
+            - /url: tools.php
+            - generic [ref=f3e92]: 
+          - list [ref=f3e94]:
+            - listitem [ref=f3e95]:
+              - link "Dostępne narzędzia" [ref=f3e96] [cursor=pointer]:
+                - /url: tools.php
+            - listitem [ref=f3e97]:
+              - link "Import" [ref=f3e98] [cursor=pointer]:
+                - /url: import.php
+            - listitem [ref=f3e99]:
+              - link "Eksport" [ref=f3e100] [cursor=pointer]:
+                - /url: export.php
+            - listitem [ref=f3e101]:
+              - link "Stan witryny" [ref=f3e102] [cursor=pointer]:
+                - /url: site-health.php
+            - listitem [ref=f3e103]:
+              - link "Eksportuj dane osobiste" [ref=f3e104] [cursor=pointer]:
+                - /url: export-personal-data.php
+            - listitem [ref=f3e105]:
+              - link "Usuń dane osobiste" [ref=f3e106] [cursor=pointer]:
+                - /url: erase-personal-data.php
+            - listitem [ref=f3e107]:
+              - link "Edytor plików motywu" [ref=f3e108] [cursor=pointer]:
+                - /url: theme-editor.php
+            - listitem [ref=f3e109]:
+              - link "Edytor plików wtyczki" [ref=f3e110] [cursor=pointer]:
+                - /url: plugin-editor.php
+        - listitem [ref=f3e111]:
+          - link "Ustawienia" [ref=f3e112] [cursor=pointer]:
+            - /url: options-general.php
+            - generic [ref=f3e113]: 
+          - list [ref=f3e115]:
+            - listitem [ref=f3e116]:
+              - link "Ogólne" [ref=f3e117] [cursor=pointer]:
+                - /url: options-general.php
+            - listitem [ref=f3e118]:
+              - link "Łączniki" [ref=f3e119] [cursor=pointer]:
+                - /url: options-connectors.php
+            - listitem [ref=f3e120]:
+              - link "Pisanie" [ref=f3e121] [cursor=pointer]:
+                - /url: options-writing.php
+            - listitem [ref=f3e122]:
+              - link "Czytanie" [ref=f3e123] [cursor=pointer]:
+                - /url: options-reading.php
+            - listitem [ref=f3e124]:
+              - link "Dyskusja" [ref=f3e125] [cursor=pointer]:
+                - /url: options-discussion.php
+            - listitem [ref=f3e126]:
+              - link "Media" [ref=f3e127] [cursor=pointer]:
+                - /url: options-media.php
+            - listitem [ref=f3e128]:
+              - link "Bezpośrednie odnośniki" [ref=f3e129] [cursor=pointer]:
+                - /url: options-permalink.php
+            - listitem [ref=f3e130]:
+              - link "Prywatność" [ref=f3e131] [cursor=pointer]:
+                - /url: options-privacy.php
+        - listitem [ref=f3e132]:
+          - button "Zwiń menu główne" [expanded] [ref=f3e133] [cursor=pointer]:
+            - generic [ref=f3e135]: Zwiń menu
+    - generic [ref=f3e136]:
+      - generic [ref=f3e137]:
+        - navigation "Pasek narzędzi":
+          - menu:
+            - group [ref=f3e138]:
+              - menuitem "O WordPressie" [ref=f3e139] [cursor=pointer]
+            - group [ref=f3e142]:
+              - menuitem "owrusalka-pl" [ref=f3e143] [cursor=pointer]
+            - group [ref=f3e144]:
+              - menuitem "1 dostępna aktualizacja" [ref=f3e145] [cursor=pointer]:
+                - generic [ref=f3e147]: "1"
+            - group [ref=f3e149]:
+              - menuitem "Ctrl+K Otwórz zbiór poleceń" [ref=f3e150] [cursor=pointer]:
+                - generic [ref=f3e152]:
+                  - text: Ctrl+K
+                  - generic [ref=f3e153]: Otwórz zbiór poleceń
+            - group [ref=f3e154]:
+              - menuitem "0 komentarzy oczekuje na moderację" [ref=f3e155] [cursor=pointer]:
+                - generic [ref=f3e157]: "0"
+            - group [ref=f3e159]:
+              - menuitem "Utwórz" [ref=f3e160] [cursor=pointer]
+          - menu [ref=f3e163]:
+            - group [ref=f3e164]:
+              - menuitem "Witaj, chatgpt-wp-dev" [ref=f3e165] [cursor=pointer]
+      - main [ref=f3e166]:
+        - generic [ref=f3e167]:
+          - button "Pomoc" [ref=f3e170] [cursor=pointer]
+          - generic [ref=f3e171]:
+            - heading "Motywy 4" [level=1] [ref=f3e172]
+            - link "Dodaj motyw" [ref=f3e173] [cursor=pointer]:
+              - /url: http://localhost:8881/wp-admin/theme-install.php
+            - generic [ref=f3e174]:
+              - paragraph [ref=f3e175]:
+                - text: Włączono nowy motyw.
+                - link "Odwiedź witrynę" [ref=f3e176] [cursor=pointer]:
+                  - /url: http://localhost:8881/
+              - button "Ukryj komunikat." [ref=f3e177] [cursor=pointer]
+            - paragraph [ref=f3e180]:
+              - generic [ref=f3e181]: Przeszukaj zainstalowane motywy
+              - searchbox "Przeszukaj zainstalowane motywy" [ref=f3e182]
+            - generic [ref=f3e184]:
+              - generic [ref=f3e185] [cursor=pointer]:
+                - button "Zobacz szczegóły motywu Rusałka" [ref=f3e187]: Szczegóły motywu
+                - generic [ref=f3e188]:
+                  - 'heading "Włączony: Rusałka" [level=2] [ref=f3e189]'
+                  - link "Personalizacja Rusałka" [ref=f3e191]:
+                    - /url: http://localhost:8881/wp-admin/site-editor.php?return=%2Fwp-admin%2Fthemes.php
+                    - text: Dostosuj
+              - generic [ref=f3e192] [cursor=pointer]:
+                - button "Zobacz szczegóły motywu Twenty Twenty-Five" [ref=f3e194]: Szczegóły motywu
+                - generic [ref=f3e195]:
+                  - heading "Twenty Twenty-Five" [level=2] [ref=f3e196]
+                  - generic [ref=f3e197]:
+                    - link "Włącz Twenty Twenty-Five" [ref=f3e198]:
+                      - /url: http://localhost:8881/wp-admin/themes.php?action=activate&stylesheet=twentytwentyfive&_wpnonce=c16e679adf
+                      - text: Włącz
+                    - link "Podgląd Twenty Twenty-Five" [ref=f3e199]:
+                      - /url: http://localhost:8881/wp-admin/site-editor.php?wp_theme_preview=twentytwentyfive&return=%2Fwp-admin%2Fthemes.php
+                      - text: Podgląd na żywo
+              - generic [ref=f3e200] [cursor=pointer]:
+                - button "Zobacz szczegóły motywu Twenty Twenty-Four" [ref=f3e202]: Szczegóły motywu
+                - generic [ref=f3e203]:
+                  - heading "Twenty Twenty-Four" [level=2] [ref=f3e204]
+                  - generic [ref=f3e205]:
+                    - link "Włącz Twenty Twenty-Four" [ref=f3e206]:
+                      - /url: http://localhost:8881/wp-admin/themes.php?action=activate&stylesheet=twentytwentyfour&_wpnonce=da68bb93aa
+                      - text: Włącz
+                    - link "Podgląd Twenty Twenty-Four" [ref=f3e207]:
+                      - /url: http://localhost:8881/wp-admin/site-editor.php?wp_theme_preview=twentytwentyfour&return=%2Fwp-admin%2Fthemes.php
+                      - text: Podgląd na żywo
+              - generic [ref=f3e208] [cursor=pointer]:
+                - button "Zobacz szczegóły motywu Twenty Twenty-Three" [ref=f3e210]: Szczegóły motywu
+                - generic [ref=f3e211]:
+                  - heading "Twenty Twenty-Three" [level=2] [ref=f3e212]
+                  - generic [ref=f3e213]:
+                    - link "Włącz Twenty Twenty-Three" [ref=f3e214]:
+                      - /url: http://localhost:8881/wp-admin/themes.php?action=activate&stylesheet=twentytwentythree&_wpnonce=4637a3f326
+                      - text: Włącz
+                    - link "Podgląd Twenty Twenty-Three" [ref=f3e215]:
+                      - /url: http://localhost:8881/wp-admin/site-editor.php?wp_theme_preview=twentytwentythree&return=%2Fwp-admin%2Fthemes.php
+                      - text: Podgląd na żywo
+              - link "Dodaj motyw" [ref=f3e217] [cursor=pointer]:
+                - /url: http://localhost:8881/wp-admin/theme-install.php
+                - heading "Dodaj motyw" [level=2] [ref=f3e219]
+            - dialog "Szczegóły motywu"
+    - contentinfo [ref=f3e220]:
+      - paragraph [ref=f3e221]:
+        - generic [ref=f3e222]:
+          - text: Dziękujemy za tworzenie za pomocą
+          - link "WordPressa" [ref=f3e223] [cursor=pointer]:
+            - /url: https://pl.wordpress.org/
+          - text: .
+      - paragraph [ref=f3e224]: Wersja 7.0.1
+  - paragraph [ref=f3e225]: Powiadomienia
+  - generic [ref=f3e227]: "Liczba znalezionych motywów: 4"

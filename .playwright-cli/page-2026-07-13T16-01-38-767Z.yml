@@ -1,0 +1,291 @@
+- generic [ref=f4e2]:
+  - navigation "Główne menu":
+    - link "Przejdź do głownej zawartości" [ref=f4e3] [cursor=pointer]:
+      - /url: "#wpbody-content"
+    - link "Przejdź do paska narzędzi" [ref=f4e4] [cursor=pointer]:
+      - /url: "#wp-toolbar"
+    - list [ref=f4e7]:
+      - listitem [ref=f4e8]:
+        - link "Kokpit" [ref=f4e9] [cursor=pointer]:
+          - /url: index.php
+          - generic [ref=f4e10]: 
+        - list [ref=f4e12]:
+          - listitem [ref=f4e13]:
+            - link "Strona główna" [ref=f4e14] [cursor=pointer]:
+              - /url: index.php
+          - listitem [ref=f4e15]:
+            - link "Aktualizacje 1" [ref=f4e16] [cursor=pointer]:
+              - /url: update-core.php
+              - text: Aktualizacje
+              - generic [ref=f4e17]: "1"
+      - listitem [ref=f4e18]
+      - listitem [ref=f4e20]:
+        - link "Wpisy" [ref=f4e21] [cursor=pointer]:
+          - /url: edit.php
+          - generic [ref=f4e22]: 
+        - list [ref=f4e24]:
+          - listitem [ref=f4e25]:
+            - link "Wszystkie wpisy" [ref=f4e26] [cursor=pointer]:
+              - /url: edit.php
+          - listitem [ref=f4e27]:
+            - link "Dodaj wpis" [ref=f4e28] [cursor=pointer]:
+              - /url: post-new.php
+          - listitem [ref=f4e29]:
+            - link "Kategorie" [ref=f4e30] [cursor=pointer]:
+              - /url: edit-tags.php?taxonomy=category
+          - listitem [ref=f4e31]:
+            - link "Tagi" [ref=f4e32] [cursor=pointer]:
+              - /url: edit-tags.php?taxonomy=post_tag
+      - listitem [ref=f4e33]:
+        - link "Media" [ref=f4e34] [cursor=pointer]:
+          - /url: upload.php
+          - generic [ref=f4e35]: 
+        - list [ref=f4e37]:
+          - listitem [ref=f4e38]:
+            - link "Biblioteka" [ref=f4e39] [cursor=pointer]:
+              - /url: upload.php
+          - listitem [ref=f4e40]:
+            - link "Dodaj plik mediów" [ref=f4e41] [cursor=pointer]:
+              - /url: media-new.php
+      - listitem [ref=f4e42]:
+        - link "Strony" [ref=f4e43] [cursor=pointer]:
+          - /url: edit.php?post_type=page
+          - generic [ref=f4e44]: 
+        - list [ref=f4e46]:
+          - listitem [ref=f4e47]:
+            - link "Wszystkie strony" [ref=f4e48] [cursor=pointer]:
+              - /url: edit.php?post_type=page
+          - listitem [ref=f4e49]:
+            - link "Dodaj stronę" [ref=f4e50] [cursor=pointer]:
+              - /url: post-new.php?post_type=page
+      - listitem [ref=f4e51]:
+        - link "Komentarze" [ref=f4e52] [cursor=pointer]:
+          - /url: edit-comments.php
+          - generic [ref=f4e53]: 
+      - listitem [ref=f4e55]
+      - listitem [ref=f4e57]:
+        - link "Wygląd" [ref=f4e58] [cursor=pointer]:
+          - /url: themes.php
+          - generic [ref=f4e59]: 
+        - list [ref=f4e61]:
+          - listitem [ref=f4e62]:
+            - link "Motywy" [ref=f4e63] [cursor=pointer]:
+              - /url: themes.php
+          - listitem [ref=f4e64]:
+            - link "Edytor" [ref=f4e65] [cursor=pointer]:
+              - /url: site-editor.php
+          - listitem [ref=f4e66]:
+            - link "Fonty" [ref=f4e67] [cursor=pointer]:
+              - /url: font-library.php
+          - listitem [ref=f4e68]:
+            - link "Menu" [ref=f4e69] [cursor=pointer]:
+              - /url: nav-menus.php
+      - listitem [ref=f4e70]:
+        - link "Wtyczki" [ref=f4e71] [cursor=pointer]:
+          - /url: plugins.php
+          - generic [ref=f4e72]: 
+        - list [ref=f4e74]:
+          - listitem [ref=f4e75]:
+            - link "Zainstalowane wtyczki" [ref=f4e76] [cursor=pointer]:
+              - /url: plugins.php
+          - listitem [ref=f4e77]:
+            - link "Dodaj wtyczkę" [ref=f4e78] [cursor=pointer]:
+              - /url: plugin-install.php
+      - listitem [ref=f4e79]:
+        - link "Użytkownicy" [ref=f4e80] [cursor=pointer]:
+          - /url: users.php
+          - generic [ref=f4e81]: 
+        - list [ref=f4e83]:
+          - listitem [ref=f4e84]:
+            - link "Wszyscy użytkownicy" [ref=f4e85] [cursor=pointer]:
+              - /url: users.php
+          - listitem [ref=f4e86]:
+            - link "Dodaj użytkownika" [ref=f4e87] [cursor=pointer]:
+              - /url: user-new.php
+          - listitem [ref=f4e88]:
+            - link "Profil" [ref=f4e89] [cursor=pointer]:
+              - /url: profile.php
+      - listitem [ref=f4e90]:
+        - link "Narzędzia" [ref=f4e91] [cursor=pointer]:
+          - /url: tools.php
+          - generic [ref=f4e92]: 
+        - list [ref=f4e94]:
+          - listitem [ref=f4e95]:
+            - link "Dostępne narzędzia" [ref=f4e96] [cursor=pointer]:
+              - /url: tools.php
+          - listitem [ref=f4e97]:
+            - link "Import" [ref=f4e98] [cursor=pointer]:
+              - /url: import.php
+          - listitem [ref=f4e99]:
+            - link "Eksport" [ref=f4e100] [cursor=pointer]:
+              - /url: export.php
+          - listitem [ref=f4e101]:
+            - link "Stan witryny" [ref=f4e102] [cursor=pointer]:
+              - /url: site-health.php
+          - listitem [ref=f4e103]:
+            - link "Eksportuj dane osobiste" [ref=f4e104] [cursor=pointer]:
+              - /url: export-personal-data.php
+          - listitem [ref=f4e105]:
+            - link "Usuń dane osobiste" [ref=f4e106] [cursor=pointer]:
+              - /url: erase-personal-data.php
+          - listitem [ref=f4e107]:
+            - link "Edytor plików motywu" [ref=f4e108] [cursor=pointer]:
+              - /url: theme-editor.php
+          - listitem [ref=f4e109]:
+            - link "Edytor plików wtyczki" [ref=f4e110] [cursor=pointer]:
+              - /url: plugin-editor.php
+      - listitem [ref=f4e111]:
+        - link "Ustawienia" [ref=f4e112] [cursor=pointer]:
+          - /url: options-general.php
+          - generic [ref=f4e113]: 
+        - list [ref=f4e115]:
+          - listitem [ref=f4e116]:
+            - link "Ogólne" [ref=f4e117] [cursor=pointer]:
+              - /url: options-general.php
+          - listitem [ref=f4e118]:
+            - link "Łączniki" [ref=f4e119] [cursor=pointer]:
+              - /url: options-connectors.php
+          - listitem [ref=f4e120]:
+            - link "Pisanie" [ref=f4e121] [cursor=pointer]:
+              - /url: options-writing.php
+          - listitem [ref=f4e122]:
+            - link "Czytanie" [ref=f4e123] [cursor=pointer]:
+              - /url: options-reading.php
+          - listitem [ref=f4e124]:
+            - link "Dyskusja" [ref=f4e125] [cursor=pointer]:
+              - /url: options-discussion.php
+          - listitem [ref=f4e126]:
+            - link "Media" [ref=f4e127] [cursor=pointer]:
+              - /url: options-media.php
+          - listitem [ref=f4e128]:
+            - link "Bezpośrednie odnośniki" [ref=f4e129] [cursor=pointer]:
+              - /url: options-permalink.php
+          - listitem [ref=f4e130]:
+            - link "Prywatność" [ref=f4e131] [cursor=pointer]:
+              - /url: options-privacy.php
+      - listitem [ref=f4e132]:
+        - button "Zwiń menu główne" [expanded] [ref=f4e133] [cursor=pointer]:
+          - generic [ref=f4e135]: Zwiń menu
+  - generic [ref=f4e136]:
+    - generic [ref=f4e137]:
+      - navigation "Pasek narzędzi":
+        - menu:
+          - group [ref=f4e138]:
+            - menuitem "O WordPressie" [ref=f4e139] [cursor=pointer]
+          - group [ref=f4e142]:
+            - menuitem "owrusalka-pl" [ref=f4e143] [cursor=pointer]
+          - group [ref=f4e144]:
+            - menuitem "1 dostępna aktualizacja" [ref=f4e145] [cursor=pointer]:
+              - generic [ref=f4e147]: "1"
+          - group [ref=f4e149]:
+            - menuitem "Ctrl+K Otwórz zbiór poleceń" [ref=f4e150] [cursor=pointer]:
+              - generic [ref=f4e152]:
+                - text: Ctrl+K
+                - generic [ref=f4e153]: Otwórz zbiór poleceń
+          - group [ref=f4e154]:
+            - menuitem "0 komentarzy oczekuje na moderację" [ref=f4e155] [cursor=pointer]:
+              - generic [ref=f4e157]: "0"
+          - group [ref=f4e159]:
+            - menuitem "Utwórz" [ref=f4e160] [cursor=pointer]
+        - menu [ref=f4e163]:
+          - group [ref=f4e164]:
+            - menuitem "Witaj, chatgpt-wp-dev" [ref=f4e165] [cursor=pointer]
+    - main [ref=f4e166]:
+      - generic [ref=f4e167]:
+        - generic [ref=f4e168]:
+          - button "Opcje ekranu" [ref=f4e170] [cursor=pointer]
+          - button "Pomoc" [ref=f4e172] [cursor=pointer]
+        - generic [ref=f4e173]:
+          - heading "Wtyczki" [level=1] [ref=f4e174]
+          - link "Dodaj wtyczkę" [ref=f4e175] [cursor=pointer]:
+            - /url: http://localhost:8881/wp-admin/plugin-install.php
+          - heading "Filtrowanie listy wtyczek" [level=2] [ref=f4e176]
+          - list [ref=f4e177]:
+            - listitem [ref=f4e178]:
+              - link "Wszystkie (1)" [ref=f4e179] [cursor=pointer]:
+                - /url: plugins.php?plugin_status=all
+              - text: "|"
+            - listitem [ref=f4e180]:
+              - link "Wyłączono (1)" [ref=f4e181] [cursor=pointer]:
+                - /url: plugins.php?plugin_status=inactive
+              - text: "|"
+            - listitem [ref=f4e182]:
+              - link "Zamiennik (1)" [ref=f4e183] [cursor=pointer]:
+                - /url: plugins.php?plugin_status=dropins
+              - text: "|"
+            - listitem [ref=f4e184]:
+              - link "Automatyczne aktualizacje wyłączone (1)" [ref=f4e185] [cursor=pointer]:
+                - /url: plugins.php?plugin_status=auto-update-disabled
+          - paragraph [ref=f4e186]:
+            - generic [ref=f4e187]: Szukaj wśród zainstalowanych wtyczek
+            - searchbox "Szukaj wśród zainstalowanych wtyczek" [ref=f4e188]
+          - generic [ref=f4e189]:
+            - generic [ref=f4e190]:
+              - generic [ref=f4e191]:
+                - generic [ref=f4e192]: Wybierz działanie na wielu
+                - combobox "Wybierz działanie na wielu" [ref=f4e193] [cursor=pointer]:
+                  - option "Działania masowe" [selected]
+                  - option "Włącz"
+                  - option "Wyłącz"
+                  - option "Aktualizuj"
+                  - option "Usuń"
+                  - option "Włącz automatyczne aktualizacje"
+                  - option "Wyłącz automatyczne aktualizacje"
+                - button "Zastosuj" [ref=f4e194] [cursor=pointer]
+              - generic [ref=f4e195]: 1 element
+            - heading "Lista wtyczek" [level=2] [ref=f4e197]
+            - table [ref=f4e198]:
+              - rowgroup [ref=f4e199]:
+                - row [ref=f4e200]:
+                  - cell "Wybierz wszystko" [ref=f4e201]:
+                    - checkbox "Wybierz wszystko" [ref=f4e202] [cursor=pointer]
+                  - columnheader "Wtyczka" [ref=f4e205]
+                  - columnheader "Opis" [ref=f4e206]
+                  - columnheader "Automatyczne aktualizacje" [ref=f4e207]
+              - rowgroup [ref=f4e208]:
+                - row [ref=f4e209]:
+                  - rowheader [ref=f4e210]:
+                    - checkbox "Wybierz Rusałka — treści i rezerwacje" [ref=f4e213] [cursor=pointer]
+                  - cell [ref=f4e214]:
+                    - strong [ref=f4e215]: Rusałka — treści i rezerwacje
+                    - generic [ref=f4e216]:
+                      - generic [ref=f4e217]:
+                        - link "Włącz Rusałka — treści i rezerwacje" [ref=f4e218] [cursor=pointer]:
+                          - /url: plugins.php?action=activate&plugin=rusalka-core%2Frusalka-core.php&plugin_status=all&paged=1&s&_wpnonce=fc536d9d33
+                          - text: Włącz
+                        - text: "|"
+                      - link "Usuń Rusałka — treści i rezerwacje" [ref=f4e220] [cursor=pointer]:
+                        - /url: plugins.php?action=delete-selected&checked%5B0%5D=rusalka-core%2Frusalka-core.php&plugin_status=all&paged=1&s&_wpnonce=c4ad11f4ce
+                        - text: Usuń
+                  - 'cell "Strukturalne treści ośrodka, ustawienia kontaktowe i bezpieczny formularz zapytań rezerwacyjnych. Wersja 1.0.0 | Autor: Ośrodek Wypoczynkowy Rusałka" [ref=f4e221]':
+                    - paragraph [ref=f4e223]: Strukturalne treści ośrodka, ustawienia kontaktowe i bezpieczny formularz zapytań rezerwacyjnych.
+                    - generic [ref=f4e224]: "Wersja 1.0.0 | Autor: Ośrodek Wypoczynkowy Rusałka"
+                  - cell [ref=f4e225]
+              - rowgroup [ref=f4e226]:
+                - row [ref=f4e227]:
+                  - cell "Wybierz wszystko" [ref=f4e228]:
+                    - checkbox "Wybierz wszystko" [ref=f4e229] [cursor=pointer]
+                  - columnheader "Wtyczka" [ref=f4e232]
+                  - columnheader "Opis" [ref=f4e233]
+                  - columnheader "Automatyczne aktualizacje" [ref=f4e234]
+            - generic [ref=f4e235]:
+              - generic [ref=f4e236]:
+                - generic [ref=f4e237]: Wybierz działanie na wielu
+                - combobox "Wybierz działanie na wielu" [ref=f4e238] [cursor=pointer]:
+                  - option "Działania masowe" [selected]
+                  - option "Włącz"
+                  - option "Wyłącz"
+                  - option "Aktualizuj"
+                  - option "Usuń"
+                  - option "Włącz automatyczne aktualizacje"
+                  - option "Wyłącz automatyczne aktualizacje"
+                - button "Zastosuj" [ref=f4e239] [cursor=pointer]
+              - generic [ref=f4e240]: 1 element
+  - contentinfo [ref=f4e242]:
+    - paragraph [ref=f4e243]:
+      - generic [ref=f4e244]:
+        - text: Dziękujemy za tworzenie za pomocą
+        - link "WordPressa" [ref=f4e245] [cursor=pointer]:
+          - /url: https://pl.wordpress.org/
+        - text: .
+    - paragraph [ref=f4e246]: Wersja 7.0.1

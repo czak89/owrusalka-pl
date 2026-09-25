@@ -1,0 +1,496 @@
+- generic [active] [ref=f7e1]:
+  - generic [ref=f7e2]:
+    - navigation "Pasek narzędzi":
+      - menu:
+        - group [ref=f7e3]:
+          - menuitem "O WordPressie" [ref=f7e4] [cursor=pointer]
+        - group [ref=f7e7]:
+          - menuitem "Ośrodek Wypoczynkowy Rusałka" [ref=f7e8] [cursor=pointer]
+        - group [ref=f7e9]:
+          - menuitem "Edytuj witrynę" [ref=f7e10] [cursor=pointer]
+        - group [ref=f7e11]:
+          - menuitem "1 dostępna aktualizacja" [ref=f7e12] [cursor=pointer]:
+            - generic [ref=f7e14]: "1"
+        - group [ref=f7e16]:
+          - menuitem "0 komentarzy oczekuje na moderację" [ref=f7e17] [cursor=pointer]:
+            - generic [ref=f7e19]: "0"
+        - group [ref=f7e21]:
+          - menuitem "Utwórz" [ref=f7e22] [cursor=pointer]
+        - group [ref=f7e25]:
+          - menuitem "Edytuj stronę" [ref=f7e26] [cursor=pointer]
+      - menu [ref=f7e27]:
+        - group [ref=f7e28]:
+          - menuitem "Witaj, chatgpt-wp-dev" [ref=f7e29] [cursor=pointer]
+        - group [ref=f7e30]:
+          - menuitem "Szukaj" [ref=f7e31]:
+            - generic [ref=f7e32]:
+              - textbox "Szukaj" [ref=f7e33] [cursor=pointer]
+              - generic [ref=f7e34]: Szukaj
+  - link "Przejdź do treści" [ref=f7e35] [cursor=pointer]:
+    - /url: "#wp--skip-link--target"
+  - generic [ref=f7e36]:
+    - banner [ref=f7e37]:
+      - link "Przejdź do treści" [ref=f7e38] [cursor=pointer]:
+        - /url: "#main-content"
+      - banner [ref=f7e39]:
+        - generic [ref=f7e40]:
+          - link "Rusałka — strona główna" [ref=f7e41] [cursor=pointer]:
+            - /url: /
+            - img "Rusałka — Ośrodek Wypoczynkowy" [ref=f7e42]
+          - navigation [ref=f7e43]:
+            - list [ref=f7e48]:
+              - listitem [ref=f7e49]:
+                - link "Start" [ref=f7e50] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=f7e51]:
+                - link "Pokoje" [ref=f7e52] [cursor=pointer]:
+                  - /url: /pokoje/
+              - listitem [ref=f7e53]:
+                - link "Cennik" [ref=f7e54] [cursor=pointer]:
+                  - /url: /cennik/
+              - listitem [ref=f7e55]:
+                - link "Atrakcje" [ref=f7e56] [cursor=pointer]:
+                  - /url: /atrakcje/
+              - listitem [ref=f7e57]:
+                - link "Galeria" [ref=f7e58] [cursor=pointer]:
+                  - /url: /galeria/
+              - listitem [ref=f7e59]:
+                - link "O nas" [ref=f7e60] [cursor=pointer]:
+                  - /url: /o-nas/
+              - listitem [ref=f7e61]:
+                - link "Kontakt" [ref=f7e62] [cursor=pointer]:
+                  - /url: /kontakt/
+          - link "Zarezerwuj" [ref=f7e65] [cursor=pointer]:
+            - /url: /rezerwacja/
+    - main [ref=f7e66]:
+      - generic [ref=f7e67]:
+        - region [ref=f7e68]:
+          - generic [ref=f7e69]:
+            - generic [ref=f7e70]:
+              - paragraph [ref=f7e71]: witamy w Łazach
+              - heading [level=1] [ref=f7e72]:
+                - text: Wakacje, które pachną
+                - emphasis [ref=f7e73]: sosną
+                - text: i Bałtykiem.
+              - paragraph [ref=f7e74]: Rodzinny wypoczynek 50 metrów od szerokiej, piaszczystej plaży. Domowa kuchnia, dużo zieleni i przestrzeń dla dzieci.
+              - generic [ref=f7e75]:
+                - link "Zapytaj o pobyt" [ref=f7e76] [cursor=pointer]:
+                  - /url: http://localhost:8881/rezerwacja/
+                  - text: Zapytaj o pobyt
+                  - generic [ref=f7e77]: →
+                - link "Zobacz pokoje" [ref=f7e78] [cursor=pointer]:
+                  - /url: http://localhost:8881/pokoje/
+              - paragraph
+            - generic "Ośrodek Rusałka i rodzinne wakacje nad Bałtykiem" [ref=f7e79]:
+              - img "Ośrodek Rusałka, sosnowy las i Morze Bałtyckie" [ref=f7e81]
+              - img "Rodzinny plac zabaw na zielonym terenie ośrodka" [ref=f7e83]
+              - img "Parterowe pawilony z pokojami Economy" [ref=f7e85]
+              - paragraph
+            - paragraph
+        - region "Najważniejsze informacje" [ref=f7e86]:
+          - generic [ref=f7e87]:
+            - generic [ref=f7e88]:
+              - strong [ref=f7e89]: 50 m
+              - generic [ref=f7e90]: do plaży
+            - generic [ref=f7e91]:
+              - strong [ref=f7e92]: do 220
+              - generic [ref=f7e93]: gości jednocześnie
+            - generic [ref=f7e94]:
+              - strong [ref=f7e95]: 3 typy
+              - generic [ref=f7e96]: rodzinnych pokoi
+            - generic [ref=f7e97]:
+              - strong [ref=f7e98]: Łazy
+              - generic [ref=f7e99]: spokojnie, blisko Mielna
+            - paragraph
+        - region "Szybka rezerwacja" [ref=f7e100]:
+          - generic [ref=f7e101]:
+            - generic [ref=f7e102]:
+              - paragraph [ref=f7e103]: Planujecie urlop?
+              - heading "Sprawdźmy dogodny termin." [level=2] [ref=f7e104]
+            - paragraph [ref=f7e105]: Wyślijcie zapytanie. Recepcja potwierdzi dostępność, cenę i warunki pobytu.
+            - paragraph [ref=f7e106]:
+              - link "Formularz rezerwacji" [ref=f7e107] [cursor=pointer]:
+                - /url: http://localhost:8881/rezerwacja/
+        - region [ref=f7e108]:
+          - generic [ref=f7e109]:
+            - generic [ref=f7e110]:
+              - generic [ref=f7e111]:
+                - paragraph [ref=f7e112]: Nocleg nad Bałtykiem
+                - heading [level=2] [ref=f7e113]:
+                  - text: Pokoje i studia
+                  - emphasis [ref=f7e114]: rodzinne
+                  - text: .
+                - paragraph [ref=f7e115]: Od prostego pokoju Economy po dwupokojowe studio. Wszystkie z łazienką, telewizorem i dostępem do Wi-Fi.
+              - paragraph [ref=f7e116]:
+                - link "Wszystkie pokoje →" [ref=f7e117] [cursor=pointer]:
+                  - /url: http://localhost:8881/pokoje/
+            - generic [ref=f7e118]:
+              - article [ref=f7e119]:
+                - generic [ref=f7e120]:
+                  - img "Parterowe pawilony z pokojami Economy" [ref=f7e121]
+                  - generic [ref=f7e122]: "01"
+                - generic [ref=f7e123]:
+                  - paragraph [ref=f7e124]: Najprostszy i najtańszy
+                  - heading "Pokój Economy" [level=3] [ref=f7e125]
+                  - paragraph [ref=f7e126]: ok. 15 m² · 2–4 osoby · Murowane pawilony · osobne wejście
+                  - paragraph [ref=f7e128]: Parterowe, murowane pawilony w zabudowie szeregowej. Każdy pokój ma osobne wejście przez zadaszony ganek, część sypialną, łazienkę z prysznicem i przedpokój z dużą szafą.
+                  - list [ref=f7e129]:
+                    - listitem [ref=f7e130]: ✓ Łazienka z prysznicem
+                    - listitem [ref=f7e131]: ✓ Telewizor
+                    - listitem [ref=f7e132]: ✓ Czajnik i kubeczki
+                    - listitem [ref=f7e133]: ✓ Stolik i dwa krzesła
+                    - listitem [ref=f7e134]: ✓ Parawan plażowy
+                  - generic [ref=f7e135]:
+                    - paragraph [ref=f7e136]:
+                      - text: od
+                      - strong [ref=f7e137]: 130 zł
+                      - text: / dobę
+                    - paragraph [ref=f7e138]:
+                      - link "Zapytaj o pokój" [ref=f7e139] [cursor=pointer]:
+                        - /url: http://localhost:8881/rezerwacja/?room=economy
+                  - paragraph
+              - article [ref=f7e140]:
+                - generic [ref=f7e141]:
+                  - img "Wnętrze pokoju rodzinnego w budynku głównym" [ref=f7e142]
+                  - generic [ref=f7e143]: "02"
+                - generic [ref=f7e144]:
+                  - paragraph [ref=f7e145]: Najczęściej wybierany
+                  - heading "Pokój rodzinny" [level=3] [ref=f7e146]
+                  - paragraph [ref=f7e147]: ok. 20 m² · 2–4 osoby · Pawilon główny · balkon lub taras
+                  - paragraph [ref=f7e149]: W budynku głównym, na parterze lub pierwszym piętrze. Pokoje mają balkon albo taras od strony dużego placu zabaw oraz wyposażenie potrzebne podczas rodzinnego pobytu.
+                  - list [ref=f7e150]:
+                    - listitem [ref=f7e151]: ✓ Łazienka z prysznicem
+                    - listitem [ref=f7e152]: ✓ Telewizor i Wi-Fi
+                    - listitem [ref=f7e153]: ✓ Lodówka
+                    - listitem [ref=f7e154]: ✓ Czajnik i kubeczki
+                    - listitem [ref=f7e155]: ✓ Meble ogrodowe
+                  - generic [ref=f7e156]:
+                    - paragraph [ref=f7e157]:
+                      - text: od
+                      - strong [ref=f7e158]: 180 zł
+                      - text: / dobę
+                    - paragraph [ref=f7e159]:
+                      - link "Zapytaj o pokój" [ref=f7e160] [cursor=pointer]:
+                        - /url: http://localhost:8881/rezerwacja/?room=rodzinny
+                  - paragraph
+              - article [ref=f7e161]:
+                - generic [ref=f7e162]:
+                  - img "Dwupokojowe studio dla większej rodziny" [ref=f7e163]
+                  - generic [ref=f7e164]: "03"
+                - generic [ref=f7e165]:
+                  - paragraph [ref=f7e166]: Dla większej rodziny
+                  - heading "Studio 2-pokojowe" [level=3] [ref=f7e167]
+                  - paragraph [ref=f7e168]: ok. 30 m² · do 5 osób · Pawilon główny · balkon lub taras
+                  - paragraph [ref=f7e170]: Dwa osobne pokoje, wspólny przedpokój i łazienka. Dobre rozwiązanie dla większej rodziny albo dziadków wypoczywających z wnukami.
+                  - list [ref=f7e171]:
+                    - listitem [ref=f7e172]: ✓ Dwa pokoje sypialne
+                    - listitem [ref=f7e173]: ✓ Łazienka z prysznicem
+                    - listitem [ref=f7e174]: ✓ Telewizor i Wi-Fi
+                    - listitem [ref=f7e175]: ✓ Lodówka
+                    - listitem [ref=f7e176]: ✓ Czajnik i kubeczki
+                  - generic [ref=f7e177]:
+                    - paragraph [ref=f7e178]:
+                      - text: od
+                      - strong [ref=f7e179]: 240 zł
+                      - text: / dobę
+                    - paragraph [ref=f7e180]:
+                      - link "Zapytaj o pokój" [ref=f7e181] [cursor=pointer]:
+                        - /url: http://localhost:8881/rezerwacja/?room=studio
+                  - paragraph
+            - paragraph
+        - region [ref=f7e182]:
+          - generic [ref=f7e183]:
+            - generic [ref=f7e184]:
+              - generic [ref=f7e185]:
+                - paragraph [ref=f7e186]: Cennik 2026
+                - heading [level=2] [ref=f7e187]:
+                  - text: Ceny
+                  - emphasis [ref=f7e188]: czytelnie
+                  - text: ", bez ukrytych pól."
+                - paragraph [ref=f7e189]: Ceny za pokój za dobę. Ostateczną cenę i dostępność zawsze potwierdza recepcja.
+              - paragraph [ref=f7e190]:
+                - link "Pełny cennik →" [ref=f7e191] [cursor=pointer]:
+                  - /url: http://localhost:8881/cennik/
+            - paragraph [ref=f7e192]:
+              - strong [ref=f7e193]: Stawki w tabeli są podane za osobę za dobę.
+              - text: "W każdej komórce: dorosły / dziecko do 12 lat. Cena tygodniowa to siedem stawek dobowych."
+            - region "Cennik za osobę za dobę; tabela przewijana poziomo na małych ekranach" [ref=f7e194]:
+              - table [ref=f7e195]:
+                - rowgroup [ref=f7e196]:
+                  - row [ref=f7e197]:
+                    - columnheader "Termin i świadczenia" [ref=f7e198]
+                    - columnheader "Economy 4 osoby" [ref=f7e199]: Economy4 osoby
+                    - columnheader "Economy 3 osoby" [ref=f7e200]: Economy3 osoby
+                    - columnheader "Economy 2 osoby" [ref=f7e201]: Economy2 osoby
+                    - columnheader "Budynek główny pokoje 3–4 os. i studia 4–6 os." [ref=f7e202]:
+                      - text: Budynek główny
+                      - generic [ref=f7e203]: pokoje 3–4 os. i studia 4–6 os.
+                - rowgroup [ref=f7e204]:
+                  - row [ref=f7e205]:
+                    - rowheader [ref=f7e206]:
+                      - text: Wiosna
+                      - generic [ref=f7e207]: 25.04 — 23.05bez wyżywienia
+                    - 'cell "60 / 50 zł tydzień: 420 / 350 zł" [ref=f7e208]':
+                      - strong [ref=f7e209]: 60 / 50 zł
+                      - generic [ref=f7e210]: "tydzień: 420 / 350 zł"
+                    - 'cell "65 / 55 zł tydzień: 455 / 385 zł" [ref=f7e211]':
+                      - strong [ref=f7e212]: 65 / 55 zł
+                      - generic [ref=f7e213]: "tydzień: 455 / 385 zł"
+                    - 'cell "70 / 60 zł tydzień: 490 / 420 zł" [ref=f7e214]':
+                      - strong [ref=f7e215]: 70 / 60 zł
+                      - generic [ref=f7e216]: "tydzień: 490 / 420 zł"
+                    - 'cell "85 / 75 zł tydzień: 595 / 525 zł" [ref=f7e217]':
+                      - strong [ref=f7e218]: 85 / 75 zł
+                      - generic [ref=f7e219]: "tydzień: 595 / 525 zł"
+                  - row [ref=f7e220]:
+                    - rowheader [ref=f7e221]:
+                      - text: Początek lata
+                      - generic [ref=f7e222]: 23.05 — 27.06FB, 3 posiłki
+                    - 'cell "135 / 105 zł tydzień: 945 / 735 zł" [ref=f7e223]':
+                      - strong [ref=f7e224]: 135 / 105 zł
+                      - generic [ref=f7e225]: "tydzień: 945 / 735 zł"
+                    - 'cell "155 / 125 zł tydzień: 1085 / 875 zł" [ref=f7e226]':
+                      - strong [ref=f7e227]: 155 / 125 zł
+                      - generic [ref=f7e228]: "tydzień: 1085 / 875 zł"
+                    - 'cell "170 / 140 zł tydzień: 1190 / 980 zł" [ref=f7e229]':
+                      - strong [ref=f7e230]: 170 / 140 zł
+                      - generic [ref=f7e231]: "tydzień: 1190 / 980 zł"
+                    - 'cell "180 / 160 zł tydzień: 1260 / 1120 zł" [ref=f7e232]':
+                      - strong [ref=f7e233]: 180 / 160 zł
+                      - generic [ref=f7e234]: "tydzień: 1260 / 1120 zł"
+                  - row [ref=f7e235]:
+                    - rowheader [ref=f7e236]:
+                      - text: Start wakacji
+                      - generic [ref=f7e237]: 27.06 — 04.07FB, 3 posiłki + animacje
+                    - 'cell "160 / 125 zł tydzień: 1120 / 875 zł" [ref=f7e238]':
+                      - strong [ref=f7e239]: 160 / 125 zł
+                      - generic [ref=f7e240]: "tydzień: 1120 / 875 zł"
+                    - 'cell "185 / 155 zł tydzień: 1295 / 1085 zł" [ref=f7e241]':
+                      - strong [ref=f7e242]: 185 / 155 zł
+                      - generic [ref=f7e243]: "tydzień: 1295 / 1085 zł"
+                    - 'cell "220 / 190 zł tydzień: 1540 / 1330 zł" [ref=f7e244]':
+                      - strong [ref=f7e245]: 220 / 190 zł
+                      - generic [ref=f7e246]: "tydzień: 1540 / 1330 zł"
+                    - 'cell "230 / 190 zł tydzień: 1610 / 1330 zł" [ref=f7e247]':
+                      - strong [ref=f7e248]: 230 / 190 zł
+                      - generic [ref=f7e249]: "tydzień: 1610 / 1330 zł"
+                  - row [ref=f7e250]:
+                    - rowheader [ref=f7e251]:
+                      - text: Pełny sezon
+                      - generic [ref=f7e252]: 04.07 — 15.08HB, 2 posiłki + animacje
+                    - 'cell "170 / 135 zł tydzień: 1190 / 945 zł" [ref=f7e253]':
+                      - strong [ref=f7e254]: 170 / 135 zł
+                      - generic [ref=f7e255]: "tydzień: 1190 / 945 zł"
+                    - 'cell "195 / 165 zł tydzień: 1365 / 1155 zł" [ref=f7e256]':
+                      - strong [ref=f7e257]: 195 / 165 zł
+                      - generic [ref=f7e258]: "tydzień: 1365 / 1155 zł"
+                    - 'cell "240 / 220 zł tydzień: 1680 / 1540 zł" [ref=f7e259]':
+                      - strong [ref=f7e260]: 240 / 220 zł
+                      - generic [ref=f7e261]: "tydzień: 1680 / 1540 zł"
+                    - 'cell "250 / 220 zł tydzień: 1750 / 1540 zł" [ref=f7e262]':
+                      - strong [ref=f7e263]: 250 / 220 zł
+                      - generic [ref=f7e264]: "tydzień: 1750 / 1540 zł"
+                  - row [ref=f7e265]:
+                    - rowheader [ref=f7e266]:
+                      - text: Koniec wakacji
+                      - generic [ref=f7e267]: 15.08 — 29.08HB, 2 posiłki + animacje
+                    - 'cell "160 / 125 zł tydzień: 1120 / 875 zł" [ref=f7e268]':
+                      - strong [ref=f7e269]: 160 / 125 zł
+                      - generic [ref=f7e270]: "tydzień: 1120 / 875 zł"
+                    - 'cell "185 / 155 zł tydzień: 1295 / 1085 zł" [ref=f7e271]':
+                      - strong [ref=f7e272]: 185 / 155 zł
+                      - generic [ref=f7e273]: "tydzień: 1295 / 1085 zł"
+                    - 'cell "220 / 190 zł tydzień: 1540 / 1330 zł" [ref=f7e274]':
+                      - strong [ref=f7e275]: 220 / 190 zł
+                      - generic [ref=f7e276]: "tydzień: 1540 / 1330 zł"
+                    - 'cell "230 / 190 zł tydzień: 1610 / 1330 zł" [ref=f7e277]':
+                      - strong [ref=f7e278]: 230 / 190 zł
+                      - generic [ref=f7e279]: "tydzień: 1610 / 1330 zł"
+                  - row [ref=f7e280]:
+                    - rowheader [ref=f7e281]:
+                      - text: Koniec lata
+                      - generic [ref=f7e282]: 29.08 — 19.09FB, 3 posiłki
+                    - 'cell "135 / 105 zł tydzień: 945 / 735 zł" [ref=f7e283]':
+                      - strong [ref=f7e284]: 135 / 105 zł
+                      - generic [ref=f7e285]: "tydzień: 945 / 735 zł"
+                    - 'cell "155 / 125 zł tydzień: 1085 / 875 zł" [ref=f7e286]':
+                      - strong [ref=f7e287]: 155 / 125 zł
+                      - generic [ref=f7e288]: "tydzień: 1085 / 875 zł"
+                    - 'cell "170 / 140 zł tydzień: 1190 / 980 zł" [ref=f7e289]':
+                      - strong [ref=f7e290]: 170 / 140 zł
+                      - generic [ref=f7e291]: "tydzień: 1190 / 980 zł"
+                    - 'cell "180 / 160 zł tydzień: 1260 / 1120 zł" [ref=f7e292]':
+                      - strong [ref=f7e293]: 180 / 160 zł
+                      - generic [ref=f7e294]: "tydzień: 1260 / 1120 zł"
+            - paragraph [ref=f7e295]:
+              - strong [ref=f7e296]: "Ważne:"
+              - text: cennik 2026 został przeniesiony z najnowszej tabeli w backupie starej strony. Przed publikacją oferty handlowej należy potwierdzić go w recepcji.
+            - paragraph
+        - region [ref=f7e297]:
+          - generic [ref=f7e298]:
+            - generic [ref=f7e299]:
+              - paragraph [ref=f7e300]: Rodzinne wakacje
+              - heading [level=2] [ref=f7e301]:
+                - text: Wszystko, czego potrzeba
+                - emphasis [ref=f7e302]: blisko
+                - text: .
+              - paragraph
+            - generic [ref=f7e303]:
+              - article [ref=f7e304]:
+                - paragraph
+                - heading "Plaża za sosnami" [level=3] [ref=f7e307]
+                - paragraph [ref=f7e308]: Krótki spacer dzieli ośrodek od szerokiej plaży w Łazach.
+              - article [ref=f7e309]:
+                - paragraph
+                - heading "Domowa kuchnia" [level=3] [ref=f7e312]
+                - paragraph [ref=f7e313]: Wyżywienie na miejscu upraszcza rodzinny urlop.
+              - article [ref=f7e314]:
+                - paragraph
+                - heading "Dzieci mają przestrzeń" [level=3] [ref=f7e317]
+                - paragraph [ref=f7e318]: Zielony teren, plac zabaw i sezonowe animacje.
+              - article [ref=f7e319]:
+                - paragraph
+                - heading "Wspólne wieczory" [level=3] [ref=f7e322]
+                - paragraph [ref=f7e323]: Biesiady przy ognisku budują prawdziwe wakacyjne wspomnienia.
+            - paragraph
+        - generic [ref=f7e325]:
+          - img "Zielony teren wypoczynkowy pośród sosen" [ref=f7e327]
+          - generic [ref=f7e328]:
+            - paragraph [ref=f7e329]: trochę o nas
+            - heading [level=2] [ref=f7e330]:
+              - text: Rodzinny wypoczynek
+              - emphasis [ref=f7e331]: pośród sosen
+              - text: .
+            - paragraph [ref=f7e332]: Ośrodek Wypoczynkowy „Rusałka” położony jest w Łazach koło Mielna, zaledwie 50 metrów od morza i szerokiej, piaszczystej plaży.
+            - paragraph [ref=f7e333]: Do dyspozycji Gości są pokoje rodzinne, studia w budynku głównym oraz pokoje Economy w parterowych pawilonach. Rozległy zielony teren daje dzieciom miejsce do zabawy, a dorosłym — przestrzeń do prawdziwego odpoczynku.
+            - paragraph [ref=f7e334]: Domowa kuchnia, animacje dla najmłodszych i wspólne ogniska sprawiają, że pobyt ma swobodną, wakacyjną atmosferę.
+            - paragraph [ref=f7e335]:
+              - link "Poznaj Rusałkę →" [ref=f7e336] [cursor=pointer]:
+                - /url: http://localhost:8881/o-nas/
+        - region [ref=f7e337]:
+          - generic [ref=f7e338]:
+            - generic [ref=f7e339]:
+              - generic [ref=f7e340]:
+                - paragraph [ref=f7e341]: Z naszego albumu
+                - heading [level=2] [ref=f7e342]:
+                  - text: Lato w Łazach —
+                  - emphasis [ref=f7e343]: kilka kadrów
+                  - text: .
+                - paragraph [ref=f7e344]: Prawdziwe zdjęcia przeniesione z poprzedniej witryny Rusałki.
+              - paragraph [ref=f7e345]:
+                - link "Cała galeria →" [ref=f7e346] [cursor=pointer]:
+                  - /url: http://localhost:8881/galeria/
+            - generic [ref=f7e347]:
+              - figure "Widok na Rusałkę i Bałtyk Ośrodek leży pomiędzy sosnowym lasem a plażą." [ref=f7e348]:
+                - 'button "Powiększ zdjęcie: Widok na Rusałkę i Bałtyk" [ref=f7e349]':
+                  - img "Ośrodek Rusałka, sosnowy las i Morze Bałtyckie" [ref=f7e350]
+                - generic:
+                  - strong: Widok na Rusałkę i Bałtyk
+                  - generic: Ośrodek leży pomiędzy sosnowym lasem a plażą.
+              - figure "Zielony teren ośrodka Przestrzeń do odpoczynku pośród sosen." [ref=f7e351]:
+                - 'button "Powiększ zdjęcie: Zielony teren ośrodka" [ref=f7e352]':
+                  - img "Zielony teren wypoczynkowy pośród sosen" [ref=f7e353]
+                - generic:
+                  - strong: Zielony teren ośrodka
+                  - generic: Przestrzeń do odpoczynku pośród sosen.
+              - figure "Pawilony Economy Osobne wejścia i zadaszone ganki." [ref=f7e354]:
+                - 'button "Powiększ zdjęcie: Pawilony Economy" [ref=f7e355]':
+                  - img "Parterowe pawilony z pokojami Economy" [ref=f7e356]
+                - generic:
+                  - strong: Pawilony Economy
+                  - generic: Osobne wejścia i zadaszone ganki.
+              - figure "Pokoje rodzinne Wygodny pobyt blisko placu zabaw." [ref=f7e357]:
+                - 'button "Powiększ zdjęcie: Pokoje rodzinne" [ref=f7e358]':
+                  - img "Wnętrze pokoju rodzinnego w budynku głównym" [ref=f7e359]
+                - generic:
+                  - strong: Pokoje rodzinne
+                  - generic: Wygodny pobyt blisko placu zabaw.
+              - figure "Plac zabaw Dużo miejsca na rodzinne wakacje." [ref=f7e360]:
+                - 'button "Powiększ zdjęcie: Plac zabaw" [ref=f7e361]':
+                  - img "Rodzinny plac zabaw na zielonym terenie ośrodka" [ref=f7e362]
+                - generic:
+                  - strong: Plac zabaw
+                  - generic: Dużo miejsca na rodzinne wakacje.
+              - figure "Domowa kuchnia Wyżywienie dostępne na miejscu." [ref=f7e363]:
+                - 'button "Powiększ zdjęcie: Domowa kuchnia" [ref=f7e364]':
+                  - img "Domowa kuchnia i wspólne posiłki w Rusałce" [ref=f7e365]
+                - generic:
+                  - strong: Domowa kuchnia
+                  - generic: Wyżywienie dostępne na miejscu.
+              - figure "Wspólne ogniska Wakacyjne wieczory w rodzinnej atmosferze." [ref=f7e366]:
+                - 'button "Powiększ zdjęcie: Wspólne ogniska" [ref=f7e367]':
+                  - img "Rodzinna biesiada przy ognisku" [ref=f7e368]
+                - generic:
+                  - strong: Wspólne ogniska
+                  - generic: Wakacyjne wieczory w rodzinnej atmosferze.
+              - paragraph [ref=f7e369]
+        - region [ref=f7e370]:
+          - generic [ref=f7e371]:
+            - generic [ref=f7e372]:
+              - paragraph [ref=f7e373]: Znajdziecie nas tutaj
+              - heading [level=2] [ref=f7e374]:
+                - text: 76-002 Łazy, ul.
+                - emphasis [ref=f7e375]: Leśna 22
+                - text: .
+              - paragraph [ref=f7e376]: Na końcu Leśnej, między sosnami a wydmą. Niedaleko Mielna, bardzo blisko morza.
+              - paragraph [ref=f7e377]:
+                - link "Bałtyk Rusałka Leśna 22 Otwórz trasę w Google Maps →" [ref=f7e378] [cursor=pointer]:
+                  - /url: https://www.google.com/maps/search/?api=1&query=Le%C5%9Bna+22%2C+76-002+%C5%81azy
+                  - generic [ref=f7e379]: Bałtyk
+                  - generic [ref=f7e380]: RusałkaLeśna 22
+                  - strong [ref=f7e382]: Otwórz trasę w Google Maps →
+            - generic [ref=f7e383]:
+              - heading "Zadzwońcie lub napiszcie." [level=3] [ref=f7e384]
+              - paragraph [ref=f7e385]: Recepcja odpowie na pytania o pokoje, terminy, wyżywienie i warunki pobytu.
+              - list [ref=f7e386]:
+                - listitem [ref=f7e387]:
+                  - generic [ref=f7e388]: Telefon
+                  - link "+48 94 318 29 76" [ref=f7e389] [cursor=pointer]:
+                    - /url: tel:+48943182976
+                  - link "+48 790 529 189" [ref=f7e390] [cursor=pointer]:
+                    - /url: tel:+48790529189
+                  - link "+48 511 114 207" [ref=f7e391] [cursor=pointer]:
+                    - /url: tel:+48511114207
+                - listitem [ref=f7e392]:
+                  - generic [ref=f7e393]: E-mail
+                  - link "recepcja@owrusalka.pl" [ref=f7e394] [cursor=pointer]:
+                    - /url: mailto:recepcja@owrusalka.pl
+                - listitem [ref=f7e395]:
+                  - generic [ref=f7e396]: Adres
+                  - strong [ref=f7e397]: ul. Leśna 22, 76-002 Łazy
+              - paragraph [ref=f7e398]:
+                - link "Wyślij zapytanie" [ref=f7e399] [cursor=pointer]:
+                  - /url: http://localhost:8881/rezerwacja/
+    - contentinfo [ref=f7e400]:
+      - contentinfo [ref=f7e401]:
+        - generic [ref=f7e402]:
+          - generic [ref=f7e404]:
+            - img "Rusałka" [ref=f7e405]
+            - paragraph [ref=f7e406]: Rodzinne wakacje blisko plaży, pachnące sosną i Bałtykiem.
+          - generic [ref=f7e407]:
+            - heading "Odkrywaj" [level=3] [ref=f7e408]
+            - navigation "2" [ref=f7e409]:
+              - list [ref=f7e410]:
+                - listitem [ref=f7e411]:
+                  - link "Pokoje" [ref=f7e412] [cursor=pointer]:
+                    - /url: /pokoje/
+                - listitem [ref=f7e413]:
+                  - link "Cennik" [ref=f7e414] [cursor=pointer]:
+                    - /url: /cennik/
+                - listitem [ref=f7e415]:
+                  - link "Atrakcje" [ref=f7e416] [cursor=pointer]:
+                    - /url: /atrakcje/
+                - listitem [ref=f7e417]:
+                  - link "Galeria" [ref=f7e418] [cursor=pointer]:
+                    - /url: /galeria/
+          - generic [ref=f7e419]:
+            - heading "Kontakt" [level=3] [ref=f7e420]
+            - paragraph [ref=f7e421]: ul. Leśna 2276-002 Łazy
+            - paragraph [ref=f7e422]:
+              - link "+48 94 318 29 76" [ref=f7e423] [cursor=pointer]:
+                - /url: tel:+48943182976
+              - link "recepcja@owrusalka.pl" [ref=f7e424] [cursor=pointer]:
+                - /url: mailto:recepcja@owrusalka.pl
+        - generic [ref=f7e425]:
+          - paragraph [ref=f7e426]: © Ośrodek Wypoczynkowy „Rusałka”
+          - paragraph [ref=f7e427]: Łazy · Bałtyk

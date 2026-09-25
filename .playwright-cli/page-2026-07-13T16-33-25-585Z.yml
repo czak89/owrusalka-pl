@@ -1,0 +1,136 @@
+- generic [active] [ref=f1e1]:
+  - link "Przejdź do treści" [ref=f1e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f1e3]:
+    - banner [ref=f1e4]:
+      - banner [ref=f1e5]:
+        - generic [ref=f1e6]:
+          - link "Rusałka — strona główna" [ref=f1e7] [cursor=pointer]:
+            - /url: /
+            - img "Rusałka — Ośrodek Wypoczynkowy" [ref=f1e8]
+          - navigation [ref=f1e9]:
+            - list [ref=f1e14]:
+              - listitem [ref=f1e15]:
+                - link "Start" [ref=f1e16] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=f1e17]:
+                - link "Pokoje" [ref=f1e18] [cursor=pointer]:
+                  - /url: /pokoje/
+              - listitem [ref=f1e19]:
+                - link "Cennik" [ref=f1e20] [cursor=pointer]:
+                  - /url: /cennik/
+              - listitem [ref=f1e21]:
+                - link "Atrakcje" [ref=f1e22] [cursor=pointer]:
+                  - /url: /atrakcje/
+              - listitem [ref=f1e23]:
+                - link "Galeria" [ref=f1e24] [cursor=pointer]:
+                  - /url: /galeria/
+              - listitem [ref=f1e25]:
+                - link "O nas" [ref=f1e26] [cursor=pointer]:
+                  - /url: /o-nas/
+              - listitem [ref=f1e27]:
+                - link "Kontakt" [ref=f1e28] [cursor=pointer]:
+                  - /url: /kontakt/
+          - link "Zarezerwuj" [ref=f1e31] [cursor=pointer]:
+            - /url: /rezerwacja/
+    - main [ref=f1e32]:
+      - generic [ref=f1e33]:
+        - generic [ref=f1e35]:
+          - paragraph [ref=f1e36]: Opowiedzcie nam o swoim wyjeździe
+          - heading "Rezerwacja" [level=1] [ref=f1e37]
+          - paragraph [ref=f1e38]: To zapytanie o dostępność — nie wiąże się z płatnością ani automatycznym zawarciem rezerwacji.
+        - generic [ref=f1e40]:
+          - generic [ref=f1e41]:
+            - status [ref=f1e42]:
+              - strong [ref=f1e43]: Zapytanie zostało zapisane.
+              - text: Lokalna wysyłka e-mail nie została potwierdzona, dlatego prosimy również o kontakt telefoniczny z recepcją.
+            - generic [ref=f1e44]:
+              - generic [ref=f1e46]:
+                - text: Strona internetowa
+                - textbox [ref=f1e47]
+              - group "Termin i zakwaterowanie" [ref=f1e48]:
+                - generic [ref=f1e50]:
+                  - generic [ref=f1e51]:
+                    - text: Przyjazd*
+                    - textbox "Przyjazd" [ref=f1e52]
+                  - generic [ref=f1e53]:
+                    - text: Wyjazd*
+                    - textbox "Wyjazd" [ref=f1e54]
+                  - generic [ref=f1e55]:
+                    - text: Liczba gości*
+                    - spinbutton "Liczba gości" [ref=f1e56]: "2"
+                  - generic [ref=f1e57]:
+                    - text: Typ pokoju
+                    - combobox "Typ pokoju" [ref=f1e58]:
+                      - option "Dowolny / proszę doradzić" [selected]
+                      - option "Pokój Economy"
+                      - option "Pokój rodzinny"
+                      - option "Studio 2-pokojowe"
+              - group "Dane kontaktowe" [ref=f1e59]:
+                - generic [ref=f1e61]:
+                  - generic [ref=f1e62]:
+                    - text: Imię i nazwisko*
+                    - textbox "Imię i nazwisko" [ref=f1e63]
+                  - generic [ref=f1e64]:
+                    - text: E-mail*
+                    - textbox "E-mail" [ref=f1e65]
+                  - generic [ref=f1e66]:
+                    - text: Telefon*
+                    - textbox "Telefon" [ref=f1e67]
+                  - generic [ref=f1e68]:
+                    - text: Dodatkowe informacje
+                    - textbox "Dodatkowe informacje" [ref=f1e69]:
+                      - /placeholder: Wiek dzieci, życzenia dotyczące łóżek, wyżywienia lub inne pytania
+              - generic [ref=f1e70]:
+                - checkbox "Wyrażam zgodę na wykorzystanie podanych danych do obsługi mojego zapytania rezerwacyjnego." [ref=f1e71]
+                - generic [ref=f1e72]: Wyrażam zgodę na wykorzystanie podanych danych do obsługi mojego zapytania rezerwacyjnego.*
+              - alert
+              - button "Wyślij zapytanie" [ref=f1e73]:
+                - text: Wyślij zapytanie
+                - generic [ref=f1e74]: →
+          - complementary [ref=f1e75]:
+            - paragraph [ref=f1e76]: bez pośpiechu
+            - heading "Najpierw sprawdzamy dostępność." [level=2] [ref=f1e77]
+            - paragraph [ref=f1e78]: Formularz wysyła zapytanie do recepcji. Rezerwacja staje się wiążąca dopiero po bezpośrednim potwierdzeniu warunków.
+            - generic [ref=f1e79]:
+              - term [ref=f1e80]: Telefon
+              - definition [ref=f1e81]:
+                - link "+48 94 318 29 76" [ref=f1e82] [cursor=pointer]:
+                  - /url: tel:+48943182976
+              - term [ref=f1e83]: E-mail
+              - definition [ref=f1e84]:
+                - link "recepcja@owrusalka.pl" [ref=f1e85] [cursor=pointer]:
+                  - /url: mailto:recepcja@owrusalka.pl
+    - contentinfo [ref=f1e86]:
+      - contentinfo [ref=f1e87]:
+        - generic [ref=f1e88]:
+          - generic [ref=f1e90]:
+            - img "Rusałka" [ref=f1e91]
+            - paragraph [ref=f1e92]: Rodzinne wakacje blisko plaży, pachnące sosną i Bałtykiem.
+          - generic [ref=f1e93]:
+            - heading "Odkrywaj" [level=3] [ref=f1e94]
+            - navigation "2" [ref=f1e95]:
+              - list [ref=f1e96]:
+                - listitem [ref=f1e97]:
+                  - link "Pokoje" [ref=f1e98] [cursor=pointer]:
+                    - /url: /pokoje/
+                - listitem [ref=f1e99]:
+                  - link "Cennik" [ref=f1e100] [cursor=pointer]:
+                    - /url: /cennik/
+                - listitem [ref=f1e101]:
+                  - link "Atrakcje" [ref=f1e102] [cursor=pointer]:
+                    - /url: /atrakcje/
+                - listitem [ref=f1e103]:
+                  - link "Galeria" [ref=f1e104] [cursor=pointer]:
+                    - /url: /galeria/
+          - generic [ref=f1e105]:
+            - heading "Kontakt" [level=3] [ref=f1e106]
+            - paragraph [ref=f1e107]: ul. Leśna 2276-002 Łazy
+            - paragraph [ref=f1e108]:
+              - link "+48 94 318 29 76" [ref=f1e109] [cursor=pointer]:
+                - /url: tel:+48943182976
+              - link "recepcja@owrusalka.pl" [ref=f1e110] [cursor=pointer]:
+                - /url: mailto:recepcja@owrusalka.pl
+        - generic [ref=f1e111]:
+          - paragraph [ref=f1e112]: © Ośrodek Wypoczynkowy „Rusałka”
+          - paragraph [ref=f1e113]: Łazy · Bałtyk

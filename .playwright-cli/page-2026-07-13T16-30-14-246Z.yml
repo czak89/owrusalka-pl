@@ -1,0 +1,34 @@
+- generic [ref=e1]:
+  - heading "Zaloguj się" [level=1] [ref=e2]
+  - generic [ref=e3]:
+    - link "Oparte na WordPressie" [ref=e4] [cursor=pointer]:
+      - /url: https://pl.wordpress.org/
+    - generic [ref=e5]:
+      - paragraph [ref=e6]:
+        - generic [ref=e7]: Nazwa użytkownika lub adres email
+        - textbox "Nazwa użytkownika lub adres email" [active] [ref=e8]
+      - generic [ref=e9]:
+        - generic [ref=e10]: Hasło
+        - generic [ref=e11]:
+          - textbox "Hasło" [ref=e12]
+          - button "Pokaż hasło" [ref=e13] [cursor=pointer]:
+            - generic [ref=e14]: 
+      - paragraph [ref=e15]:
+        - checkbox "Zapamiętaj mnie" [ref=e16] [cursor=pointer]
+        - generic [ref=e17]: Zapamiętaj mnie
+      - paragraph:
+        - button "Zaloguj się" [ref=e18] [cursor=pointer]
+    - paragraph [ref=e19]:
+      - link "Nie pamiętasz hasła?" [ref=e20] [cursor=pointer]:
+        - /url: http://localhost:8881/wp-login.php?action=lostpassword
+    - paragraph [ref=e21]:
+      - link "← Przejdź do Ośrodek Wypoczynkowy Rusałka" [ref=e22] [cursor=pointer]:
+        - /url: http://localhost:8881/
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - generic [ref=e26]: 
+      - generic [ref=e27]: Język
+    - combobox "Język" [ref=e28] [cursor=pointer]:
+      - option "English (United States)"
+      - option "Polski" [selected]
+    - button "Zmień" [ref=e29] [cursor=pointer]

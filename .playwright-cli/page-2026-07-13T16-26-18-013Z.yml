@@ -1,0 +1,319 @@
+- generic [ref=f2e2]:
+  - navigation "Główne menu":
+    - link "Przejdź do głownej zawartości" [ref=f2e3] [cursor=pointer]:
+      - /url: "#wpbody-content"
+    - link "Przejdź do paska narzędzi" [ref=f2e4] [cursor=pointer]:
+      - /url: "#wp-toolbar"
+    - list [ref=f2e7]:
+      - listitem [ref=f2e8]:
+        - link "Kokpit" [ref=f2e9] [cursor=pointer]:
+          - /url: index.php
+          - generic [ref=f2e10]: 
+        - list [ref=f2e12]:
+          - listitem [ref=f2e13]:
+            - link "Strona główna" [ref=f2e14] [cursor=pointer]:
+              - /url: index.php
+          - listitem [ref=f2e15]:
+            - link "Aktualizacje 1" [ref=f2e16] [cursor=pointer]:
+              - /url: update-core.php
+              - text: Aktualizacje
+              - generic [ref=f2e17]: "1"
+      - listitem [ref=f2e18]
+      - listitem [ref=f2e20]:
+        - link "Wpisy" [ref=f2e21] [cursor=pointer]:
+          - /url: edit.php
+          - generic [ref=f2e22]: 
+        - list [ref=f2e24]:
+          - listitem [ref=f2e25]:
+            - link "Wszystkie wpisy" [ref=f2e26] [cursor=pointer]:
+              - /url: edit.php
+          - listitem [ref=f2e27]:
+            - link "Dodaj wpis" [ref=f2e28] [cursor=pointer]:
+              - /url: post-new.php
+          - listitem [ref=f2e29]:
+            - link "Kategorie" [ref=f2e30] [cursor=pointer]:
+              - /url: edit-tags.php?taxonomy=category
+          - listitem [ref=f2e31]:
+            - link "Tagi" [ref=f2e32] [cursor=pointer]:
+              - /url: edit-tags.php?taxonomy=post_tag
+      - listitem [ref=f2e33]:
+        - link "Media" [ref=f2e34] [cursor=pointer]:
+          - /url: upload.php
+          - generic [ref=f2e35]: 
+        - list [ref=f2e37]:
+          - listitem [ref=f2e38]:
+            - link "Biblioteka" [ref=f2e39] [cursor=pointer]:
+              - /url: upload.php
+          - listitem [ref=f2e40]:
+            - link "Dodaj plik mediów" [ref=f2e41] [cursor=pointer]:
+              - /url: media-new.php
+      - listitem [ref=f2e42]:
+        - link "Strony" [ref=f2e43] [cursor=pointer]:
+          - /url: edit.php?post_type=page
+          - generic [ref=f2e44]: 
+        - list [ref=f2e46]:
+          - listitem [ref=f2e47]:
+            - link "Wszystkie strony" [ref=f2e48] [cursor=pointer]:
+              - /url: edit.php?post_type=page
+          - listitem [ref=f2e49]:
+            - link "Dodaj stronę" [ref=f2e50] [cursor=pointer]:
+              - /url: post-new.php?post_type=page
+      - listitem [ref=f2e51]:
+        - link "Komentarze" [ref=f2e52] [cursor=pointer]:
+          - /url: edit-comments.php
+          - generic [ref=f2e53]: 
+      - listitem [ref=f2e55]:
+        - link "Pokoje" [ref=f2e56] [cursor=pointer]:
+          - /url: edit.php?post_type=rusalka_room
+          - generic [ref=f2e57]: 
+        - list [ref=f2e59]:
+          - listitem [ref=f2e60]:
+            - link "Pokoje" [ref=f2e61] [cursor=pointer]:
+              - /url: edit.php?post_type=rusalka_room
+          - listitem [ref=f2e62]:
+            - 'link "Dodaj: Pokój" [ref=f2e63] [cursor=pointer]':
+              - /url: post-new.php?post_type=rusalka_room
+      - listitem [ref=f2e64]:
+        - link "Cennik" [ref=f2e65] [cursor=pointer]:
+          - /url: edit.php?post_type=rusalka_price
+          - generic [ref=f2e66]: 
+        - list [ref=f2e68]:
+          - listitem [ref=f2e69]:
+            - link "Cennik" [ref=f2e70] [cursor=pointer]:
+              - /url: edit.php?post_type=rusalka_price
+          - listitem [ref=f2e71]:
+            - 'link "Dodaj: Pozycja cennika" [ref=f2e72] [cursor=pointer]':
+              - /url: post-new.php?post_type=rusalka_price
+      - listitem [ref=f2e73]:
+        - link "Atrakcje" [ref=f2e74] [cursor=pointer]:
+          - /url: edit.php?post_type=rusalka_attraction
+          - generic [ref=f2e75]: 
+        - list [ref=f2e77]:
+          - listitem [ref=f2e78]:
+            - link "Atrakcje" [ref=f2e79] [cursor=pointer]:
+              - /url: edit.php?post_type=rusalka_attraction
+          - listitem [ref=f2e80]:
+            - 'link "Dodaj: Atrakcja" [ref=f2e81] [cursor=pointer]':
+              - /url: post-new.php?post_type=rusalka_attraction
+      - listitem [ref=f2e82]:
+        - link "Galeria" [ref=f2e83] [cursor=pointer]:
+          - /url: edit.php?post_type=rusalka_gallery
+          - generic [ref=f2e84]: 
+        - list [ref=f2e86]:
+          - listitem [ref=f2e87]:
+            - link "Galeria" [ref=f2e88] [cursor=pointer]:
+              - /url: edit.php?post_type=rusalka_gallery
+          - listitem [ref=f2e89]:
+            - 'link "Dodaj: Zdjęcie" [ref=f2e90] [cursor=pointer]':
+              - /url: post-new.php?post_type=rusalka_gallery
+      - listitem [ref=f2e91]:
+        - link "Zapytania rezerwacyjne" [ref=f2e92] [cursor=pointer]:
+          - /url: edit.php?post_type=rusalka_booking
+          - generic [ref=f2e93]: 
+        - list [ref=f2e95]:
+          - listitem [ref=f2e96]:
+            - link "Zapytania rezerwacyjne" [ref=f2e97] [cursor=pointer]:
+              - /url: edit.php?post_type=rusalka_booking
+          - listitem [ref=f2e98]:
+            - link "Dodaj wpis" [ref=f2e99] [cursor=pointer]:
+              - /url: post-new.php?post_type=rusalka_booking
+      - listitem [ref=f2e100]
+      - listitem [ref=f2e102]:
+        - link "Wygląd" [ref=f2e103] [cursor=pointer]:
+          - /url: themes.php
+          - generic [ref=f2e104]: 
+        - list [ref=f2e106]:
+          - listitem [ref=f2e107]:
+            - link "Motywy" [ref=f2e108] [cursor=pointer]:
+              - /url: themes.php
+          - listitem [ref=f2e109]:
+            - link "Edytor" [ref=f2e110] [cursor=pointer]:
+              - /url: site-editor.php
+          - listitem [ref=f2e111]:
+            - link "Fonty" [ref=f2e112] [cursor=pointer]:
+              - /url: font-library.php
+          - listitem [ref=f2e113]:
+            - link "Menu" [ref=f2e114] [cursor=pointer]:
+              - /url: nav-menus.php
+      - listitem [ref=f2e115]:
+        - link "Wtyczki" [ref=f2e116] [cursor=pointer]:
+          - /url: plugins.php
+          - generic [ref=f2e117]: 
+        - list [ref=f2e119]:
+          - listitem [ref=f2e120]:
+            - link "Zainstalowane wtyczki" [ref=f2e121] [cursor=pointer]:
+              - /url: plugins.php
+          - listitem [ref=f2e122]:
+            - link "Dodaj wtyczkę" [ref=f2e123] [cursor=pointer]:
+              - /url: plugin-install.php
+      - listitem [ref=f2e124]:
+        - link "Użytkownicy" [ref=f2e125] [cursor=pointer]:
+          - /url: users.php
+          - generic [ref=f2e126]: 
+        - list [ref=f2e128]:
+          - listitem [ref=f2e129]:
+            - link "Wszyscy użytkownicy" [ref=f2e130] [cursor=pointer]:
+              - /url: users.php
+          - listitem [ref=f2e131]:
+            - link "Dodaj użytkownika" [ref=f2e132] [cursor=pointer]:
+              - /url: user-new.php
+          - listitem [ref=f2e133]:
+            - link "Profil" [ref=f2e134] [cursor=pointer]:
+              - /url: profile.php
+      - listitem [ref=f2e135]:
+        - link "Narzędzia" [ref=f2e136] [cursor=pointer]:
+          - /url: tools.php
+          - generic [ref=f2e137]: 
+        - list [ref=f2e139]:
+          - listitem [ref=f2e140]:
+            - link "Dostępne narzędzia" [ref=f2e141] [cursor=pointer]:
+              - /url: tools.php
+          - listitem [ref=f2e142]:
+            - link "Import" [ref=f2e143] [cursor=pointer]:
+              - /url: import.php
+          - listitem [ref=f2e144]:
+            - link "Eksport" [ref=f2e145] [cursor=pointer]:
+              - /url: export.php
+          - listitem [ref=f2e146]:
+            - link "Stan witryny" [ref=f2e147] [cursor=pointer]:
+              - /url: site-health.php
+          - listitem [ref=f2e148]:
+            - link "Eksportuj dane osobiste" [ref=f2e149] [cursor=pointer]:
+              - /url: export-personal-data.php
+          - listitem [ref=f2e150]:
+            - link "Usuń dane osobiste" [ref=f2e151] [cursor=pointer]:
+              - /url: erase-personal-data.php
+          - listitem [ref=f2e152]:
+            - link "Edytor plików motywu" [ref=f2e153] [cursor=pointer]:
+              - /url: theme-editor.php
+          - listitem [ref=f2e154]:
+            - link "Edytor plików wtyczki" [ref=f2e155] [cursor=pointer]:
+              - /url: plugin-editor.php
+      - listitem [ref=f2e156]:
+        - link "Ustawienia" [ref=f2e157] [cursor=pointer]:
+          - /url: options-general.php
+          - generic [ref=f2e158]: 
+        - list [ref=f2e160]:
+          - listitem [ref=f2e161]:
+            - link "Ogólne" [ref=f2e162] [cursor=pointer]:
+              - /url: options-general.php
+          - listitem [ref=f2e163]:
+            - link "Łączniki" [ref=f2e164] [cursor=pointer]:
+              - /url: options-connectors.php
+          - listitem [ref=f2e165]:
+            - link "Pisanie" [ref=f2e166] [cursor=pointer]:
+              - /url: options-writing.php
+          - listitem [ref=f2e167]:
+            - link "Czytanie" [ref=f2e168] [cursor=pointer]:
+              - /url: options-reading.php
+          - listitem [ref=f2e169]:
+            - link "Dyskusja" [ref=f2e170] [cursor=pointer]:
+              - /url: options-discussion.php
+          - listitem [ref=f2e171]:
+            - link "Media" [ref=f2e172] [cursor=pointer]:
+              - /url: options-media.php
+          - listitem [ref=f2e173]:
+            - link "Bezpośrednie odnośniki" [ref=f2e174] [cursor=pointer]:
+              - /url: options-permalink.php
+          - listitem [ref=f2e175]:
+            - link "Prywatność" [ref=f2e176] [cursor=pointer]:
+              - /url: options-privacy.php
+          - listitem [ref=f2e177]:
+            - link "Rusałka — kontakt" [ref=f2e178] [cursor=pointer]:
+              - /url: admin.php?page=rusalka-contact
+      - listitem [ref=f2e179]:
+        - button "Zwiń menu główne" [expanded] [ref=f2e180] [cursor=pointer]:
+          - generic [ref=f2e182]: Zwiń menu
+  - generic [ref=f2e183]:
+    - generic [ref=f2e184]:
+      - navigation "Pasek narzędzi":
+        - menu:
+          - group [ref=f2e185]:
+            - menuitem "O WordPressie" [ref=f2e186] [cursor=pointer]
+          - group [ref=f2e189]:
+            - menuitem "Ośrodek Wypoczynkowy Rusałka" [ref=f2e190] [cursor=pointer]
+          - group [ref=f2e191]:
+            - menuitem "1 dostępna aktualizacja" [ref=f2e192] [cursor=pointer]:
+              - generic [ref=f2e194]: "1"
+          - group [ref=f2e196]:
+            - menuitem "Ctrl+K Otwórz zbiór poleceń" [ref=f2e197] [cursor=pointer]:
+              - generic [ref=f2e199]:
+                - text: Ctrl+K
+                - generic [ref=f2e200]: Otwórz zbiór poleceń
+          - group [ref=f2e201]:
+            - menuitem "0 komentarzy oczekuje na moderację" [ref=f2e202] [cursor=pointer]:
+              - generic [ref=f2e204]: "0"
+          - group [ref=f2e206]:
+            - menuitem "Utwórz" [ref=f2e207] [cursor=pointer]
+        - menu [ref=f2e210]:
+          - group [ref=f2e211]:
+            - menuitem "Witaj, chatgpt-wp-dev" [ref=f2e212] [cursor=pointer]
+    - main [ref=f2e213]:
+      - generic [ref=f2e214]:
+        - button "Opcje ekranu" [ref=f2e217] [cursor=pointer]
+        - generic [ref=f2e218]:
+          - heading "Zapytania rezerwacyjne" [level=1] [ref=f2e219]
+          - link "Dodaj wpis" [ref=f2e220] [cursor=pointer]:
+            - /url: http://localhost:8881/wp-admin/post-new.php?post_type=rusalka_booking
+          - generic [ref=f2e221]:
+            - paragraph [ref=f2e222]:
+              - text: 1 wpis został przeniesiony do kosza.
+              - link "Cofnij" [ref=f2e223] [cursor=pointer]:
+                - /url: edit.php?post_type=rusalka_booking&doaction=undo&action=untrash&ids=60&_wpnonce=b89b2f240b
+            - button "Ukryj komunikat." [ref=f2e224] [cursor=pointer]
+          - heading "Filtrowanie listy wpisów" [level=2] [ref=f2e226]
+          - list [ref=f2e227]:
+            - listitem [ref=f2e228]:
+              - link "Wszystkie (0)" [ref=f2e229] [cursor=pointer]:
+                - /url: edit.php?post_type=rusalka_booking
+              - text: "|"
+            - listitem [ref=f2e230]:
+              - link "Kosz (1)" [ref=f2e231] [cursor=pointer]:
+                - /url: edit.php?post_status=trash&post_type=rusalka_booking
+          - generic [ref=f2e232]:
+            - heading "Lista wpisów" [level=2] [ref=f2e234]
+            - table [ref=f2e235]:
+              - caption [ref=f2e236]: Tabela uporządkowana według daty. Malejąco
+              - rowgroup [ref=f2e237]:
+                - row [ref=f2e238]:
+                  - cell "Wybierz wszystko" [ref=f2e239]:
+                    - checkbox "Wybierz wszystko" [ref=f2e240] [cursor=pointer]
+                  - columnheader [ref=f2e243]:
+                    - link "Gość Sortuj rosnąco." [ref=f2e244] [cursor=pointer]:
+                      - /url: http://localhost:8881/wp-admin/edit.php?post_type=rusalka_booking&ids=60&orderby=title&order=asc
+                      - generic [ref=f2e245]: Gość
+                      - generic [ref=f2e249]: Sortuj rosnąco.
+                  - columnheader "Przyjazd" [ref=f2e250]
+                  - columnheader "Wyjazd" [ref=f2e251]
+                  - columnheader "Telefon" [ref=f2e252]
+                  - columnheader "E-mail" [ref=f2e253]
+                  - columnheader [ref=f2e254]:
+                    - link "Otrzymano" [ref=f2e255] [cursor=pointer]:
+                      - /url: http://localhost:8881/wp-admin/edit.php?post_type=rusalka_booking&ids=60&orderby=date&order=asc
+              - rowgroup [ref=f2e260]:
+                - row [ref=f2e261]:
+                  - cell "Nie znaleziono żadnych wpisów." [ref=f2e262]
+              - rowgroup [ref=f2e263]:
+                - row [ref=f2e264]:
+                  - cell "Wybierz wszystko" [ref=f2e265]:
+                    - checkbox "Wybierz wszystko" [ref=f2e266] [cursor=pointer]
+                  - columnheader [ref=f2e269]:
+                    - link "Gość Sortuj rosnąco." [ref=f2e270] [cursor=pointer]:
+                      - /url: http://localhost:8881/wp-admin/edit.php?post_type=rusalka_booking&ids=60&orderby=title&order=asc
+                      - generic [ref=f2e271]: Gość
+                      - generic [ref=f2e275]: Sortuj rosnąco.
+                  - columnheader "Przyjazd" [ref=f2e276]
+                  - columnheader "Wyjazd" [ref=f2e277]
+                  - columnheader "Telefon" [ref=f2e278]
+                  - columnheader "E-mail" [ref=f2e279]
+                  - columnheader [ref=f2e280]:
+                    - link "Otrzymano" [ref=f2e281] [cursor=pointer]:
+                      - /url: http://localhost:8881/wp-admin/edit.php?post_type=rusalka_booking&ids=60&orderby=date&order=asc
+  - contentinfo [ref=f2e286]:
+    - paragraph [ref=f2e287]:
+      - generic [ref=f2e288]:
+        - text: Dziękujemy za tworzenie za pomocą
+        - link "WordPressa" [ref=f2e289] [cursor=pointer]:
+          - /url: https://pl.wordpress.org/
+        - text: .
+    - paragraph [ref=f2e290]: Wersja 7.0.1
