@@ -17,7 +17,7 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - id: calibre
         uses: calibreapp/image-actions@main
         with:
@@ -28,7 +28,7 @@ jobs:
           webpQuality: "82"
           ignorePaths: "scraps/**,source/**,output/**,.omc/**,.omx/**,.playwright-cli/**"
       - if: steps.calibre.outputs.markdown != ''
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           title: "chore: compress images"
           branch: chore/compress-images
