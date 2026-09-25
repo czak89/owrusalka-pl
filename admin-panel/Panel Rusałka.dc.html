@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+*{box-sizing:border-box}
+html,body{margin:0}
+.scroll::-webkit-scrollbar{width:10px;height:10px}
+.scroll::-webkit-scrollbar-thumb{background:var(--c-paper-edge);border-radius:99px}
+.scroll::-webkit-scrollbar-track{background:transparent}
+.nav-btn:not([data-active="1"]):hover{background:rgba(255,248,232,.10)!important;color:#fff!important}
+.row-btn:hover{background:var(--c-sand-wash)!important}
+.icon-btn:hover{background:var(--c-paper-3)!important}
+.cta-btn:hover{background:var(--c-coral-2)!important;box-shadow:0 8px 20px -8px rgba(255,111,60,.6)!important}
+.ghost-btn:hover{border-color:var(--c-deep-sea)!important;color:var(--c-deep-sea)!important}
+.tab-btn:hover{color:var(--c-deep-sea)!important}
+.mini-btn:hover{filter:brightness(1.06)}
+.bar-el:hover{filter:brightness(1.05);box-shadow:0 3px 8px rgba(0,59,89,.25)!important}
+@keyframes drawerIn{from{transform:translateX(28px);opacity:.3}to{transform:none;opacity:1}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+</style>
+</helmet>
+<div style="display:flex;height:100vh;width:100%;font-family:var(--font-body);color:var(--c-ink);background:var(--c-sand-wash);overflow:hidden">
+
+  <aside style="width:250px;flex:none;background:var(--c-deep-sea);display:flex;flex-direction:column;padding:22px 16px 18px">
+    <div style="display:flex;align-items:center;gap:11px;padding:2px 6px 18px;border-bottom:1px solid rgba(255,248,232,.12);margin-bottom:14px">
+      <div style="width:38px;height:38px;border-radius:50%;flex:none;background:radial-gradient(circle at 50% 38%,var(--c-sun-yellow),var(--c-amber) 78%);box-shadow:0 0 0 5px rgba(255,213,0,.14)"></div>
+      <div style="line-height:1">
+        <div style="font-family:var(--font-script);font-feature-settings:'ss01' 1;color:var(--c-paper);font-size:25px">Rusałka</div>
+        <div style="font:800 9.5px/1 var(--font-body);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,248,232,.5);margin-top:4px">Panel recepcji</div>
+      </div>
+    </div>
+
+    <div style="font:800 10px/1 var(--font-body);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,248,232,.4);padding:2px 8px 10px">Zarządzanie</div>
+
+    <button class="nav-btn" data-active="{{ navActive.pulpit }}" onClick="{{ goPulpit }}" style="{{ navStyle.pulpit }}">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+      <span style="flex:1;text-align:left">Pulpit</span>
+    </button>
+
+    <button class="nav-btn" data-active="{{ navActive.rez }}" onClick="{{ goRez }}" style="{{ navStyle.rez }}">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M8 6h10M8 12h10M8 18h10"/><path d="M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>
+      <span style="flex:1;text-align:left">Rezerwacje</span>
+      <sc-if value="{{ nav.newCount }}" hint-placeholder-val="{{ true }}"><span style="min-width:20px;height:20px;padding:0 6px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font:800 11px/1 var(--font-body);background:var(--c-sun-yellow);color:var(--c-deep-sea)">{{ nav.newCount }}</span></sc-if>
+    </button>
+
+    <button class="nav-btn" data-active="{{ navActive.kal }}" onClick="{{ goKal }}" style="{{ navStyle.kal }}">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>
+      <span style="flex:1;text-align:left">Kalendarz obłożenia</span>
+    </button>
+
+    <button class="nav-btn" data-active="{{ navActive.zam }}" onClick="{{ goZam }}" style="{{ navStyle.zam }}">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>
+      <span style="flex:1;text-align:left">Zameldowania</span>
+      <sc-if value="{{ nav.arrPending }}" hint-placeholder-val="{{ true }}"><span style="min-width:20px;height:20px;padding:0 6px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font:800 11px/1 var(--font-body);background:var(--c-coral);color:#fff">{{ nav.arrPending }}</span></sc-if>
+    </button>
+
+    <div style="margin-top:auto;display:flex;align-items:center;gap:11px;padding:12px 8px 2px;border-top:1px solid rgba(255,248,232,.12)">
+      <div style="width:36px;height:36px;border-radius:50%;flex:none;background:var(--c-baltic-blue);display:flex;align-items:center;justify-content:center;font:800 13px/1 var(--font-body);color:#fff">MK</div>
+      <div style="line-height:1.2;min-width:0">
+        <div style="font:800 13px var(--font-body);color:var(--c-paper);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Magda Kwiatek</div>
+        <div style="font:600 11px var(--font-body);color:rgba(255,248,232,.5)">Recepcja · dyżur</div>
+      </div>
+    </div>
+  </aside>
+
+  <main style="flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden">
+
+    <header style="height:72px;flex:none;display:flex;align-items:center;gap:18px;padding:0 30px;background:var(--c-paper);border-bottom:1px solid var(--border)">
+      <div style="flex:none;min-width:180px">
+        <div style="font:600 20px/1.1 var(--font-display);color:var(--c-deep-sea)">{{ pageTitle }}</div>
+        <div style="font:700 12.5px/1 var(--font-body);color:var(--c-ink-3);margin-top:3px">{{ dateLong }}</div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="position:relative;width:300px;max-width:34vw">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--c-ink-3)" stroke-width="2" stroke-linecap="round" style="position:absolute;left:13px;top:50%;transform:translateY(-50%);pointer-events:none"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <input value="{{ q }}" onChange="{{ onSearch }}" placeholder="Szukaj gościa, pokoju, numeru…" style="width:100%;padding:11px 14px 11px 38px;border-radius:999px;border:1.5px solid var(--border);background:var(--c-paper-2);font:600 13.5px var(--font-body);color:var(--c-deep-sea);outline:none" />
+      </div>
+      <button class="cta-btn" onClick="{{ onNewRes }}" style="display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;border:none;background:var(--c-coral);color:#fff;font:800 13.5px/1 var(--font-body);cursor:pointer;box-shadow:0 6px 16px -8px rgba(255,111,60,.7)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        Nowa rezerwacja
+      </button>
+    </header>
+
+    <div class="scroll" style="flex:1;overflow-y:auto;padding:26px 30px 44px;background:radial-gradient(1000px 420px at 100% -6%,var(--c-sky-wash),transparent 62%),radial-gradient(700px 480px at -4% 110%,var(--c-foam-wash),transparent 66%),var(--c-sand-wash)">
+
+      <!-- ============ PULPIT ============ -->
+      <sc-if value="{{ isPulpit }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:22px">
+          <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:17px 19px;display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font:800 11px/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-3)">Obłożenie</span><span style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--c-sky-wash);color:var(--c-baltic-blue)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span></div>
+            <div style="font:600 38px/1 var(--font-display);color:var(--c-deep-sea)">{{ kpi.occ }}<span style="font-size:17px;color:var(--c-ink-3)">%</span></div>
+            <div style="font:700 12.5px var(--font-body);color:var(--c-ink-3)">{{ kpi.occSub }}</div>
+          </div>
+          <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:17px 19px;display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font:800 11px/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-3)">Przyjazdy dziś</span><span style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--c-foam-wash);color:#17967d"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg></span></div>
+            <div style="font:600 38px/1 var(--font-display);color:var(--c-deep-sea)">{{ kpi.arr }}</div>
+            <div style="font:700 12.5px var(--font-body);color:var(--c-ink-3)">{{ kpi.arrSub }}</div>
+          </div>
+          <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:17px 19px;display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font:800 11px/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-3)">Wyjazdy dziś</span><span style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--c-sand-wash);color:var(--c-amber)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M14 17l5-5-5-5M19 12H7"/></svg></span></div>
+            <div style="font:600 38px/1 var(--font-display);color:var(--c-deep-sea)">{{ kpi.dep }}</div>
+            <div style="font:700 12.5px var(--font-body);color:var(--c-ink-3)">{{ kpi.depSub }}</div>
+          </div>
+          <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:17px 19px;display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font:800 11px/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-3)">Wolne pokoje</span><span style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--c-sky-wash);color:var(--c-baltic-blue)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11h20v6M2 7v10M22 11V9a2 2 0 0 0-2-2h-8v4M6 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg></span></div>
+            <div style="font:600 38px/1 var(--font-display);color:var(--c-deep-sea)">{{ kpi.free }}</div>
+            <div style="font:700 12.5px var(--font-body);color:var(--c-ink-3)">{{ kpi.freeSub }}</div>
+          </div>
+          <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:17px 19px;display:flex;flex-direction:column;gap:9px">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font:800 11px/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink-3)">Do rozliczenia</span><span style="width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:#FBE4DB;color:var(--c-coral)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span></div>
+            <div style="font:600 30px/1.15 var(--font-display);color:var(--c-deep-sea)">{{ kpi.due }}</div>
+            <div style="font:700 12.5px var(--font-body);color:var(--c-ink-3)">{{ kpi.dueSub }}</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1.65fr 1fr;gap:20px;align-items:start">
+          <div style="display:flex;flex-direction:column;gap:20px">
+
+            <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);overflow:hidden">
+              <div style="display:flex;align-items:center;gap:12px;padding:17px 20px 13px">
+                <h3 style="font:600 19px/1 var(--font-display);color:var(--c-deep-sea);margin:0">Przyjazdy dziś</h3>
+                <span style="font:800 12px/1 var(--font-body);color:#fff;background:var(--c-baltic-blue);padding:4px 9px;border-radius:999px">{{ kpi.arr }}</span>
+                <button class="link-btn" onClick="{{ goZam }}" style="margin-left:auto;background:none;border:none;cursor:pointer;font:800 12.5px var(--font-body);color:var(--c-baltic-blue)">Zameldowania →</button>
+              </div>
+              <div style="padding:0 12px 10px">
+                <sc-for list="{{ arrivals }}" as="a" hint-placeholder-count="3">
+                  <div class="row-btn" onClick="{{ a.onClick }}" style="display:flex;align-items:center;gap:13px;padding:11px 12px;border-radius:12px;cursor:pointer;border-top:1px solid var(--border)">
+                    <div style="{{ a.avatarStyle }}">{{ a.initials }}</div>
+                    <div style="flex:1;min-width:0">
+                      <div style="font:800 14.5px/1.2 var(--font-body);color:var(--c-deep-sea);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ a.guest }}</div>
+                      <div style="font:600 12.5px/1.3 var(--font-body);color:var(--c-ink-3)">{{ a.roomName }} · {{ a.guestsStr }}</div>
+                    </div>
+                    <div style="text-align:right;font:700 12px var(--font-body);color:var(--c-ink-3);flex:none">{{ a.nights }} nocy</div>
+                    <sc-if value="{{ a.isChecked }}" hint-placeholder-val="{{ true }}"><span style="flex:none;display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:999px;background:var(--c-foam-wash);color:#17967d;font:800 12px/1 var(--font-body)">✓ Zameldowany</span></sc-if>
+                    <sc-if value="{{ a.notChecked }}" hint-placeholder-val="{{ true }}"><button class="mini-btn" onClick="{{ a.onCheckIn }}" style="flex:none;padding:8px 15px;border-radius:999px;border:none;background:var(--c-baltic-blue);color:#fff;font:800 12.5px/1 var(--font-body);cursor:pointer">Zamelduj</button></sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);overflow:hidden">
+              <div style="display:flex;align-items:center;gap:12px;padding:17px 20px 13px">
+                <h3 style="font:600 19px/1 var(--font-display);color:var(--c-deep-sea);margin:0">Wyjazdy dziś</h3>
+                <span style="font:800 12px/1 var(--font-body);color:var(--c-deep-sea);background:var(--c-sand-wash);padding:4px 9px;border-radius:999px">{{ kpi.dep }}</span>
+              </div>
+              <div style="padding:0 12px 10px">
+                <sc-for list="{{ departures }}" as="d" hint-placeholder-count="1">
+                  <div class="row-btn" onClick="{{ d.onClick }}" style="display:flex;align-items:center;gap:13px;padding:11px 12px;border-radius:12px;cursor:pointer;border-top:1px solid var(--border)">
+                    <div style="{{ d.avatarStyle }}">{{ d.initials }}</div>
+                    <div style="flex:1;min-width:0">
+                      <div style="font:800 14.5px/1.2 var(--font-body);color:var(--c-deep-sea);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ d.guest }}</div>
+                      <div style="font:600 12.5px/1.3 var(--font-body);color:var(--c-ink-3)">{{ d.roomName }} · do zapłaty: <span style="{{ d.paidTextStyle }}">{{ d.paidLabel }}</span></div>
+                    </div>
+                    <sc-if value="{{ d.isDone }}" hint-placeholder-val="{{ true }}"><span style="flex:none;display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:999px;background:var(--c-paper-3);color:var(--c-ink-3);font:800 12px/1 var(--font-body)">✓ Wymeldowany</span></sc-if>
+                    <sc-if value="{{ d.notDone }}" hint-placeholder-val="{{ true }}"><button class="mini-btn" onClick="{{ d.onCheckOut }}" style="flex:none;padding:8px 15px;border-radius:999px;border:none;background:var(--c-amber);color:var(--c-deep-sea);font:800 12.5px/1 var(--font-body);cursor:pointer">Wymelduj</button></sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:19px 20px">
+              <h3 style="font:600 18px/1 var(--font-display);color:var(--c-deep-sea);margin:0 0 4px">Sytuacja pokoi</h3>
+              <p style="font:600 12.5px var(--font-body);color:var(--c-ink-3);margin:0 0 16px">Zajętość na dzisiejszą noc</p>
+              <div style="display:flex;flex-direction:column;gap:15px">
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;justify-content:space-between;font:700 13.5px var(--font-body);color:var(--c-deep-sea)"><span>Domki szeregowe</span><span style="color:var(--c-ink-3)">{{ occ.dom }}</span></div>
+                  <div style="height:9px;border-radius:99px;background:var(--c-paper-3);overflow:hidden"><div style="{{ occ.domBar }}"></div></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;justify-content:space-between;font:700 13.5px var(--font-body);color:var(--c-deep-sea)"><span>Budynek główny</span><span style="color:var(--c-ink-3)">{{ occ.main }}</span></div>
+                  <div style="height:9px;border-radius:99px;background:var(--c-paper-3);overflow:hidden"><div style="{{ occ.mainBar }}"></div></div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="display:flex;justify-content:space-between;font:700 13.5px var(--font-body);color:var(--c-deep-sea)"><span>Studia</span><span style="color:var(--c-ink-3)">{{ occ.studio }}</span></div>
+                  <div style="height:9px;border-radius:99px;background:var(--c-paper-3);overflow:hidden"><div style="{{ occ.studioBar }}"></div></div>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:18px;padding-top:15px;border-top:1px solid var(--border)">
+                <span style="font:700 13px var(--font-body);color:var(--c-ink-3)">Gości w ośrodku</span>
+                <span style="font:600 26px/1 var(--font-display);color:var(--c-deep-sea)">{{ occ.guests }}</span>
+              </div>
+            </div>
+
+            <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:19px 20px">
+              <h3 style="font:600 18px/1 var(--font-display);color:var(--c-deep-sea);margin:0 0 14px">Wymaga uwagi</h3>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="3">
+                  <div class="row-btn" onClick="{{ t.onClick }}" style="display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:12px;cursor:pointer;border:1px solid var(--border)">
+                    <span style="{{ t.iconStyle }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span>
+                    <div style="flex:1;min-width:0">
+                      <div style="font:800 13.5px/1.2 var(--font-body);color:var(--c-deep-sea)">{{ t.title }}</div>
+                      <div style="font:600 12px/1.3 var(--font-body);color:var(--c-ink-3)">{{ t.sub }}</div>
+                    </div>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--c-ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="m9 18 6-6-6-6"/></svg>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ REZERWACJE ============ -->
+      <sc-if value="{{ isRez }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px">
+          <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+            <button class="tab-btn" onClick="{{ t.onClick }}" style="{{ t.style }}">{{ t.label }}<span style="{{ t.countStyle }}">{{ t.count }}</span></button>
+          </sc-for>
+        </div>
+
+        <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);overflow:hidden">
+          <div style="display:grid;grid-template-columns:96px 1.5fr 1fr 1.35fr 62px 66px 104px 132px;align-items:center;gap:12px;padding:13px 20px;background:var(--c-paper-2);border-bottom:1px solid var(--border);font:800 11px/1 var(--font-body);letter-spacing:.07em;text-transform:uppercase;color:var(--c-ink-3)">
+            <span>Numer</span><span>Gość</span><span>Pokój</span><span>Termin</span><span style="text-align:center">Noce</span><span style="text-align:center">Osoby</span><span style="text-align:right">Kwota</span><span>Status</span>
+          </div>
+          <sc-for list="{{ rows }}" as="r" hint-placeholder-count="8">
+            <button class="row-btn" onClick="{{ r.onClick }}" style="display:grid;grid-template-columns:96px 1.5fr 1fr 1.35fr 62px 66px 104px 132px;align-items:center;gap:12px;width:100%;padding:12px 20px;border:none;border-top:1px solid var(--border);background:transparent;cursor:pointer;text-align:left;font-family:var(--font-body)">
+              <span style="font:700 12px/1 ui-monospace,Menlo,monospace;color:var(--c-ink-3)">{{ r.id }}</span>
+              <span style="min-width:0"><span style="display:block;font:800 14px/1.25 var(--font-body);color:var(--c-deep-sea);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.guest }}</span><span style="display:block;font:600 11.5px/1 var(--font-body);color:var(--c-ink-3)">{{ r.phone }}</span></span>
+              <span><span style="display:block;font:700 13.5px/1.25 var(--font-body);color:var(--c-deep-sea)">{{ r.roomName }}</span><span style="display:block;font:600 11.5px/1 var(--font-body);color:var(--c-ink-3)">{{ r.typeLabel }}</span></span>
+              <span style="font:700 13px var(--font-body);color:var(--c-ink-2)">{{ r.arriveStr }} <span style="color:var(--c-ink-3)">→</span> {{ r.departStr }}</span>
+              <span style="text-align:center;font:800 14px var(--font-body);color:var(--c-deep-sea)">{{ r.nights }}</span>
+              <span style="text-align:center;font:700 13px var(--font-body);color:var(--c-ink-2)">{{ r.partySize }}</span>
+              <span style="text-align:right;font:800 13.5px var(--font-body);color:var(--c-deep-sea)">{{ r.totalStr }}</span>
+              <span><span style="{{ r.badgeStyle }}"><span style="{{ r.dotStyle }}"></span>{{ r.statusLabel }}</span></span>
+            </button>
+          </sc-for>
+          <sc-if value="{{ rowsEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:40px;text-align:center;font:700 14px var(--font-body);color:var(--c-ink-3)">Brak rezerwacji dla wybranego filtru.</div>
+          </sc-if>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ KALENDARZ ============ -->
+      <sc-if value="{{ isKal }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px">
+          <div style="display:flex;align-items:flex-start;gap:10px;background:var(--c-sand-wash);border:1px solid var(--c-paper-edge);border-radius:14px;padding:10px 15px;max-width:560px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--c-amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            <span style="font:600 13px/1.4 var(--font-body);color:var(--c-ink-2)"><strong style="color:var(--c-deep-sea)">Turnus letni</strong> — w sezonie przyjazdy i wyjazdy odbywają się w soboty (kolumny wyróżnione). Kliknij pasek rezerwacji, aby zobaczyć szczegóły.</span>
+          </div>
+          <div style="flex:1"></div>
+          <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+            <span style="display:inline-flex;align-items:center;gap:7px;font:700 12px var(--font-body);color:var(--c-ink-2)"><span style="width:14px;height:14px;border-radius:4px;background:#2EC4A6"></span>W ośrodku</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;font:700 12px var(--font-body);color:var(--c-ink-2)"><span style="width:14px;height:14px;border-radius:4px;background:var(--c-baltic-blue)"></span>Potwierdzona</span>
+            <span style="display:inline-flex;align-items:center;gap:7px;font:700 12px var(--font-body);color:var(--c-ink-2)"><span style="width:14px;height:14px;border-radius:4px;background:var(--c-amber)"></span>Nowa</span>
+          </div>
+        </div>
+
+        <div class="scroll" style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);padding:8px 12px 14px;overflow-x:auto">
+          <div style="min-width:900px">
+            <div style="display:flex;position:sticky;top:0">
+              <div style="width:168px;flex:none"></div>
+              <div style="flex:1;display:flex">
+                <sc-for list="{{ days }}" as="d" hint-placeholder-count="14">
+                  <div style="{{ d.headStyle }}"><div style="{{ d.dowStyle }}">{{ d.dow }}</div><div style="{{ d.dmStyle }}">{{ d.dm }}</div></div>
+                </sc-for>
+              </div>
+            </div>
+
+            <sc-for list="{{ calGroups }}" as="g" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:8px;padding:14px 4px 7px 8px">
+                <span style="font:800 11px/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--c-deep-sea)">{{ g.name }}</span>
+                <span style="font:700 11px/1 var(--font-body);color:var(--c-ink-3)">{{ g.count }}</span>
+                <div style="flex:1;height:1px;background:var(--border)"></div>
+              </div>
+              <sc-for list="{{ g.rooms }}" as="r" hint-placeholder-count="5">
+                <div style="display:flex;align-items:center;height:42px">
+                  <div style="width:168px;flex:none;display:flex;align-items:baseline;gap:7px;padding-right:12px">
+                    <span style="font:800 13px/1 var(--font-body);color:var(--c-deep-sea)">{{ r.name }}</span>
+                    <span style="font:600 11px/1 var(--font-body);color:var(--c-ink-3)">{{ r.typeLabel }}</span>
+                  </div>
+                  <div style="flex:1;position:relative;height:100%;border-top:1px solid var(--border)">
+                    <div style="position:absolute;inset:0;display:flex">
+                      <sc-for list="{{ days }}" as="c" hint-placeholder-count="14"><div style="{{ c.cellStyle }}"></div></sc-for>
+                    </div>
+                    <sc-for list="{{ r.bars }}" as="b" hint-placeholder-count="1">
+                      <div class="bar-el" onClick="{{ b.onClick }}" style="{{ b.style }}" title="{{ b.title }}">{{ b.label }}</div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ============ ZAMELDOWANIA ============ -->
+      <sc-if value="{{ isZam }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
+        <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);overflow:hidden">
+          <div style="padding:19px 22px 15px;border-bottom:1px solid var(--border)">
+            <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px">
+              <span style="width:34px;height:34px;border-radius:10px;background:var(--c-foam-wash);color:#17967d;display:flex;align-items:center;justify-content:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg></span>
+              <h3 style="font:600 20px/1 var(--font-display);color:var(--c-deep-sea);margin:0">Zameldowania</h3>
+              <span style="margin-left:auto;font:800 13px var(--font-body);color:var(--c-deep-sea)">{{ zam.arrProg }}</span>
+            </div>
+            <div style="height:8px;border-radius:99px;background:var(--c-paper-3);overflow:hidden"><div style="{{ zam.arrBar }}"></div></div>
+          </div>
+          <div style="padding:10px 14px 14px;display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ arrivals }}" as="a" hint-placeholder-count="4">
+              <div style="{{ a.zStyle }}">
+                <div class="row-btn" onClick="{{ a.onClick }}" style="display:flex;align-items:center;gap:12px;padding:13px 13px;border-radius:13px;cursor:pointer">
+                  <div style="{{ a.avatarStyle }}">{{ a.initials }}</div>
+                  <div style="flex:1;min-width:0">
+                    <div style="font:800 15px/1.2 var(--font-body);color:var(--c-deep-sea)">{{ a.guest }}</div>
+                    <div style="font:600 12.5px/1.35 var(--font-body);color:var(--c-ink-3)">{{ a.roomName }} · {{ a.guestsStr }} · {{ a.nights }} nocy</div>
+                    <sc-if value="{{ a.hasNote }}" hint-placeholder-val="{{ false }}"><div style="font:600 italic 12px/1.35 var(--font-body);color:var(--c-amber);margin-top:2px">{{ a.note }}</div></sc-if>
+                  </div>
+                  <sc-if value="{{ a.isChecked }}" hint-placeholder-val="{{ true }}"><span style="flex:none;display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:999px;background:var(--c-foam-wash);color:#17967d;font:800 13px/1 var(--font-body)">✓ Zameldowany</span></sc-if>
+                  <sc-if value="{{ a.notChecked }}" hint-placeholder-val="{{ true }}"><button class="mini-btn" onClick="{{ a.onCheckIn }}" style="flex:none;padding:10px 18px;border-radius:999px;border:none;background:var(--c-baltic-blue);color:#fff;font:800 13px/1 var(--font-body);cursor:pointer">Zamelduj</button></sc-if>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="background:var(--c-paper);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-md);overflow:hidden">
+          <div style="padding:19px 22px 15px;border-bottom:1px solid var(--border)">
+            <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px">
+              <span style="width:34px;height:34px;border-radius:10px;background:var(--c-sand-wash);color:var(--c-amber);display:flex;align-items:center;justify-content:center;flex:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M14 17l5-5-5-5M19 12H7"/></svg></span>
+              <h3 style="font:600 20px/1 var(--font-display);color:var(--c-deep-sea);margin:0">Wymeldowania</h3>
+              <span style="margin-left:auto;font:800 13px var(--font-body);color:var(--c-deep-sea)">{{ zam.depProg }}</span>
+            </div>
+            <div style="height:8px;border-radius:99px;background:var(--c-paper-3);overflow:hidden"><div style="{{ zam.depBar }}"></div></div>
+          </div>
+          <div style="padding:10px 14px 14px;display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ departures }}" as="d" hint-placeholder-count="1">
+              <div style="{{ d.zStyle }}">
+                <div class="row-btn" onClick="{{ d.onClick }}" style="display:flex;align-items:center;gap:12px;padding:13px 13px;border-radius:13px;cursor:pointer">
+                  <div style="{{ d.avatarStyle }}">{{ d.initials }}</div>
+                  <div style="flex:1;min-width:0">
+                    <div style="font:800 15px/1.2 var(--font-body);color:var(--c-deep-sea)">{{ d.guest }}</div>
+                    <div style="font:600 12.5px/1.35 var(--font-body);color:var(--c-ink-3)">{{ d.roomName }} · rozliczenie: <span style="{{ d.paidTextStyle }}">{{ d.paidLabel }}</span></div>
+                  </div>
+                  <sc-if value="{{ d.isDone }}" hint-placeholder-val="{{ true }}"><span style="flex:none;display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:999px;background:var(--c-paper-3);color:var(--c-ink-3);font:800 13px/1 var(--font-body)">✓ Wymeldowany</span></sc-if>
+                  <sc-if value="{{ d.notDone }}" hint-placeholder-val="{{ true }}"><button class="mini-btn" onClick="{{ d.onCheckOut }}" style="flex:none;padding:10px 18px;border-radius:999px;border:none;background:var(--c-amber);color:var(--c-deep-sea);font:800 13px/1 var(--font-body);cursor:pointer">Wymelduj</button></sc-if>
+                </div>
+              </div>
+            </sc-for>
+            <div style="padding:16px 13px 6px;font:600 12.5px/1.5 var(--font-body);color:var(--c-ink-3)">Pozostałe wyjazdy tego turnusu przypadają na sobotę. Dziś kończy pobyt tylko krótka rezerwacja.</div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+    </div>
+  </main>
+
+  <!-- ============ DRAWER ============ -->
+  <sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+  <div>
+    <div onClick="{{ onCloseDrawer }}" style="position:fixed;inset:0;background:rgba(0,59,89,.3);animation:fadeIn .2s;z-index:40"></div>
+    <aside class="scroll" style="position:fixed;top:0;right:0;height:100vh;width:452px;max-width:92vw;background:var(--c-paper);box-shadow:var(--shadow-lg);z-index:41;animation:drawerIn .3s var(--ease-out);display:flex;flex-direction:column;overflow-y:auto">
+      <div style="display:flex;align-items:center;gap:12px;padding:20px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--c-paper);z-index:1">
+        <span style="font:700 12px/1 ui-monospace,Menlo,monospace;color:var(--c-ink-3);background:var(--c-paper-3);padding:5px 9px;border-radius:7px">{{ sel.id }}</span>
+        <span style="{{ sel.badgeStyle }}"><span style="{{ sel.dotStyle }}"></span>{{ sel.statusLabel }}</span>
+        <button class="icon-btn" onClick="{{ onCloseDrawer }}" style="margin-left:auto;width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:var(--c-paper);cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--c-deep-sea)" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+
+      <div style="padding:22px 24px;display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="{{ sel.avatarStyleLg }}">{{ sel.initials }}</div>
+          <div style="min-width:0">
+            <div style="font:600 24px/1.1 var(--font-display);color:var(--c-deep-sea)">{{ sel.guest }}</div>
+            <div style="display:flex;align-items:center;gap:8px;font:700 13px var(--font-body);color:var(--c-ink-3);margin-top:3px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>{{ sel.phone }}</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="background:var(--c-paper-2);border:1px solid var(--border);border-radius:14px;padding:13px 15px">
+            <div style="font:800 10.5px/1 var(--font-body);letter-spacing:.09em;text-transform:uppercase;color:var(--c-ink-3);margin-bottom:6px">Przyjazd</div>
+            <div style="font:600 17px/1.1 var(--font-display);color:var(--c-deep-sea)">{{ sel.arriveStr }}</div>
+            <div style="font:600 12px var(--font-body);color:var(--c-ink-3);margin-top:2px">{{ sel.arriveDow }}</div>
+          </div>
+          <div style="background:var(--c-paper-2);border:1px solid var(--border);border-radius:14px;padding:13px 15px">
+            <div style="font:800 10.5px/1 var(--font-body);letter-spacing:.09em;text-transform:uppercase;color:var(--c-ink-3);margin-bottom:6px">Wyjazd</div>
+            <div style="font:600 17px/1.1 var(--font-display);color:var(--c-deep-sea)">{{ sel.departStr }}</div>
+            <div style="font:600 12px var(--font-body);color:var(--c-ink-3);margin-top:2px">{{ sel.departDow }}</div>
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden">
+          <div style="display:flex;justify-content:space-between;padding:12px 15px;border-bottom:1px solid var(--border)"><span style="font:700 13px var(--font-body);color:var(--c-ink-3)">Pokój</span><span style="font:800 13.5px var(--font-body);color:var(--c-deep-sea)">{{ sel.roomName }} · {{ sel.typeLabel }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:12px 15px;border-bottom:1px solid var(--border)"><span style="font:700 13px var(--font-body);color:var(--c-ink-3)">Goście</span><span style="font:800 13.5px var(--font-body);color:var(--c-deep-sea)">{{ sel.guestsStr }}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:12px 15px"><span style="font:700 13px var(--font-body);color:var(--c-ink-3)">Długość pobytu</span><span style="font:800 13.5px var(--font-body);color:var(--c-deep-sea)">{{ sel.nights }} nocy</span></div>
+        </div>
+
+        <div style="background:var(--c-sky-wash);border:1px solid #bfe6f5;border-radius:14px;padding:15px 16px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px"><span style="font:700 13px var(--font-body);color:var(--c-ink-2)">{{ sel.nights }} × {{ sel.rateStr }}</span><span style="{{ sel.paidTextStyle }}">{{ sel.paidLabel }}</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:800 13px var(--font-body);color:var(--c-deep-sea)">Razem</span><span style="font:600 26px/1 var(--font-display);color:var(--c-deep-sea)">{{ sel.totalStr }}</span></div>
+        </div>
+
+        <sc-if value="{{ sel.hasNote }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:10px;background:var(--c-sand-wash);border:1px solid var(--c-paper-edge);border-radius:14px;padding:13px 15px">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--c-amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <span style="font:600 13px/1.45 var(--font-body);color:var(--c-ink-2)">{{ sel.note }}</span>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="margin-top:auto;display:flex;gap:10px;padding:16px 24px;border-top:1px solid var(--border);position:sticky;bottom:0;background:var(--c-paper)">
+        <sc-if value="{{ sel.showCheckIn }}" hint-placeholder-val="{{ false }}"><button class="mini-btn" onClick="{{ sel.onCheckIn }}" style="flex:1;padding:13px;border-radius:999px;border:none;background:var(--c-baltic-blue);color:#fff;font:800 14px/1 var(--font-body);cursor:pointer">Zamelduj gościa</button></sc-if>
+        <sc-if value="{{ sel.showCheckOut }}" hint-placeholder-val="{{ false }}"><button class="mini-btn" onClick="{{ sel.onCheckOut }}" style="flex:1;padding:13px;border-radius:999px;border:none;background:var(--c-amber);color:var(--c-deep-sea);font:800 14px/1 var(--font-body);cursor:pointer">Wymelduj gościa</button></sc-if>
+        <button class="ghost-btn" onClick="{{ onCloseDrawer }}" style="flex:none;padding:13px 22px;border-radius:999px;border:1.5px solid var(--border);background:transparent;color:var(--c-ink-2);font:800 14px/1 var(--font-body);cursor:pointer">Zamknij</button>
+      </div>
+    </aside>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:860}}">
+class Component extends DCLogic {
+  state = { screen: 'pulpit', selId: null, filter: 'all', q: '', ci: {}, co: {} };
+
+  TODAY = '2026-07-15';
+  WIN_START = '2026-07-13';
+  WIN_DAYS = 14;
+
+  MON = ['sty','lut','mar','kwi','maj','cze','lip','sie','wrz','paź','lis','gru'];
+  MON_L = ['stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'];
+  DOW = ['niedziela','poniedziałek','wtorek','środa','czwartek','piątek','sobota'];
+  DOW_S = ['Nd','Pn','Wt','Śr','Cz','Pt','So'];
+  RATE = { economy: 160, family: 220, studio: 290 };
+  TYPE_LABEL = { economy: 'Domek Economy', family: 'Pokój rodzinny', studio: 'Studio' };
+  TYPE_SHORT = { economy: 'Economy', family: 'Rodzinny', studio: 'Studio' };
+
+  ROOMS = [
+    { id: 'E1', name: 'Domek E1', type: 'economy', group: 'Domki szeregowe' },
+    { id: 'E2', name: 'Domek E2', type: 'economy', group: 'Domki szeregowe' },
+    { id: 'E3', name: 'Domek E3', type: 'economy', group: 'Domki szeregowe' },
+    { id: 'E4', name: 'Domek E4', type: 'economy', group: 'Domki szeregowe' },
+    { id: 'E5', name: 'Domek E5', type: 'economy', group: 'Domki szeregowe' },
+    { id: 'E6', name: 'Domek E6', type: 'economy', group: 'Domki szeregowe' },
+    { id: '101', name: 'Pokój 101', type: 'family', group: 'Budynek główny' },
+    { id: '102', name: 'Pokój 102', type: 'family', group: 'Budynek główny' },
+    { id: '103', name: 'Pokój 103', type: 'family', group: 'Budynek główny' },
+    { id: '201', name: 'Pokój 201', type: 'family', group: 'Budynek główny' },
+    { id: '202', name: 'Pokój 202', type: 'family', group: 'Budynek główny' },
+    { id: '203', name: 'Pokój 203', type: 'family', group: 'Budynek główny' },
+    { id: 'S1', name: 'Studio S1', type: 'studio', group: 'Studia' },
+    { id: 'S2', name: 'Studio S2', type: 'studio', group: 'Studia' },
+    { id: 'S3', name: 'Studio S3', type: 'studio', group: 'Studia' },
+  ];
+
+  RES = [
+    { id: 'RZ-2601', guest: 'Andrzej Kowalski', room: 'E1', adults: 2, children: 2, arrive: '2026-07-11', depart: '2026-07-18', status: 'checkedin', paid: 'paid', phone: '+48 601 224 118', note: 'Prosili o łóżeczko dziecięce w pokoju.' },
+    { id: 'RZ-2602', guest: 'Marta Nowak', room: 'E1', adults: 2, children: 1, arrive: '2026-07-18', depart: '2026-07-25', status: 'confirmed', paid: 'partial', phone: '+48 605 771 902', note: '' },
+    { id: 'RZ-2603', guest: 'Piotr Wiśniewski', room: 'E2', adults: 4, children: 0, arrive: '2026-07-18', depart: '2026-07-25', status: 'new', paid: 'unpaid', phone: '+48 512 330 671', note: 'Czeka na potwierdzenie i wpłatę zaliczki.' },
+    { id: 'RZ-2604', guest: 'Rodzina Zając', room: 'E3', adults: 2, children: 3, arrive: '2026-07-11', depart: '2026-07-18', status: 'checkedin', paid: 'paid', phone: '+48 698 145 220', note: '' },
+    { id: 'RZ-2605', guest: 'Ewa Adamczyk', room: 'E3', adults: 2, children: 0, arrive: '2026-07-25', depart: '2026-08-01', status: 'confirmed', paid: 'partial', phone: '+48 604 882 019', note: '' },
+    { id: 'RZ-2606', guest: 'Tomasz Krawczyk', room: 'E4', adults: 2, children: 1, arrive: '2026-07-12', depart: '2026-07-15', status: 'checkedin', paid: 'paid', phone: '+48 660 512 447', note: 'Wyjazd dziś do 11:00, prosi o fakturę.' },
+    { id: 'RZ-2607', guest: 'Julia Mazur', room: 'E4', adults: 2, children: 2, arrive: '2026-07-18', depart: '2026-07-25', status: 'confirmed', paid: 'paid', phone: '+48 691 203 558', note: '' },
+    { id: 'RZ-2608', guest: 'Rodzina Wójcik', room: 'E5', adults: 2, children: 2, arrive: '2026-07-11', depart: '2026-07-18', status: 'checkedin', paid: 'partial', phone: '+48 501 664 330', note: 'Dopłata gotówką przy wyjeździe.' },
+    { id: 'RZ-2609', guest: 'Marek Dąbrowski', room: 'E6', adults: 3, children: 0, arrive: '2026-07-18', depart: '2026-07-25', status: 'new', paid: 'unpaid', phone: '+48 607 118 245', note: '' },
+    { id: 'RZ-2610', guest: 'Kinga Baran', room: 'E6', adults: 2, children: 0, arrive: '2026-07-15', depart: '2026-07-18', status: 'confirmed', paid: 'paid', phone: '+48 606 940 173', note: 'Krótki pobyt poza turnusem, 3 noce.' },
+    { id: 'RZ-2611', guest: 'Anna Lewandowska', room: '101', adults: 2, children: 2, arrive: '2026-07-11', depart: '2026-07-18', status: 'checkedin', paid: 'paid', phone: '+48 602 337 881', note: '' },
+    { id: 'RZ-2612', guest: 'Jan Kaczmarek', room: '101', adults: 2, children: 1, arrive: '2026-07-18', depart: '2026-07-25', status: 'confirmed', paid: 'partial', phone: '+48 698 552 104', note: '' },
+    { id: 'RZ-2613', guest: 'Rodzina Szymańska', room: '102', adults: 4, children: 1, arrive: '2026-07-13', depart: '2026-07-20', status: 'checkedin', paid: 'paid', phone: '+48 604 220 917', note: 'Rezerwacja manualna, dłuższy pobyt.' },
+    { id: 'RZ-2614', guest: 'Katarzyna Woźniak', room: '103', adults: 2, children: 0, arrive: '2026-07-18', depart: '2026-07-25', status: 'new', paid: 'unpaid', phone: '+48 500 918 662', note: '' },
+    { id: 'RZ-2615', guest: 'Rodzina Włodarczyk', room: '103', adults: 2, children: 2, arrive: '2026-07-15', depart: '2026-07-18', status: 'confirmed', paid: 'paid', phone: '+48 691 774 300', note: '' },
+    { id: 'RZ-2616', guest: 'Piotr Kozłowski', room: '201', adults: 2, children: 3, arrive: '2026-07-11', depart: '2026-07-18', status: 'checkedin', paid: 'paid', phone: '+48 605 128 449', note: '' },
+    { id: 'RZ-2617', guest: 'Rodzina Zielińska', room: '202', adults: 2, children: 2, arrive: '2026-07-15', depart: '2026-07-22', status: 'confirmed', paid: 'partial', phone: '+48 662 401 738', note: 'Przyjazd dziś po 15:00.' },
+    { id: 'RZ-2618', guest: 'Aleksandra Wieczorek', room: '203', adults: 2, children: 1, arrive: '2026-07-25', depart: '2026-08-01', status: 'confirmed', paid: 'paid', phone: '+48 606 330 552', note: '' },
+    { id: 'RZ-2619', guest: 'Rodzina Grabowska', room: 'S1', adults: 4, children: 2, arrive: '2026-07-11', depart: '2026-07-18', status: 'checkedin', paid: 'paid', phone: '+48 601 887 213', note: '' },
+    { id: 'RZ-2620', guest: 'Michał Pawlak', room: 'S1', adults: 2, children: 2, arrive: '2026-07-18', depart: '2026-07-25', status: 'confirmed', paid: 'partial', phone: '+48 604 552 190', note: '' },
+    { id: 'RZ-2621', guest: 'Rodzina Jankowska', room: 'S2', adults: 3, children: 2, arrive: '2026-07-15', depart: '2026-07-25', status: 'confirmed', paid: 'partial', phone: '+48 691 220 845', note: 'Przyjazd dziś, pobyt 10 nocy.' },
+    { id: 'RZ-2622', guest: 'Rodzina Sikora', room: 'S3', adults: 4, children: 1, arrive: '2026-07-18', depart: '2026-07-25', status: 'new', paid: 'unpaid', phone: '+48 600 714 226', note: '' },
+  ];
+
+  // ---- date helpers ----
+  parse(s) { const p = s.split('-').map(Number); return new Date(p[0], p[1] - 1, p[2]); }
+  ymd(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  addDays(s, n) { const d = this.parse(s); d.setDate(d.getDate() + n); return this.ymd(d); }
+  diff(a, b) { return Math.round((this.parse(b) - this.parse(a)) / 86400000); }
+  fmtDM(s) { const d = this.parse(s); return d.getDate() + ' ' + this.MON[d.getMonth()]; }
+  money(n) { return n.toLocaleString('pl-PL') + ' zł'; }
+
+  STAT(s) {
+    const m = {
+      new: ['Nowa', 'var(--c-amber)', '#FFF1D6'],
+      confirmed: ['Potwierdzona', 'var(--c-baltic-blue)', 'var(--c-sky-wash)'],
+      checkedin: ['Zameldowany', '#17967d', 'var(--c-foam-wash)'],
+      checkedout: ['Wymeldowany', 'var(--c-ink-3)', 'var(--c-paper-3)'],
+    };
+    return m[s] || m.new;
+  }
+  PAID(p) {
+    const m = { paid: ['Opłacone', '#17967d'], partial: ['Zaliczka', 'var(--c-amber)'], unpaid: ['Do zapłaty', 'var(--c-coral)'] };
+    return m[p] || m.unpaid;
+  }
+  badge(c, bg) {
+    return { display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 10px', borderRadius: '999px', font: '800 11.5px/1 var(--font-body)', color: c, background: bg, whiteSpace: 'nowrap' };
+  }
+  dot(c) { return { width: '6px', height: '6px', borderRadius: '50%', background: c, flex: 'none' }; }
+  paidText(c) { return { font: '800 12px/1 var(--font-body)', color: c }; }
+  avatar(type, lg) {
+    const bg = type === 'economy' ? '#FBE7C0' : type === 'family' ? 'var(--c-sky-wash)' : 'var(--c-foam-wash)';
+    const sz = lg ? '52px' : '40px';
+    return { width: sz, height: sz, borderRadius: lg ? '15px' : '12px', flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', font: (lg ? '800 18px' : '800 14px') + '/1 var(--font-body)', background: bg, color: 'var(--c-deep-sea)' };
+  }
+
+  navBtn(active) {
+    return { display: 'flex', alignItems: 'center', gap: '12px', width: '100%', padding: '11px 13px', borderRadius: '12px', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-body)', fontWeight: '700', fontSize: '14.5px', marginBottom: '3px', textAlign: 'left', transition: 'background .18s, color .18s', background: active ? 'var(--c-baltic-blue)' : 'transparent', color: active ? '#fff' : 'rgba(255,248,232,.72)', boxShadow: active ? '0 8px 18px -9px rgba(10,156,204,.9)' : 'none' };
+  }
+
+  enrich(r) {
+    const status = this.state.co[r.id] ? 'checkedout' : (this.state.ci[r.id] ? 'checkedin' : r.status);
+    const room = this.ROOMS.find(x => x.id === r.room);
+    const type = room ? room.type : 'economy';
+    const nights = this.diff(r.arrive, r.depart);
+    const total = nights * this.RATE[type];
+    const [sl, sc, sbg] = this.STAT(status);
+    const [pl, pc] = this.PAID(r.paid);
+    const w = r.guest.split(' ');
+    return {
+      id: r.id, guest: r.guest, phone: r.phone, note: r.note, hasNote: !!r.note,
+      room: r.room, roomName: room ? room.name : r.room, type,
+      typeLabel: this.TYPE_LABEL[type], typeShort: this.TYPE_SHORT[type],
+      status, nights, total, totalStr: this.money(total), rateStr: this.money(this.RATE[type]) + '/noc',
+      arrive: r.arrive, depart: r.depart, arriveStr: this.fmtDM(r.arrive), departStr: this.fmtDM(r.depart),
+      arriveDow: this.DOW[this.parse(r.arrive).getDay()], departDow: this.DOW[this.parse(r.depart).getDay()],
+      adults: r.adults, children: r.children, partySize: r.adults + r.children,
+      guestsStr: r.adults + ' dor.' + (r.children ? ' · ' + r.children + ' dz.' : ''),
+      initials: (w[0][0] + (w[1] ? w[1][0] : '')).toUpperCase(),
+      statusLabel: sl, badgeStyle: this.badge(sc, sbg), dotStyle: this.dot(sc),
+      paid: r.paid, paidLabel: pl, paidTextStyle: this.paidText(pc),
+      avatarStyle: this.avatar(type, false), avatarStyleLg: this.avatar(type, true),
+      onClick: () => this.setState({ selId: r.id }),
+    };
+  }
+
+  occupiedToday() {
+    const T = this.TODAY;
+    return this.ROOMS.filter(rm => this.RES.some(r => r.room === rm.id && r.arrive <= T && r.depart > T));
+  }
+
+  go(screen) { this.setState({ screen, selId: null }); }
+  checkIn(id) { this.setState(s => ({ ci: Object.assign({}, s.ci, { [id]: true }), co: (() => { const c = Object.assign({}, s.co); delete c[id]; return c; })() })); }
+  checkOut(id) { this.setState(s => ({ co: Object.assign({}, s.co, { [id]: true }) })); }
+
+  componentDidMount() { this._t = setInterval(() => {}, 1e9); }
+
+  renderVals() {
+    const T = this.TODAY;
+    const all = this.RES.map(r => this.enrich(r));
+    const byId = {};
+    all.forEach(a => { byId[a.id] = a; });
+
+    // ---- KPIs ----
+    const occRooms = this.occupiedToday();
+    const occN = occRooms.length;
+    const totalRooms = this.ROOMS.length;
+    const occPct = Math.round(occN / totalRooms * 100);
+    const freeN = totalRooms - occN;
+    const arrList = all.filter(a => a.arrive === T);
+    const depList = all.filter(a => a.depart === T);
+    const guestsIn = this.RES.filter(r => r.arrive <= T && r.depart > T).reduce((s, r) => s + r.adults + r.children, 0);
+    const arrDone = arrList.filter(a => a.status === 'checkedin').length;
+    const depDone = depList.filter(a => a.status === 'checkedout').length;
+    const dueRes = all.filter(a => a.paid !== 'paid' && a.status !== 'checkedout');
+    const dueSum = dueRes.reduce((s, a) => s + a.total, 0);
+
+    // per-type occupancy on the board
+    const cntType = (t) => {
+      const rooms = this.ROOMS.filter(rm => rm.type === t);
+      const occ = rooms.filter(rm => this.RES.some(r => r.room === rm.id && r.arrive <= T && r.depart > T)).length;
+      return { occ, total: rooms.length, pct: Math.round(occ / rooms.length * 100) };
+    };
+    const dom = cntType('economy'), main = cntType('family'), stu = cntType('studio');
+    const barStyle = (pct, col) => ({ height: '100%', width: pct + '%', background: col, borderRadius: '99px' });
+
+    // ---- arrivals / departures with actions ----
+    const decorateArr = a => Object.assign({}, a, {
+      isChecked: a.status === 'checkedin', notChecked: a.status !== 'checkedin',
+      hasNote: !!a.note,
+      zStyle: { borderRadius: '13px', border: '1px solid ' + (a.status === 'checkedin' ? 'var(--c-foam-wash)' : 'var(--border)'), background: a.status === 'checkedin' ? 'rgba(46,196,166,.06)' : 'var(--c-paper)' },
+      onCheckIn: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.checkIn(a.id); },
+    });
+    const decorateDep = d => Object.assign({}, d, {
+      isDone: d.status === 'checkedout', notDone: d.status !== 'checkedout',
+      zStyle: { borderRadius: '13px', border: '1px solid ' + (d.status === 'checkedout' ? 'var(--border)' : 'var(--border)'), background: d.status === 'checkedout' ? 'var(--c-paper-2)' : 'var(--c-paper)' },
+      onCheckOut: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.checkOut(d.id); },
+    });
+    const arrivals = arrList.map(decorateArr);
+    const departures = depList.map(decorateDep);
+
+    // ---- tasks ----
+    const tasks = all.filter(a => a.status === 'new').slice(0, 4).map(a => ({
+      title: a.guest, sub: 'Nowa rezerwacja · ' + a.roomName + ' · ' + a.arriveStr + ' → ' + a.departStr,
+      iconStyle: { width: '30px', height: '30px', borderRadius: '9px', flex: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FFF1D6', color: 'var(--c-amber)' },
+      onClick: () => this.setState({ selId: a.id }),
+    }));
+
+    // ---- reservations table ----
+    const filters = ['all', 'new', 'confirmed', 'checkedin', 'checkedout'];
+    const flabel = { all: 'Wszystkie', new: 'Nowe', confirmed: 'Potwierdzone', checkedin: 'W ośrodku', checkedout: 'Wyjechali' };
+    const count = (f) => f === 'all' ? all.length : all.filter(a => a.status === f).length;
+    const activeF = this.state.filter;
+    const tabs = filters.map(f => {
+      const active = f === activeF;
+      return {
+        key: f, label: flabel[f], count: count(f),
+        onClick: () => this.setState({ filter: f }),
+        style: { display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 14px', borderRadius: '999px', border: '1px solid ' + (active ? 'transparent' : 'var(--border)'), background: active ? 'var(--c-deep-sea)' : 'var(--c-paper)', color: active ? '#fff' : 'var(--c-ink-2)', font: '700 13.5px/1 var(--font-body)', cursor: 'pointer' },
+        countStyle: { background: active ? 'rgba(255,255,255,.2)' : 'var(--c-paper-3)', color: active ? '#fff' : 'var(--c-ink-3)', padding: '1px 8px', borderRadius: '999px', font: '800 11px/1.6 var(--font-body)' },
+      };
+    });
+    const q = this.state.q.trim().toLowerCase();
+    let rows = all.filter(a => activeF === 'all' || a.status === activeF);
+    if (q) rows = rows.filter(a => (a.guest + ' ' + a.roomName + ' ' + a.id + ' ' + a.phone).toLowerCase().includes(q));
+    rows = rows.slice().sort((a, b) => a.arrive < b.arrive ? -1 : a.arrive > b.arrive ? 1 : (a.id < b.id ? -1 : 1));
+
+    // ---- calendar ----
+    const days = [];
+    for (let i = 0; i < this.WIN_DAYS; i++) {
+      const s = this.addDays(this.WIN_START, i);
+      const d = this.parse(s);
+      const isSat = d.getDay() === 6, isSun = d.getDay() === 0, isToday = s === T;
+      const bg = isToday ? 'rgba(255,213,0,.16)' : isSat ? 'rgba(10,156,204,.07)' : isSun ? 'rgba(0,0,0,.02)' : 'transparent';
+      days.push({
+        dm: d.getDate(), dow: this.DOW_S[d.getDay()],
+        headStyle: { flex: 1, textAlign: 'center', padding: '6px 2px 8px', borderRight: '1px solid var(--border)', background: bg },
+        dowStyle: { font: '800 10px/1 var(--font-body)', letterSpacing: '.04em', color: isSat ? 'var(--c-baltic-blue)' : 'var(--c-ink-3)', marginBottom: '3px' },
+        dmStyle: { font: (isToday ? '800' : '700') + ' 14px/1 var(--font-body)', color: isToday ? 'var(--c-deep-sea)' : (isSat ? 'var(--c-baltic-blue)' : 'var(--c-ink-2)') },
+        cellStyle: { flex: 1, borderRight: '1px solid var(--border)', background: bg },
+      });
+    }
+    const barColor = (s) => {
+      const m = { checkedin: ['#2EC4A6', '#07362e'], confirmed: ['var(--c-baltic-blue)', '#fff'], new: ['var(--c-amber)', '#4a2e00'], checkedout: ['var(--c-paper-3)', 'var(--c-ink-3)'] };
+      return m[s] || m.confirmed;
+    };
+    const barsFor = (roomId) => {
+      return all.filter(a => a.room === roomId).map(a => {
+        let si = this.diff(this.WIN_START, a.arrive);
+        let ei = this.diff(this.WIN_START, a.depart);
+        si = Math.max(0, Math.min(this.WIN_DAYS, si));
+        ei = Math.max(0, Math.min(this.WIN_DAYS, ei));
+        if (ei <= si) return null;
+        const left = si / this.WIN_DAYS * 100, w = (ei - si) / this.WIN_DAYS * 100;
+        const [bg, fg] = barColor(a.status);
+        return {
+          id: a.id, label: a.guest, title: a.guest + ' · ' + a.arriveStr + ' → ' + a.departStr,
+          onClick: () => this.setState({ selId: a.id }),
+          style: { position: 'absolute', top: '4px', bottom: '4px', left: 'calc(' + left + '% + 2px)', width: 'calc(' + w + '% - 4px)', background: bg, color: fg, borderRadius: '7px', display: 'flex', alignItems: 'center', padding: '0 8px', font: '800 11.5px/1 var(--font-body)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', cursor: 'pointer', boxShadow: '0 1px 2px rgba(0,59,89,.18)', transition: 'filter .15s, box-shadow .15s' },
+        };
+      }).filter(Boolean);
+    };
+    const groupNames = [];
+    this.ROOMS.forEach(rm => { if (!groupNames.includes(rm.group)) groupNames.push(rm.group); });
+    const calGroups = groupNames.map(gn => {
+      const gr = this.ROOMS.filter(rm => rm.group === gn);
+      return {
+        name: gn, count: gr.length + (gr.length > 4 ? ' pokoi' : gr.length > 1 ? ' pokoje' : ' pokój'),
+        rooms: gr.map(rm => ({ name: rm.name, typeLabel: this.TYPE_SHORT[rm.type], bars: barsFor(rm.id) })),
+      };
+    });
+
+    // ---- selection / drawer ----
+    const sel = this.state.selId ? Object.assign({}, byId[this.state.selId], {
+      showCheckIn: byId[this.state.selId].status === 'confirmed' || byId[this.state.selId].status === 'new',
+      showCheckOut: byId[this.state.selId].status === 'checkedin',
+      onCheckIn: () => this.checkIn(this.state.selId),
+      onCheckOut: () => this.checkOut(this.state.selId),
+    }) : null;
+
+    const screen = this.state.screen;
+    const titles = { pulpit: 'Pulpit', rez: 'Rezerwacje', kal: 'Kalendarz obłożenia', zam: 'Zameldowania i wyjazdy' };
+    const td = this.parse(T);
+    const dateLong = this.DOW[td.getDay()] + ', ' + td.getDate() + ' ' + this.MON_L[td.getMonth()] + ' ' + td.getFullYear() + ' · turnus letni';
+
+    return {
+      // nav
+      navActive: { pulpit: screen === 'pulpit' ? '1' : '0', rez: screen === 'rez' ? '1' : '0', kal: screen === 'kal' ? '1' : '0', zam: screen === 'zam' ? '1' : '0' },
+      navStyle: { pulpit: this.navBtn(screen === 'pulpit'), rez: this.navBtn(screen === 'rez'), kal: this.navBtn(screen === 'kal'), zam: this.navBtn(screen === 'zam') },
+      nav: { newCount: count('new'), arrPending: arrList.filter(a => a.status !== 'checkedin').length },
+      goPulpit: () => this.go('pulpit'), goRez: () => this.go('rez'), goKal: () => this.go('kal'), goZam: () => this.go('zam'),
+      onNewRes: () => this.go('rez'),
+      pageTitle: titles[screen], dateLong,
+      q: this.state.q, onSearch: (e) => this.setState({ q: e.target.value }),
+      isPulpit: screen === 'pulpit', isRez: screen === 'rez', isKal: screen === 'kal', isZam: screen === 'zam',
+
+      // kpis
+      kpi: {
+        occ: occPct, occSub: occN + ' z ' + totalRooms + ' pokoi zajętych',
+        arr: arrList.length, arrSub: arrDone + ' z ' + arrList.length + ' zameldowanych',
+        dep: depList.length, depSub: depDone + ' z ' + depList.length + ' wymeldowanych',
+        free: freeN, freeSub: 'gotowe do sprzedaży',
+        due: this.money(dueSum), dueSub: dueRes.length + ' rezerwacji do rozliczenia',
+      },
+      occ: {
+        dom: dom.occ + ' / ' + dom.total, domBar: barStyle(dom.pct, 'var(--c-baltic-blue)'),
+        main: main.occ + ' / ' + main.total, mainBar: barStyle(main.pct, 'var(--c-seafoam)'),
+        studio: stu.occ + ' / ' + stu.total, studioBar: barStyle(stu.pct, 'var(--c-amber)'),
+        guests: guestsIn,
+      },
+      arrivals, departures, tasks,
+
+      // rez
+      tabs, rows, rowsEmpty: rows.length === 0,
+
+      // calendar
+      days, calGroups,
+
+      // zameldowania
+      zam: {
+        arrProg: arrDone + ' z ' + arrList.length + ' zameldowanych',
+        arrBar: barStyle(arrList.length ? Math.round(arrDone / arrList.length * 100) : 0, 'var(--c-seafoam)'),
+        depProg: depDone + ' z ' + depList.length + ' wymeldowanych',
+        depBar: barStyle(depList.length ? Math.round(depDone / depList.length * 100) : 0, 'var(--c-amber)'),
+      },
+
+      // drawer
+      drawerOpen: !!sel, sel: sel || {}, onCloseDrawer: () => this.setState({ selId: null }),
+    };
+  }
+}
+</script>
+</body>
+</html>
