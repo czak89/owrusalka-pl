@@ -2,6 +2,12 @@
 
 What was decided, by whom, and why. Newest context first. Dates are 2026.
 
+## Owner's answers (15 Nov, second session)
+- **Card copy may be 14–15px.** The 16px rule is relaxed for supporting copy inside cards; running text stays 16px. No layout change.
+- **The "PL · EN" label stays** in the nav as it is until there is an English version.
+- **Form endpoint: not chosen yet.** The site stays in demo mode.
+- **Push of `next` and a draft pull request to `main` approved** for this session's work, to run CI. Not a standing permission.
+
 ## Forms, SEO and CI (15 Nov, second session)
 - **Form sending is provider-neutral.** `components/send-form.jsx` posts JSON to `NEXT_PUBLIC_FORM_ENDPOINT` and treats 2xx without `{ "success": false }` as sent. That is the Web3Forms contract, so either choice (Web3Forms or an own endpoint) is a build variable, not a code change. The owner has not chosen yet.
 - **No endpoint = demo mode,** not a silent fake: the flow completes so the design can be reviewed, nothing is posted, and the confirmation says the enquiry was not sent.

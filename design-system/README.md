@@ -130,7 +130,7 @@ Pairings: a hero might be a short Pacifico ribbon over a Newsreader headline, wi
 
 The `.script` utility class in `components/bundle.css` already does this — use it whenever you can. If you set `font-family: var(--font-script)` by hand on a custom element, add `font-feature-settings: "ss01" 1` next to it (see the website kit's `.hero-text .ribbon`, `.story-text .pre`, `.story-text .signed` for examples). The "Script" component card shows the default-vs-ss01 difference side-by-side. A reference image of the proper glyphs lives at `assets/pacifico-polish-ligatures-reference.png`.
 
-Sizes: see `tokens.json` (`--fs-xs` 12 → `--fs-5xl` 60). Minimum sizes: body 16px (24px in slides), captions and secondary lines 14px, eyebrow labels and badges 12px. Nothing below 12px. Form fields are 16px. Body line-height is a generous 1.55.
+Sizes: see `tokens.json` (`--fs-xs` 12 → `--fs-5xl` 60). Minimum sizes: body 16px (24px in slides), captions and secondary lines 14px, eyebrow labels and badges 12px. Supporting copy inside cards (descriptions under a card title) may be 14–15px; running text stays at 16px. Nothing below 12px. Form fields are 16px. Body line-height is a generous 1.55.
 
 On phones (under 640px) the headings step down so long Polish words do not break; `components/bundle.css` does this for bare elements:
 

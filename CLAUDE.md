@@ -42,7 +42,7 @@ After any change: build, then run the checks in light and dark and at 390px widt
 - Use roles where the themes differ: `--action`, `--action-hover`, `--primary`, `--primary-hover`, `--on-accent` (label on Coral, Baltic and yellow fills: always dark), `--accent-text` (small marine text), `--surface-strong` / `--on-strong`, `--error` / `--error-surface`, `--focus-ring`, `--success-text`.
 - `--c-deep-sea` is the heading colour and inverts to warm foam in the dark theme. A band that must stay dark uses `--surface-strong`.
 - Dark theme = `data-theme="dark"` on `<html>`. Theme patches are written as `[data-theme="dark"] body .x`.
-- Text sizes: body 16px, captions 14px, labels and badges 12px, nothing smaller. Form fields 16px.
+- Text sizes: body 16px, captions 14px, labels and badges 12px, nothing smaller. Form fields 16px. Supporting copy inside cards may be 14–15px (owner's decision, 15 Nov); running text stays 16px.
 - A label on an accent fill is never light. Hover on a filled button goes one step lighter, never darker.
 - Coral is for CTAs and script callouts only, never for errors.
 - Pacifico (`--font-script`) always with `font-feature-settings: "ss01" 1`, weight 400, short callouts only.
@@ -52,7 +52,7 @@ After any change: build, then run the checks in light and dark and at 390px widt
 - Grid tracks that hold text use `minmax(0, 1fr)`, not `1fr`, so phones do not overflow.
 
 ## Design system: two copies
-The Rusałka Design System also lives as an artifact on claude.ai (type "Design System"), where the cards and tokens can be browsed and edited. `design-system/` in this repo is what the site builds from. They were identical on 2026-11-15, except that the repo copy leaves out `ui_kits/`, `source/`, `archived/`, `uploads/` and `scraps/`. Change both, or change one and copy it over; there is no sync script yet. `tokens.css` must be regenerated when `tokens.json` changes (first line: `/* Rusałka Design System — generated from tokens.json */`).
+The Rusałka Design System also lives as an artifact on claude.ai (type "Design System"), where the cards and tokens can be browsed and edited. `design-system/` in this repo is what the site builds from. They were identical on 2026-11-15 (since then the repo copy gained one sentence in `README.md` on card copy sizes; see `TODO.md`), except that the repo copy leaves out `ui_kits/`, `source/`, `archived/`, `uploads/` and `scraps/`. Change both, or change one and copy it over; there is no sync script yet. `tokens.css` must be regenerated when `tokens.json` changes (first line: `/* Rusałka Design System — generated from tokens.json */`).
 
 ## State on 2026-11-15
 Built: 7 pages plus `/rezerwacja` and a 404 page, both themes, base-path switch, design system v1.2, form sending (demo mode until an endpoint is chosen), SEO metadata, sitemap, robots. Checked in a browser: every page in light and dark at 1280px and 390px, plus the interaction and form scripts.
