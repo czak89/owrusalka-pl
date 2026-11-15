@@ -6,10 +6,11 @@ const { useEffect: useEffectS, useState: useStateS, useRef: useRefS } = React;
 /* ============================================================================
    Pricing — 2026 table
 ============================================================================ */
-function Pricing() {
+function Pricing({ head = true }) {
   return (
     <section className="pricing-band section" id="cennik">
       <div className="container">
+        {head ? (
         <div className="section-head">
           <div className="titles">
             <Eyebrow>Cennik 2026</Eyebrow>
@@ -23,6 +24,7 @@ function Pricing() {
             <Button variant="secondary" icon="download">Pobierz cennik (PDF)</Button>
           </div>
         </div>
+        ) : null}
 
         <div className="pricing">
           <div className="col-head" style={{ background: "transparent", color: "var(--fg-3)" }}>
@@ -101,10 +103,11 @@ const AMENITIES = [
   { icon: "baby", tone: "foam", title: "Plac zabaw + animacje", body: "Duży, w cieniu sosen — i animator codziennie: gry, plastyka, podchody." },
 ];
 
-function Amenities() {
+function Amenities({ head = true }) {
   return (
     <section className="section" id="atrakcje">
       <div className="container">
+        {head ? (
         <div className="section-head">
           <div className="titles">
             <Eyebrow>Co tu robicie</Eyebrow>
@@ -112,6 +115,7 @@ function Amenities() {
             <p className="sub">Kilka rzeczy, które robią różnicę między pobytem a wspomnieniem.</p>
           </div>
         </div>
+        ) : null}
 
         <div className="amenities">
           {AMENITIES.slice(0, 2).map((a) => (
@@ -162,7 +166,7 @@ function Amenities() {
 /* ============================================================================
    Summer timeline — Lato 2026
 ============================================================================ */
-function Timeline() {
+function Timeline({ head = true }) {
   const events = [
     {
       month: "maj", title: "Otwarcie sezonu", tag: "23.05",
@@ -188,6 +192,7 @@ function Timeline() {
   return (
     <section className="timeline-band" id="lato">
       <div className="container">
+        {head ? (
         <div className="section-head">
           <div className="titles">
             <Eyebrow>Co się będzie działo</Eyebrow>
@@ -195,6 +200,7 @@ function Timeline() {
             <p className="sub">Cykl powtarzamy od kilku lat. Wracające rodziny już wiedzą, że czwartki to ognisko.</p>
           </div>
         </div>
+        ) : null}
 
         <div className="timeline">
           {events.map((e) => (
@@ -254,7 +260,7 @@ function Story() {
 /* ============================================================================
    Gallery — masonry with image drop zones
 ============================================================================ */
-function Gallery() {
+function Gallery({ head = true }) {
   const tiles = [
     { id: "g-a", cls: "a", cap: "plaża, lipiec",  ph: "plaża Łazy" },
     { id: "g-b", cls: "b", cap: "ganek",          ph: "ganek pokoju" },
@@ -267,6 +273,7 @@ function Gallery() {
   return (
     <section className="section" id="galeria">
       <div className="container">
+        {head ? (
         <div className="section-head">
           <div className="titles">
             <Eyebrow>Z naszego albumu</Eyebrow>
@@ -277,9 +284,10 @@ function Gallery() {
             </p>
           </div>
           <div className="actions">
-            <Button variant="ghost" iconRight="arrow-right">Wszystkie zdjęcia</Button>
+            <a href="galeria.html"><Button variant="ghost" iconRight="arrow-right">Wszystkie zdjęcia</Button></a>
           </div>
         </div>
+        ) : null}
         <div className="gallery">
           {tiles.map((t) => (
             <div className={`tile ${t.cls}`} key={t.id}>
@@ -365,10 +373,11 @@ function Testimonials() {
 /* ============================================================================
    Contact + decorative map
 ============================================================================ */
-function Contact() {
+function Contact({ head = true }) {
   return (
     <section className="contact-band" id="kontakt">
       <div className="container">
+        {head ? (
         <div className="section-head" style={{ marginBottom: 32 }}>
           <div className="titles">
             <Eyebrow>Znajdziecie nas tutaj</Eyebrow>
@@ -376,6 +385,7 @@ function Contact() {
             <p className="sub">Niedaleko Mielna, na końcu Leśnej, między sosnami a wydmą.</p>
           </div>
         </div>
+        ) : null}
 
         <div className="contact-grid">
           <div className="map-card" role="img" aria-label="Mapa: Rusałka w Łazach k. Mielna">
@@ -457,16 +467,16 @@ function Footer() {
               <li><a href="pokoje.html">Pokoje Economy</a></li>
               <li><a href="pokoje.html">Pokoje rodzinne</a></li>
               <li><a href="pokoje.html">Studia 2-pokojowe</a></li>
-              <li><a href="#cennik">Cennik 2026</a></li>
+              <li><a href="cennik.html">Cennik 2026</a></li>
             </ul>
           </div>
           <div>
             <h5>Wakacje</h5>
             <ul>
-              <li><a href="#atrakcje">Atrakcje</a></li>
-              <li><a href="#lato">Lato 2026</a></li>
-              <li><a href="#galeria">Galeria</a></li>
-              <li><a href="#cennik">Last minute</a></li>
+              <li><a href="atrakcje.html">Atrakcje</a></li>
+              <li><a href="lato.html">Lato 2026</a></li>
+              <li><a href="galeria.html">Galeria</a></li>
+              <li><a href="cennik.html">Last minute</a></li>
             </ul>
           </div>
           <div>
@@ -485,6 +495,28 @@ function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+/* ============================================================================
+   Bottom booking CTA band — shared closing section
+============================================================================ */
+function BookCtaBand({ onBook, title, sub }) {
+  return (
+    <section className="book-cta-band">
+      <div className="container row">
+        <div>
+          <h2>{title || <>Sprawdźmy wolne <em>terminy</em> na lato.</>}</h2>
+          <p>{sub || "Krok 1: termin i pokój. Krok 2: dane. Krok 3: potwierdzenie. Bez płatności online, bez konta."}</p>
+        </div>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <Button variant="cta" size="lg" iconRight="arrow-right" onClick={() => onBook && onBook()}>
+            Sprawdź dostępność
+          </Button>
+          <a href="cennik.html"><Button variant="secondary">Cały cennik</Button></a>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -702,5 +734,6 @@ function BookingModal({ open, onClose, dates, guests, roomId, setBookingState })
 
 /* expose */
 Object.assign(window, {
-  Pricing, Amenities, Timeline, Story, Gallery, Testimonials, Contact, Footer, BookingModal,
+  Pricing, Amenities, Timeline, Story, Gallery, Testimonials, Contact, Footer,
+  BookCtaBand, BookingModal,
 });

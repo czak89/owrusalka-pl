@@ -1,34 +1,4 @@
-/* Pokoje subpage — extra layout */
-
-.pokoje-hero {
-  background: linear-gradient(180deg, var(--c-paper) 0%, var(--c-paper-2) 100%);
-  padding: 56px 0 32px;
-  border-bottom: 1px solid var(--border);
-}
-.pokoje-hero .ribbon {
-  font-family: var(--font-script); font-feature-settings: "ss01" 1;
-  color: var(--c-coral); font-size: 30px; line-height: 1;
-  transform: rotate(-2deg); display: inline-block;
-  margin-bottom: 10px;
-}
-.pokoje-hero h1 {
-  font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(40px, 5.5vw, 68px); line-height: 1.0;
-  color: var(--c-deep-sea); margin: 0 0 16px;
-  letter-spacing: -0.015em; text-wrap: balance;
-}
-.pokoje-hero h1 em { font-style: italic; color: var(--c-baltic-blue); font-weight: 500; }
-.pokoje-hero .lede {
-  font-family: var(--font-display); font-style: italic;
-  font-size: 20px; line-height: 1.45; color: var(--fg-2);
-  max-width: 620px; margin: 0;
-}
-.pokoje-hero .breadcrumb {
-  font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em;
-  color: var(--fg-3); margin-bottom: 12px;
-  display: flex; gap: 6px; align-items: center;
-}
-.pokoje-hero .breadcrumb a:hover { color: var(--c-deep-sea); }
+/* Pokoje subpage — extra layout (page hero + CTA band are shared in styles.css) */
 
 /* Sticky jump nav */
 .pokoje-jump {
@@ -49,6 +19,7 @@
 }
 .pokoje-jump a:hover { background: var(--c-paper-2); }
 .pokoje-jump a.active { background: var(--c-deep-sea); color: var(--c-paper); }
+body[data-mode="dark"] .pokoje-jump { background: rgba(12, 34, 44, 0.92); }
 
 /* Room detail block */
 .room-detail { padding: 80px 0; border-bottom: 1px solid var(--border); }
@@ -180,7 +151,7 @@
 .inc-card {
   background: rgba(255, 248, 232, 0.06);
   border: 1px solid rgba(255, 248, 232, 0.18);
-  border-radius: var(--radius-lg); padding: 20px;
+  border-radius: var(--radius-xl); padding: 20px;
   display: flex; flex-direction: column; gap: 6px;
 }
 .inc-card .ico-box {
@@ -191,22 +162,3 @@
 }
 .inc-card h5 { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--c-paper); margin: 0; }
 .inc-card p { font-size: 13px; color: rgba(255, 248, 232, 0.78); line-height: 1.55; margin: 0; }
-
-.book-cta-band {
-  background: var(--c-paper-2);
-  padding: 80px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.book-cta-band .row {
-  display: grid; grid-template-columns: 1.4fr auto;
-  align-items: center; gap: 32px;
-}
-@media (max-width: 720px) { .book-cta-band .row { grid-template-columns: 1fr; } }
-.book-cta-band h2 {
-  font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 40px);
-  font-weight: 600; color: var(--c-deep-sea); margin: 0 0 8px;
-  letter-spacing: -0.015em;
-}
-.book-cta-band h2 em { font-style: italic; color: var(--c-baltic-blue); font-weight: 500; }
-.book-cta-band p { font-family: var(--font-display); font-style: italic; color: var(--fg-2); font-size: 17px; margin: 0; }

@@ -33,10 +33,93 @@ img { display: block; max-width: 100%; }
 /* ============================================================================
    Theme variants — color emphasis tweak swaps the CTA color globally
 ============================================================================ */
-body[data-emphasis="coral"]  { --emphasis: var(--c-coral);       --emphasis-2: var(--c-coral-2);     --emphasis-fg: var(--c-paper); }
-body[data-emphasis="amber"]  { --emphasis: var(--c-amber);       --emphasis-2: #E89500;             --emphasis-fg: var(--c-deep-sea); }
-body[data-emphasis="baltic"] { --emphasis: var(--c-baltic-blue); --emphasis-2: var(--c-deep-sea-2); --emphasis-fg: var(--c-paper); }
+body[data-emphasis="coral"]   { --emphasis: var(--c-coral);       --emphasis-2: var(--c-coral-2);     --emphasis-fg: var(--c-paper); }
+body[data-emphasis="amber"]   { --emphasis: var(--c-amber);       --emphasis-2: #E89500;             --emphasis-fg: var(--c-deep-sea); }
+body[data-emphasis="baltic"]  { --emphasis: var(--c-baltic-blue); --emphasis-2: var(--c-deep-sea-2); --emphasis-fg: var(--c-paper); }
+body[data-emphasis="seafoam"] { --emphasis: var(--c-seafoam);     --emphasis-2: #1FA88C;             --emphasis-fg: var(--c-deep-sea); }
 body { --emphasis: var(--c-coral); --emphasis-2: var(--c-coral-2); --emphasis-fg: var(--c-paper); }
+
+/* Corner rounding tweak — "sharp" tightens the whole radius scale (pills stay
+   pills). "soft" is the :root default, so no rule needed. */
+body[data-corners="sharp"] {
+  --radius-sm: 2px; --radius-md: 4px; --radius-lg: 7px; --radius-xl: 10px; --radius-2xl: 14px;
+}
+
+/* Paper-texture tweak — drop the dot grid for a flat paper field. */
+body[data-texture="off"] { background-image: none; }
+body[data-texture="off"] .mobile-menu { background-image: none; }
+body[data-texture="off"] #root { background-image: none; }
+
+/* ============================================================================
+   Dark mode — „wieczór nad morzem". body[data-mode="dark"] remaps the tonal
+   ladder to sea-tinted darks (never neutral grays). Warm brand accents stay;
+   Deep Sea (headings + strong fills) inverts to pale warm foam, so marine
+   fills become "paper" fills automatically. Targeted patches below handle
+   the few hardcoded light/dark spots.
+============================================================================ */
+body[data-mode="dark"] {
+  /* neutrals — night-sea ladder */
+  --c-paper: #0C222C; --c-paper-2: #11303F; --c-paper-3: #1A4051; --c-paper-edge: #24485A;
+  /* strong/heading color inverts to warm foam; its hover step turns baltic */
+  --c-deep-sea: #F6EFD9; --c-deep-sea-2: #35A9D6;
+  /* text — warm paper, dimming steps */
+  --fg: #E7E2CF; --fg-2: #C4BFA9; --fg-3: #8FA0A5;
+  /* washes → deep tints */
+  --c-sky-wash: #123A4C; --c-sand-wash: #35301C; --c-foam-wash: #0F3D37;
+  /* accents — baltic brightens for contrast; hovers lighten instead of darken */
+  --c-baltic-blue: #1FAEDD; --c-baltic-2: #45C0E8; --c-coral-2: #FF8A5C; --c-sun-2: #FFE04D;
+  /* CTA text: dark ink on every warm accent */
+  --emphasis-fg: #0B1F28;
+  /* shadows — deeper, cooler */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 6px 18px -8px rgba(0, 0, 0, 0.55), 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 22px 40px -22px rgba(0, 0, 0, 0.65), 0 6px 12px -6px rgba(0, 0, 0, 0.35);
+  --shadow-glow-sun: 0 0 0 6px rgba(255, 213, 0, 0.14);
+  color-scheme: dark;
+  /* night dot grid */
+  background-image:
+    radial-gradient(rgba(153, 230, 255, 0.07) 1px, transparent 1px),
+    radial-gradient(rgba(153, 230, 255, 0.04) 1px, transparent 1px);
+}
+body[data-mode="dark"][data-texture="off"] { background-image: none; }
+body[data-mode="dark"] .mobile-menu {
+  background-image:
+    radial-gradient(rgba(153, 230, 255, 0.07) 1px, transparent 1px),
+    radial-gradient(rgba(153, 230, 255, 0.04) 1px, transparent 1px);
+}
+body[data-mode="dark"][data-texture="off"] .mobile-menu { background-image: none; }
+body[data-mode="dark"] .nav { background: rgba(12, 34, 44, 0.88); }
+/* hero glow washes: quiet, aurora-like */
+body[data-mode="dark"] .hero::before {
+  background:
+    radial-gradient(800px 400px at 20% 0%, rgba(31, 174, 221, 0.14), transparent 70%),
+    radial-gradient(700px 380px at 90% 30%, rgba(255, 170, 0, 0.10), transparent 70%);
+}
+/* sun-yellow surfaces keep dark ink text (their text token went light) */
+body[data-mode="dark"] .btn-warm,
+body[data-mode="dark"] .badge-sun,
+body[data-mode="dark"] .hero[data-hero="asymmetric"] .stamp { color: #0B1F28; }
+/* foam chips: light seafoam text on the deep foam tint */
+body[data-mode="dark"] .badge-foam,
+body[data-mode="dark"] .modal .confirm-msg { color: #7FE0CB; }
+/* dark bands stay night-marine (their copy is hardcoded light) */
+body[data-mode="dark"] .timeline-band { background: #0A2A3C; }
+body[data-mode="dark"] .timeline-band h2,
+body[data-mode="dark"] .timeline-band h3,
+body[data-mode="dark"] .timeline-band p,
+body[data-mode="dark"] .timeline-band .section-head h2,
+body[data-mode="dark"] .tl-card h4 { color: #F6EFD9; }
+body[data-mode="dark"] .tl-card .dot { box-shadow: 0 0 0 4px #0A2A3C; }
+body[data-mode="dark"] .amenity.wide { background: #0A2A3C; border-color: var(--c-paper-edge); }
+body[data-mode="dark"] .amenity.wide h4,
+body[data-mode="dark"] .amenity.wide p { color: #F6EFD9; }
+/* footer keeps its ink background — keep its inherited text light too */
+body[data-mode="dark"] footer { color: #F6EFD9; }
+/* map card stays a daylight postcard — pin down its label ink */
+body[data-mode="dark"] .map-card .map-label { color: #003B59; }
+body[data-mode="dark"] ::selection { color: #0B1F28; }
+body[data-mode="dark"] .modal-bg { background: rgba(2, 10, 16, 0.65); }
+body[data-mode="dark"] .booking .field input[type="date"] { color-scheme: dark; }
 
 /* ---------- Buttons --------------------------------------------------- */
 .btn {
@@ -95,6 +178,7 @@ body { --emphasis: var(--c-coral); --emphasis-2: var(--c-coral-2); --emphasis-fg
   font-weight: 700; font-size: 13px; color: var(--fg-3);
   padding: 5px 11px; border-radius: var(--radius-pill);
   border: 1px solid var(--border); letter-spacing: 0.06em;
+  white-space: nowrap; flex-shrink: 0;
 }
 .nav .phone-link {
   font-family: var(--font-display); font-size: 15px; font-weight: 600;
@@ -102,6 +186,125 @@ body { --emphasis: var(--c-coral); --emphasis-2: var(--c-coral-2); --emphasis-fg
 }
 .nav .phone-link svg { width: 14px; height: 14px; color: var(--c-baltic-blue); }
 @media (max-width: 980px) { .nav-links { display: none; } .nav .phone-link { display: none; } }
+@media (max-width: 640px) { .nav .lang { display: none; } .nav-row { gap: 14px; } }
+@media (max-width: 560px) { .nav-row .btn-cta { display: none; } }
+
+/* ---------- Burger + mobile menu ---------- */
+.nav-burger { display: none; flex-shrink: 0; }
+@media (max-width: 980px) { .nav-burger { display: inline-flex; margin-left: auto; } .nav-links + .nav-burger { margin-left: 0; } }
+@media (max-width: 980px) { .nav-row > .btn-cta { margin-left: auto; } .nav-row > .btn-cta + .nav-burger { margin-left: 0; } }
+.nav-burger .bars {
+  position: relative; width: 18px; height: 2px;
+  background: currentColor; border-radius: 2px;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.nav-burger .bars::before, .nav-burger .bars::after {
+  content: ""; position: absolute; left: 0; width: 18px; height: 2px;
+  background: currentColor; border-radius: 2px;
+  transition: transform var(--dur) var(--ease-out), top var(--dur) var(--ease-out);
+}
+.nav-burger .bars::before { top: -6px; }
+.nav-burger .bars::after { top: 6px; }
+.nav-burger[aria-expanded="true"] .bars { background: transparent; }
+.nav-burger[aria-expanded="true"] .bars::before { top: 0; transform: rotate(45deg); }
+.nav-burger[aria-expanded="true"] .bars::after { top: 0; transform: rotate(-45deg); }
+
+.mobile-menu {
+  position: fixed; top: 76px; left: 0; right: 0; bottom: 0; z-index: 49;
+  background: var(--c-paper);
+  background-image:
+    radial-gradient(rgba(232, 214, 168, 0.32) 1px, transparent 1px),
+    radial-gradient(rgba(232, 214, 168, 0.18) 1px, transparent 1px);
+  background-size: 24px 24px, 36px 36px;
+  background-position: 0 0, 12px 18px;
+  padding: 16px 24px 28px;
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+  opacity: 0; transform: translateY(-10px); pointer-events: none;
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.mobile-menu.open { opacity: 1; transform: none; pointer-events: auto; }
+@media (min-width: 981px) { .mobile-menu { display: none; } }
+.mobile-menu .mm-links { display: flex; flex-direction: column; }
+.mobile-menu .mm-links a {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  font-family: var(--font-display); font-weight: 600; font-size: 27px;
+  color: var(--c-deep-sea); padding: 15px 2px;
+  border-bottom: 1px dashed var(--border);
+  letter-spacing: -0.01em;
+}
+.mobile-menu .mm-links a .go { color: var(--c-baltic-blue); font-size: 20px; opacity: 0.55; }
+.mobile-menu .mm-links a.active { color: var(--c-baltic-blue); }
+.mobile-menu .mm-links a.active .go { opacity: 1; }
+.mobile-menu .mm-foot {
+  margin-top: auto; padding-top: 26px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.mobile-menu .mm-phone {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-weight: 600; font-size: 18px;
+  color: var(--c-deep-sea);
+}
+.mobile-menu .mm-phone svg { color: var(--c-baltic-blue); }
+.mobile-menu .mm-foot .btn-cta { justify-content: center; padding: 16px; font-size: 15px; }
+body.menu-locked { overflow: hidden; }
+body.menu-locked .sticky-cta { display: none; }
+
+/* ============================================================================
+   Page hero — shared subpage header
+============================================================================ */
+.page-hero {
+  background: linear-gradient(180deg, var(--c-paper) 0%, var(--c-paper-2) 100%);
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--border);
+}
+.page-hero .breadcrumb {
+  font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--fg-3); margin-bottom: 12px;
+  display: flex; gap: 6px; align-items: center;
+}
+.page-hero .breadcrumb a:hover { color: var(--c-deep-sea); }
+.page-hero .ribbon {
+  font-family: var(--font-script); font-feature-settings: "ss01" 1;
+  color: var(--c-coral); font-size: 30px; line-height: 1;
+  transform: rotate(-2deg); display: inline-block;
+  margin-bottom: 10px; padding-bottom: 4px;
+}
+.page-hero h1 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(40px, 5.5vw, 68px); line-height: 1.0;
+  color: var(--c-deep-sea); margin: 0 0 16px;
+  letter-spacing: -0.015em; text-wrap: balance;
+}
+.page-hero h1 em { font-style: italic; color: var(--c-baltic-blue); font-weight: 500; }
+.page-hero .lede {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 20px; line-height: 1.45; color: var(--fg-2);
+  max-width: 620px; margin: 0;
+}
+.page-hero .hero-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+
+/* ============================================================================
+   Bottom booking CTA band — shared
+============================================================================ */
+.book-cta-band {
+  background: var(--c-paper-2);
+  padding: 80px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.book-cta-band .row {
+  display: grid; grid-template-columns: 1.4fr auto;
+  align-items: center; gap: 32px;
+}
+@media (max-width: 720px) { .book-cta-band .row { grid-template-columns: 1fr; } }
+.book-cta-band h2 {
+  font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 600; color: var(--c-deep-sea); margin: 0 0 8px;
+  letter-spacing: -0.015em;
+}
+.book-cta-band h2 em { font-style: italic; color: var(--c-baltic-blue); font-weight: 500; }
+.book-cta-band p { font-family: var(--font-display); font-style: italic; color: var(--fg-2); font-size: 17px; margin: 0; }
 
 /* ============================================================================
    Hero — three layout variants controlled by data-hero on .hero
@@ -165,21 +368,21 @@ body { --emphasis: var(--c-coral); --emphasis-2: var(--c-coral-2); --emphasis-fg
 }
 .hero[data-hero="asymmetric"] .pc-1 {
   position: absolute; top: 6%; left: 8%; width: 62%; aspect-ratio: 4/5;
-  background: var(--c-paper); padding: 14px 14px 44px; border-radius: 6px;
+  background: var(--c-paper); padding: 14px 14px 44px; border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
   transform: rotate(-5deg);
   z-index: 2;
 }
 .hero[data-hero="asymmetric"] .pc-2 {
   position: absolute; top: 26%; right: 4%; width: 56%; aspect-ratio: 5/4;
-  background: var(--c-paper); padding: 14px 14px 44px; border-radius: 6px;
+  background: var(--c-paper); padding: 14px 14px 44px; border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
   transform: rotate(4deg);
   z-index: 1;
 }
 .hero[data-hero="asymmetric"] .pc-3 {
   position: absolute; bottom: 4%; left: 22%; width: 42%; aspect-ratio: 1/1;
-  background: var(--c-paper); padding: 12px 12px 36px; border-radius: 6px;
+  background: var(--c-paper); padding: 12px 12px 36px; border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
   transform: rotate(-2deg);
   z-index: 3;
@@ -530,7 +733,7 @@ body { --emphasis: var(--c-coral); --emphasis-2: var(--c-coral-2); --emphasis-fg
 }
 .price-aside .note {
   background: var(--c-paper);
-  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  border: 1px solid var(--border); border-radius: var(--radius-xl);
   padding: 18px 22px;
   display: flex; gap: 14px; align-items: flex-start;
 }
@@ -552,7 +755,7 @@ body { --emphasis: var(--c-coral); --emphasis-2: var(--c-coral-2); --emphasis-fg
 }
 .amenity {
   background: var(--c-paper); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 22px;
+  border-radius: var(--radius-xl); padding: 22px;
   display: flex; flex-direction: column; gap: 8px;
   transition: background var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
   grid-column: span 2;
@@ -644,7 +847,7 @@ body { --emphasis: var(--c-coral); --emphasis-2: var(--c-coral-2); --emphasis-fg
 .tl-card {
   background: rgba(255, 248, 232, 0.05);
   border: 1px solid rgba(255, 248, 232, 0.15);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   padding: 22px;
   position: relative; margin: 0 8px;
   backdrop-filter: blur(2px);
@@ -922,7 +1125,7 @@ body { --emphasis: var(--c-coral); --emphasis-2: var(--c-coral-2); --emphasis-fg
 .contact-info .row {
   display: flex; gap: 14px; align-items: flex-start;
   padding: 16px; background: var(--c-paper-2);
-  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  border: 1px solid var(--border); border-radius: var(--radius-xl);
 }
 .contact-info .row .ico {
   width: 44px; height: 44px; border-radius: 999px;
@@ -1109,6 +1312,8 @@ image-slot::part(frame) { background: transparent; }
 .hero .polaroid image-slot {
   width: 100%; height: 100%;
   color: rgba(255, 248, 232, 0.92);
+  border-radius: calc(var(--radius-md) - 6px);
+  overflow: hidden;
 }
 .hero .pc-1 image-slot { background: linear-gradient(150deg, #99E6FF, #0A9CCC); }
 .hero .pc-2 image-slot { background: linear-gradient(150deg, #FFAA00, #FF6F3C); }
@@ -1166,4 +1371,26 @@ image-slot::part(frame) { background: transparent; }
       0 30px 70px -28px rgba(0, 59, 89, 0.45),
       0 8px 24px -12px rgba(0, 59, 89, 0.25);
   }
+
+  /* Dark mode ultrawide: night backdrop photo + night sheet */
+  body[data-mode="dark"] {
+    background-color: #081820;
+    background-image:
+      radial-gradient(150% 130% at 50% 38%, rgba(4, 16, 22, 0.6) 30%, rgba(2, 10, 14, 0.9) 100%),
+      url("assets/seaside-backdrop.jpg");
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-size: cover, cover;
+    background-attachment: fixed, fixed;
+  }
+  body[data-mode="dark"] #root {
+    background-image:
+      radial-gradient(rgba(153, 230, 255, 0.07) 1px, transparent 1px),
+      radial-gradient(rgba(153, 230, 255, 0.04) 1px, transparent 1px);
+    box-shadow:
+      0 0 0 1px rgba(36, 72, 90, 0.8),
+      0 30px 70px -28px rgba(0, 0, 0, 0.7),
+      0 8px 24px -12px rgba(0, 0, 0, 0.5);
+  }
+  body[data-mode="dark"][data-texture="off"] #root { background-image: none; }
 }

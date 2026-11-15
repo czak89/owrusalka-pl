@@ -6,15 +6,22 @@ const { useEffect, useState, useRef } = React;
 /* ============================================================================
    Tiny atoms
 ============================================================================ */
-function Icon({ name, size = 20, stroke = 1.75, ...rest }) {
+/* Icon — React-safe lucide wrapper. lucide.createIcons() REPLACES the
+   <i data-lucide> node with an <svg>, which React must never own directly
+   (unmounting it throws NotFoundError and crashes the tree). So React owns
+   only this <span>; the swappable <i> lives in innerHTML, outside React. */
+function Icon({ name, size = 20, stroke = 1.75, style, ...rest }) {
   const ref = useRef(null);
   useEffect(() => {
+    if (!ref.current) return;
+    ref.current.innerHTML =
+      `<i data-lucide="${name}" style="width:100%;height:100%;display:inline-flex;stroke-width:${stroke}"></i>`;
     if (window.lucide) window.lucide.createIcons();
-  }, [name]);
-  return React.createElement("i", {
+  }, [name, stroke]);
+  return React.createElement("span", {
     ref,
-    "data-lucide": name,
-    style: { width: size, height: size, display: "inline-flex", strokeWidth: stroke },
+    "aria-hidden": true,
+    style: { width: size, height: size, display: "inline-flex", flexShrink: 0, ...style },
     ...rest,
   });
 }
@@ -81,34 +88,134 @@ ghStyles.textContent = `
 document.head.appendChild(ghStyles);
 
 /* ============================================================================
-   Top navigation
+   Top navigation — desktop links + mobile drawer menu
 ============================================================================ */
-function TopNav({ active = "Start", onBook, linkBase = "" }) {
-  const items = [
-    { id: "Start",    href: "index.html" },
-    { id: "Pokoje",   href: "#rooms" },
-    { id: "Cennik",   href: "#cennik" },
-    { id: "Atrakcje", href: "#atrakcje" },
-    { id: "Lato 2026",href: "#lato" },
-    { id: "Galeria",  href: "#galeria" },
-    { id: "Kontakt",  href: "#kontakt" },
-  ];
-  const resolve = (it) => (it.href.startsWith("#") ? linkBase + it.href : it.href);
+const NAV_ITEMS = [
+  { id: "Start",     href: "index.html" },
+  { id: "Pokoje",    href: "pokoje.html" },
+  { id: "Cennik",    href: "cennik.html" },
+  { id: "Atrakcje",  href: "atrakcje.html" },
+  { id: "Lato 2026", href: "lato.html" },
+  { id: "Galeria",   href: "galeria.html" },
+  { id: "Kontakt",   href: "kontakt.html" },
+];
+
+/* Sun/moon switch — reads mode from <body>, flips it via the shared tweak
+   (tweaks-shared.jsx listens for "rusalka:toggle-mode" and persists). */
+function ModeToggle() {
+  const [mode, setMode] = useState(document.body.dataset.mode === "dark" ? "dark" : "light");
+  useEffect(() => {
+    const sync = () => setMode(document.body.dataset.mode === "dark" ? "dark" : "light");
+    window.addEventListener("rusalka:modechange", sync);
+    return () => window.removeEventListener("rusalka:modechange", sync);
+  }, []);
+  const dark = mode === "dark";
   return (
-    <nav className="nav">
-      <div className="container nav-row">
-        <Logo />
-        <div className="nav-links">
-          {items.map((it) => (
-            <a key={it.id} href={resolve(it)} className={it.id === active ? "active" : ""}>{it.id}</a>
+    <button
+      type="button"
+      className="btn btn-icon mode-toggle"
+      onClick={() => window.dispatchEvent(new CustomEvent("rusalka:toggle-mode"))}
+      aria-label={dark ? "Włącz tryb jasny" : "Włącz tryb ciemny"}
+      title={dark ? "Tryb jasny" : "Tryb ciemny"}
+    >
+      <Icon name={dark ? "sun" : "moon"} size={17} />
+    </button>
+  );
+}
+
+function TopNav({ active = "Start", onBook }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    document.body.classList.toggle("menu-locked", menuOpen);
+    return () => document.body.classList.remove("menu-locked");
+  }, [menuOpen]);
+  const bookFromMenu = () => { setMenuOpen(false); if (onBook) onBook(); };
+  return (
+    <>
+      <nav className="nav">
+        <div className="container nav-row">
+          <Logo />
+          <div className="nav-links">
+            {NAV_ITEMS.map((it) => (
+              <a key={it.id} href={it.href} className={it.id === active ? "active" : ""}>{it.id}</a>
+            ))}
+          </div>
+          <a href="tel:+48943182976" className="phone-link"><Icon name="phone" size={14} /> 94 318 29 76</a>
+          <ModeToggle />
+          <span className="lang">PL · EN</span>
+          <Button variant="cta" onClick={onBook} iconRight="arrow-right">Zarezerwuj</Button>
+          <button
+            type="button"
+            className="btn btn-icon nav-burger"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label={menuOpen ? "Zamknij menu" : "Otwórz menu"}
+            aria-expanded={menuOpen}
+          >
+            <span className="bars"></span>
+          </button>
+        </div>
+      </nav>
+
+      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
+        <div className="mm-links">
+          {NAV_ITEMS.map((it) => (
+            <a key={it.id} href={it.href} className={it.id === active ? "active" : ""}>
+              <span>{it.id}</span>
+              <span className="go" aria-hidden="true">→</span>
+            </a>
           ))}
         </div>
-        <a href="tel:+48943182976" className="phone-link"><Icon name="phone" size={14} /> 94 318 29 76</a>
-        <span className="lang">PL · EN</span>
-        <Button variant="cta" onClick={onBook} iconRight="arrow-right">Zarezerwuj</Button>
+        <div className="mm-foot">
+          <a href="tel:+48943182976" className="mm-phone"><Icon name="phone" size={16} /> +48 94 318 29 76</a>
+          <Button variant="cta" iconRight="arrow-right" onClick={bookFromMenu}>Zarezerwuj pobyt</Button>
+        </div>
       </div>
-    </nav>
+    </>
   );
+}
+
+/* ============================================================================
+   Page hero — shared subpage header (breadcrumb + ribbon + title + lede)
+============================================================================ */
+function PageHero({ crumb, ribbon, title, lede, children }) {
+  return (
+    <section className="page-hero" data-screen-label={crumb}>
+      <div className="container">
+        <div className="breadcrumb">
+          <a href="index.html">Start</a> · <span>{crumb}</span>
+        </div>
+        {ribbon ? <div className="ribbon">{ribbon}</div> : null}
+        <h1>{title}</h1>
+        {lede ? <p className="lede">{lede}</p> : null}
+        {children}
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================================
+   useBooking — shared booking-modal state (one hook per page root)
+============================================================================ */
+function useBooking(defaultRoom = "family") {
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [activeRoom, setActiveRoom] = useState(defaultRoom);
+  const [dates, setDates] = useState({ in: "18 lipca 2026", out: "25 lipca 2026" });
+  const [guests, setGuests] = useState("2 dorosłych + 2 dzieci");
+
+  const setBookingState = (patch) => {
+    if (patch.in !== undefined || patch.out !== undefined) {
+      setDates((d) => ({ ...d, ...(patch.in ? { in: patch.in } : {}), ...(patch.out ? { out: patch.out } : {}) }));
+    }
+    if (patch.guests !== undefined) setGuests(patch.guests);
+    if (patch.room !== undefined) setActiveRoom(patch.room);
+  };
+  const openBooking = (roomId) => {
+    if (typeof roomId === "string") setActiveRoom(roomId);
+    setBookingOpen(true);
+  };
+  const closeBooking = () => setBookingOpen(false);
+
+  return { bookingOpen, openBooking, closeBooking, activeRoom, setActiveRoom, dates, guests, setBookingState };
 }
 
 /* ============================================================================
@@ -133,7 +240,7 @@ function Hero({ layout = "asymmetric", onBook }) {
             <Button variant="cta" size="lg" onClick={onBook} iconRight="arrow-right">
               Sprawdź wolne terminy
             </Button>
-            <Button variant="secondary" icon="map-pin">Zobacz na mapie</Button>
+            <a href="kontakt.html"><Button variant="secondary" icon="map-pin">Zobacz na mapie</Button></a>
           </div>
           <div className="hero-meta">
             <span><span className="dot"></span>Sezon maj — wrzesień 2026</span>
@@ -414,5 +521,6 @@ function RoomsSection({ activeId, onPick, onBook }) {
 ============================================================================ */
 Object.assign(window, {
   Icon, Button, Badge, Eyebrow, Logo, GradientPlaceholder, Polaroid,
-  TopNav, Hero, StatsStrip, BookingBar, RoomsSection, ROOMS,
+  TopNav, NAV_ITEMS, PageHero, useBooking,
+  Hero, StatsStrip, BookingBar, RoomsSection, ROOMS,
 });

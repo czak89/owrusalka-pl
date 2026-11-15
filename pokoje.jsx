@@ -1,17 +1,28 @@
-/* global React, ReactDOM, TopNav, Footer, Contact, BookingModal,
-   Button, Icon, Badge, Eyebrow, ROOMS */
+/* global React, ReactDOM, TopNav, PageHero, Footer, BookCtaBand, BookingModal,
+   Button, Icon, Badge, Eyebrow, ROOMS, useBooking,
+   useTweaks, useSiteTheme, SiteTweaks, TweakSection, TweakToggle */
 
 const { useState: useStateP, useEffect: useEffectP } = React;
+
+/* Tweak defaults — block must remain valid JSON between markers */
+const POKOJE_TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "jumpNav": true,
+  "accent": "#FF6F3C",
+  "corners": "soft",
+  "texture": true,
+  "mode": "light",
+  "stickyCta": true
+}/*EDITMODE-END*/;
 
 /* ---------- Rich room data — adds layout-detail to base ROOMS ---------- */
 const ROOM_DETAILS = {
   economy: {
     long: [
       "Sześć murowanych pawilonów parterowych, każdy pokój z osobnym wejściem przez zadaszony ganek. Część sypialna, łazienka z prysznicem, przedpokój z dużą zabudowaną szafą — razem około 15 m².",
-      "Z tego pokoju się wraca z plaży z piaskiem na nogach. Nikt nie zwraca uwagi. Na ganku stoi suszarka na ręczniki, a obok parawan na sezon.",
+      "Pokoje Economy czynne są w sezonie letnim. W razie niepogody lub niskich temperatur istnieje możliwość wypożyczenia termowentylatorów.",
     ],
-    inc: ["Łazienka z prysznicem", "Telewizor", "Czajnik + kubeczki", "Stolik + dwa krzesełka", "Parawan plażowy", "Pościel i ręczniki"],
-    extras: ["Leżaki bezpłatnie (za kaucją)", "Chłodziarka (15 zł / dobę)", "Łóżeczko turystyczne (15 zł / dobę)"],
+    inc: ["Łazienka z prysznicem", "Przedpokój z dużą szafą", "Telewizor", "Czajnik elektryczny + kubeczki", "Stolik + dwa krzesełka", "Parawan plażowy"],
+    extras: ["Leżaki — bezpłatnie za kaucją", "Chłodziarka — dodatkowo płatna", "Łóżeczko turystyczne — dodatkowo płatne"],
     beds: [
       "Dwie rozkładane kanapy — 190 × 120 cm",
       "Sofa małżeńska 200 × 140 + pojedyncze łóżko 200 × 80",
@@ -20,50 +31,31 @@ const ROOM_DETAILS = {
   },
   family: {
     long: [
-      "W pawilonie głównym, na parterze lub I piętrze. Lodówka, komplet mebli ogrodowych, czajnik elektryczny, parawan, leżaki i ręczniki. Pokoje na parterze mają taras od strony placu zabaw, pokoje na piętrze — balkon.",
-      "To najczęściej wybierany pokój — w sam raz dla rodziny z dwójką dzieci. Łóżeczko turystyczne dla niemowlaka dostawiamy bezpłatnie.",
+      "Pokoje z łazienkami na parterze oraz na I piętrze w budynku głównym. Wyposażone w sofy małżeńskie, łoża małżeńskie lub łóżka sosnowe — w zależności od wielkości i przeznaczenia pokoju.",
+      "Wszystkie pokoje posiadają balkony (na I piętrze) lub tarasy (na parterze, od strony dużego placu zabaw).",
     ],
-    inc: ["Łazienka z prysznicem", "Telewizor + Wi-Fi", "Lodówka", "Czajnik + kubeczki", "Komplet mebli ogrodowych", "Ręczniki", "Parawan i leżaki"],
-    extras: ["Łóżeczko niemowlęce bezpłatnie", "Drugi parawan (kaucja)", "Dodatkowe łóżko polowe 30 zł / doba"],
+    inc: ["Łazienka", "Telewizor", "Lodówka", "Stolik + krzesełka", "Komplet mebli ogrodowych", "Czajnik elektryczny + kubeczki", "Parawan, leżaki, ręczniki"],
+    extras: ["Zwierzęta tylko w pokojach parterowych — 15–30 zł / doba", "Sprzątanie w trakcie pobytu — 70 zł / pokój", "Wymiana pościeli — 35 zł / komplet"],
     beds: [
-      "Sofa małżeńska 200 × 140 + łóżko sosnowe 200 × 90",
-      "Łoże małżeńskie 200 × 160 + sofa rozkładana 190 × 120",
-      "Pokój dwuosobowy: łoże 200 × 160 (bez dostawki)",
+      "Sofa małżeńska",
+      "Łoże małżeńskie",
+      "Łóżka sosnowe — liczba zależna od wielkości pokoju",
     ],
   },
   studio: {
     long: [
-      "Dwa osobne pokoje połączone wspólnym przedpokojem, łazienka, taras lub balkon. Dla większych rodzin, dwóch rodzin razem, albo dziadków z wnukami — każdy ma swój kąt.",
-      "Z parteru wychodzicie wprost na plac zabaw — dzieci znikają zaraz po śniadaniu i wracają tylko na obiad. Z piętra macie z balkonu widok na cały plac (bardzo wygodnie).",
+      "Dla większych rodzin przygotowaliśmy dwupokojowe studia z łazienkami, na parterze oraz na I piętrze w budynku głównym — dla 4 do 6 osób.",
+      "Studia na I piętrze mają balkony, na parterze — tarasy od strony dużego placu zabaw.",
     ],
-    inc: ["Dwa pokoje sypialne", "Łazienka z prysznicem", "Lodówka", "TV + Wi-Fi", "Komplet mebli ogrodowych", "Ręczniki", "Parawan i leżaki"],
-    extras: ["Łóżeczko niemowlęce bezpłatnie", "Dodatkowe łóżko polowe 30 zł / doba", "Wynajem chłodziarki turystycznej"],
+    inc: ["Dwa pokoje", "Łazienka", "Telewizor", "Lodówka", "Komplet mebli ogrodowych", "Czajnik elektryczny + kubeczki", "Parawan, leżaki, ręczniki"],
+    extras: ["Dziecko do lat 3 gratis (bez świadczeń)", "Sprzątanie w trakcie pobytu — 70 zł / pokój", "Wymiana pościeli — 35 zł / komplet"],
     beds: [
-      "Pokój 1: łoże 200 × 160 · Pokój 2: dwa łóżka pojedyncze 200 × 90",
-      "Pokój 1: łoże 200 × 160 · Pokój 2: piętrowe łóżko + dostawka",
-      "Pokój 1: sofa małżeńska + sosnowe 90 · Pokój 2: dwa pojedyncze 90",
+      "Sofy małżeńskie",
+      "Łoża małżeńskie",
+      "Łóżka sosnowe — w zależności od wielkości studia",
     ],
   },
 };
-
-/* ---------- Hero header ---------- */
-function PokojeHero() {
-  return (
-    <section className="pokoje-hero">
-      <div className="container">
-        <div className="breadcrumb">
-          <a href="index.html">Start</a> · <span>Pokoje</span>
-        </div>
-        <div className="ribbon">trzy układy, jedna plaża</div>
-        <h1>Pokoje i studia <em>rodzinne</em>.</h1>
-        <p className="lede">
-          Od ekonomicznego pawilonu szeregowego po dwupokojowe studio dla większej
-          rodziny — wszystkie z łazienką, telewizorem i Wi-Fi. Wszystkie 50 metrów od morza.
-        </p>
-      </div>
-    </section>
-  );
-}
 
 /* ---------- Sticky jump nav ---------- */
 function PokojeJump({ active, onPick }) {
@@ -83,7 +75,7 @@ function PokojeJump({ active, onPick }) {
             {r.name}
           </a>
         ))}
-        <a href="index.html#cennik" style={{ marginLeft: "auto" }}>Cennik 2026 →</a>
+        <a href="cennik.html" style={{ marginLeft: "auto" }}>Cennik 2026 →</a>
       </div>
     </div>
   );
@@ -165,10 +157,10 @@ function RoomDetail({ room, index, onBook }) {
 /* ---------- "W cenie pobytu" — common amenities band ---------- */
 function IncludesBand() {
   const items = [
-    { icon: "utensils", title: "Śniadanie w cenie", body: "Domowe, na talerzu — bez bufetu i kart QR. Dla dzieci dietetyczne na życzenie." },
-    { icon: "wifi", title: "Wi-Fi w pokoju", body: "Bezpłatne w całym ośrodku, też na ganku i przy ognisku." },
-    { icon: "parking-circle", title: "Parking", body: "Strzeżony, jedno miejsce w cenie pobytu, dodatkowe za kaucją." },
-    { icon: "tent-tree", title: "Parawan + leżaki", body: "Za kaucją, na cały pobyt. Tak, z naszego rusałkowego drewna." },
+    { icon: "utensils", title: "Wyżywienie", body: "Od 23 maja FB lub HB. Śniadania w wakacje jako bufet szwedzki, obiadokolacje z deserem do stolika." },
+    { icon: "wifi", title: "Wi-Fi", body: "Dostęp do internetu na terenie ośrodka w ramach pobytu." },
+    { icon: "baby", title: "Dla najmłodszych", body: "Krzesełka do karmienia w jadalni, wanienki, nocniki i nakładki na WC." },
+    { icon: "tent-tree", title: "Parawan + leżaki", body: "Parawan plażowy w każdym pokoju. Leżaki bezpłatnie za kaucją." },
   ];
   return (
     <section className="includes-band">
@@ -177,7 +169,7 @@ function IncludesBand() {
           <div className="titles">
             <Eyebrow>W każdym pokoju</Eyebrow>
             <h2>Co dostajecie <em style={{ color: "var(--c-sun-yellow)" }}>zawsze</em>.</h2>
-            <p className="sub">Bez gwiazdek i drobnego druku. Cztery rzeczy, które są w cenie każdej rezerwacji.</p>
+            <p className="sub">W każdym pokoju łazienka i telewizor. Do tego infrastruktura ośrodka w cenie pobytu.</p>
           </div>
         </div>
         <div className="includes-grid">
@@ -194,69 +186,63 @@ function IncludesBand() {
   );
 }
 
-/* ---------- Bottom booking CTA ---------- */
-function BookCtaBand({ onBook }) {
-  return (
-    <section className="book-cta-band">
-      <div className="container row">
-        <div>
-          <h2>Wybraliście pokój — zarezerwujmy <em>termin</em>.</h2>
-          <p>Krok 1: termin i pokój. Krok 2: dane. Krok 3: potwierdzenie. Bez płatności online, bez konta.</p>
-        </div>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          <Button variant="cta" size="lg" iconRight="arrow-right" onClick={() => onBook()}>
-            Sprawdź dostępność
-          </Button>
-          <a href="index.html#cennik"><Button variant="secondary">Cały cennik</Button></a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ---------- Page root ---------- */
 function PokojePage() {
   const [active, setActive] = useStateP("economy");
-  const [bookingOpen, setBookingOpen] = useStateP(false);
-  const [activeRoom, setActiveRoom] = useStateP("family");
-  const [dates, setDates] = useStateP({ in: "18 lipca 2026", out: "25 lipca 2026" });
-  const [guests, setGuests] = useStateP("2 dorosłych + 2 dzieci");
+  const [tweaks, setTweak] = useTweaks(POKOJE_TWEAK_DEFAULTS);
+  const booking = useBooking();
 
+  useSiteTheme(tweaks, setTweak);
   useEffectP(() => { if (window.lucide) window.lucide.createIcons(); });
 
-  const openBooking = (id) => {
-    if (id) setActiveRoom(id);
-    setBookingOpen(true);
-  };
-
-  const setBookingState = (patch) => {
-    if (patch.in !== undefined || patch.out !== undefined) {
-      setDates({ ...dates, ...(patch.in ? { in: patch.in } : {}), ...(patch.out ? { out: patch.out } : {}) });
-    }
-    if (patch.guests !== undefined) setGuests(patch.guests);
-    if (patch.room !== undefined) setActiveRoom(patch.room);
-  };
+  const openBooking = (id) => booking.openBooking(id);
 
   return (
     <>
       <TopNav active="Pokoje" onBook={() => openBooking()} />
-      <PokojeHero />
-      <PokojeJump active={active} onPick={setActive} />
+      <PageHero
+        crumb="Pokoje"
+        ribbon="trzy układy, jedna plaża"
+        title={<>Pokoje i studia <em>rodzinne</em>.</>}
+        lede="Od ekonomicznego pawilonu szeregowego po dwupokojowe studio dla większej rodziny — wszystkie z łazienką, telewizorem i Wi-Fi. Wszystkie 50 metrów od morza."
+      />
+      {tweaks.jumpNav ? <PokojeJump active={active} onPick={setActive} /> : null}
       {ROOMS.map((r, i) => (
         <RoomDetail key={r.id} room={r} index={i} onBook={openBooking} />
       ))}
       <IncludesBand />
-      <BookCtaBand onBook={() => openBooking()} />
-      <Contact />
-      <Footer />
-      <BookingModal
-        open={bookingOpen}
-        onClose={() => setBookingOpen(false)}
-        dates={dates}
-        guests={guests}
-        roomId={activeRoom}
-        setBookingState={setBookingState}
+      <BookCtaBand
+        onBook={() => openBooking()}
+        title={<>Wybraliście pokój — zarezerwujmy <em>termin</em>.</>}
       />
+      <Footer />
+
+      {tweaks.stickyCta ? (
+        <div className="sticky-cta">
+          <Button variant="cta" iconRight="arrow-right" onClick={() => openBooking()}>
+            Zarezerwuj pobyt
+          </Button>
+        </div>
+      ) : null}
+
+      <BookingModal
+        open={booking.bookingOpen}
+        onClose={booking.closeBooking}
+        dates={booking.dates}
+        guests={booking.guests}
+        roomId={booking.activeRoom}
+        setBookingState={booking.setBookingState}
+      />
+
+      <SiteTweaks tweaks={tweaks} setTweak={setTweak}>
+        <TweakSection label="Pokoje">
+          <TweakToggle
+            label="Pasek „skocz do”"
+            value={tweaks.jumpNav}
+            onChange={(v) => setTweak("jumpNav", v)}
+          />
+        </TweakSection>
+      </SiteTweaks>
     </>
   );
 }
