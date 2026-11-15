@@ -54,10 +54,21 @@ Slots show a labelled placeholder until a photo exists. To add one, put the file
 
 Lucide, via `lucide-react`. `components/icons.js` lists the icons in use; after adding a new icon name run `node scripts/gen-icons.cjs <names.json>` or add the import by hand.
 
-## Not built yet
+## Checks
 
-- Forms do not send anything: the booking modal and the `/rezerwacja` wizard end in an on-screen confirmation only.
-- No real availability data; the calendar uses the season rules in `components/rez-data.jsx`.
-- English version (the `PL · EN` switch is a label).
-- Facebook news feed, Markdown price list and the Cloudflare deploy from `MIGRATION.md`.
-- The admin panel (mockup on `html-prototype`).
+```bash
+npm run build && npx serve out -l 8732
+node scripts/check-pages.cjs http://localhost:8732/ ",pokoje/,cennik/,atrakcje/,galeria/,lato/,kontakt/,rezerwacja/" "" light 1280
+node scripts/check-interactions.cjs http://localhost:8732/
+```
+
+Both need Playwright (`npx playwright install chromium`).
+
+## Status and next steps
+
+- `TODO.md` — what is left, in priority order (Polish).
+- `docs/DECISIONS.md` — decisions and their reasons.
+- `docs/Rusalka-przewodnik-po-stylu-PL-EN.docx` — the style guide, Polish and English.
+- `CLAUDE.md`, `AGENTS.md` — context and rules for AI agents.
+
+The main gap: **forms do not send anything yet.** The booking modal and the `/rezerwacja` wizard end in an on-screen confirmation only.
