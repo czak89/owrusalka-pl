@@ -66,5 +66,5 @@ What was decided, by whom, and why. Newest context first. Dates are 2026.
 - Interaction script: theme toggle and persistence, booking modal, navigation, focus ring, date selection.
 - Both builds (root and `/owrusalka-pl`) complete; the base-path build was checked for rewritten links, not opened in a browser.
 - Form script (`scripts/check-forms.cjs`): both forms in demo mode and against an intercepted endpoint (error, retry, success, payload).
-- Lighthouse CI was run locally with the repo config; lychee was not (see `TODO.md`).
-- Not verified: the workflows on GitHub itself, a real form service, the design-system artifact page (cards were rendered locally), real devices.
+- The workflows ran on GitHub against `next` through `workflow_dispatch` (15 Nov): build and CSS, Lighthouse, link check and secret scan pass. The first link check failed on the Google Maps link (403 to bots), now excluded.
+- Not verified: the workflows on a pull request event, a real form service, the design-system artifact page (cards were rendered locally), real devices.

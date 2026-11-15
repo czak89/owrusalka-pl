@@ -21,10 +21,12 @@ jobs:
       - run: npm run build
       # Canonical and Open Graph addresses point at the production domain,
       # where the new pages do not exist until the site is deployed there.
+      # Google Maps answers 403 to automated clients.
       - uses: lycheeverse/lychee-action@v2
         with:
           args: >-
             --no-progress --root-dir "${{ github.workspace }}/out"
             --exclude '^https://owrusalka\.pl'
+            --exclude '^https://www\.google\.com/maps'
             './out/**/*.html'
           fail: true
