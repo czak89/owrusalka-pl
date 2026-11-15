@@ -1,4 +1,4 @@
-name: Validate HTML & CSS
+name: Build & CSS
 
 on:
   push:
@@ -14,7 +14,8 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 22
-      - name: HTML
-        run: npx --yes html-validate@9 index.html pokoje.html Rezerwacja.html
+      - run: npm ci
+      - name: Build
+        run: npm run build
       - name: CSS
-        run: npx --yes -p stylelint@16 -p stylelint-config-standard@38 stylelint "*.css"
+        run: npx --yes -p stylelint@16 -p stylelint-config-standard@38 stylelint "styles/*.css"

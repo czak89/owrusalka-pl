@@ -25,19 +25,20 @@ jobs:
         with:
           lfs: true
 
-      - name: Prepare site
-        run: |
-          mkdir -p _site
-          rsync -a ./ _site/ \
-            --exclude '.git' --exclude '.github' \
-            --exclude '.omc' --exclude '.omx' --exclude '.playwright-cli' \
-            --exclude 'scraps' --exclude 'source' --exclude 'uploads' --exclude 'output' \
-            --exclude 'AGENTS.md' --exclude '_site'
-          touch _site/.nojekyll
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+      - run: touch out/.nojekyll
 
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: _site
+          path: out
       - id: deployment
         uses: actions/deploy-pages@v5

@@ -1,3 +1,5 @@
+> **Status (November 2026).** The Next.js port exists on the `next` branch: static export, 7 pages plus `/rezerwacja`, styles on the design-system tokens. Not done from this plan: Tailwind (the site keeps its CSS, now reading tokens, so a rewrite into utility classes was not needed), the Facebook news fetch, Markdown pricing, Web3Forms and the Cloudflare deploy. Hosting is GitHub Pages for now and a company server later; see `README.md` for the base-path switch.
+
 # owrusalka.pl — Next.js migration plan
 
 Goal: fully static Next.js + Tailwind site, zero runtime servers, $0/month hosting, news baked in at build time, scheduled rebuilds.

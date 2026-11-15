@@ -1,0 +1,36 @@
+<!-- @dsCard group="Components" height=150 subtitle="Pill badges in every accent + uppercase eyebrows" -->
+<!doctype html>
+<html lang="pl"><head>
+<meta charset="utf-8">
+<title>Badges & tags</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;overflow:hidden}
+  body { padding: 22px 24px; background: var(--c-paper); }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; align-items: center; }
+  .badge { font-family: var(--font-body); font-weight: 700; font-size: 12px; padding: 5px 11px; border-radius: var(--radius-pill); display: inline-flex; align-items: center; gap: 5px; line-height: 1; }
+  .b-sun     { background: var(--c-sun-yellow); color: var(--on-accent); }
+  .b-foam    { background: var(--c-foam-wash); color: var(--success-text); }
+  .b-sky     { background: var(--c-sky-wash); color: var(--c-deep-sea); }
+  .b-sand    { background: var(--c-paper-3); color: var(--c-deep-sea); }
+  .b-coral   { background: var(--action); color: var(--on-accent); }
+  .b-marine  { background: var(--surface-strong); color: var(--on-strong); }
+  .b-outline { background: transparent; color: var(--c-deep-sea); border: 1px solid var(--border); }
+  .eyebrow { font-family: var(--font-body); font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); }
+  .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; }
+</style>
+</head><body>
+  <div class="row">
+    <span class="badge b-sun">Nowość 2026</span>
+    <span class="badge b-coral">Polecamy</span>
+    <span class="badge b-marine">All-inclusive</span>
+    <span class="badge b-foam"><span class="dot"></span>Wolne terminy</span>
+    <span class="badge b-sky">Plaża 50&nbsp;m</span>
+    <span class="badge b-sand">Las sosnowy</span>
+    <span class="badge b-outline">Wi-Fi w pokoju</span>
+  </div>
+  <div class="row" style="gap:14px">
+    <span class="eyebrow">· Sezon letni 2026</span>
+        <span class="eyebrow" style="color:var(--c-deep-sea)">· Łazy k/Mielna</span>
+  </div>
+</body></html>

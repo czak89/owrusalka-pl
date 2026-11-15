@@ -1,0 +1,16 @@
+{
+  "name": "owrusalka-pl",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "npx --yes serve out"
+  },
+  "dependencies": {
+    "lucide-react": "^0.469.0",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  }
+}

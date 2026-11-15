@@ -13,12 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
       - uses: lycheeverse/lychee-action@v2
         with:
           args: >-
-            --no-progress --root-dir "${{ github.workspace }}"
-            --exclude-path scraps --exclude-path source --exclude-path uploads
-            --exclude-path output --exclude-path .omc --exclude-path .omx
-            --exclude-path .playwright-cli
-            './**/*.html' './**/*.jsx' './**/*.css'
+            --no-progress --root-dir "${{ github.workspace }}/out"
+            './out/**/*.html'
           fail: true

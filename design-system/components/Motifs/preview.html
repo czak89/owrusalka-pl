@@ -1,0 +1,47 @@
+<!-- @dsCard group="Brand" height=185 subtitle="Wave band, sun disc, organic blob" -->
+<!doctype html>
+<html lang="pl"><head>
+<meta charset="utf-8">
+<title>Wave & blob motifs</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;overflow:hidden}
+  body { padding: 16px 22px; background: var(--c-paper); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .cell { display: flex; flex-direction: column; gap: 6px; }
+  .frame { height: 110px; border-radius: var(--radius-lg); overflow: hidden; position: relative; }
+  .lbl { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; color: var(--fg-3); }
+  .lbl b { color: var(--fg); font-weight: 700; display: block; }
+
+  .f-wave { background: linear-gradient(180deg, var(--c-light-sky) 0%, var(--c-paper) 100%); }
+  .f-wave svg { position: absolute; bottom: 0; left: 0; width: 100%; }
+  .f-sun { background: linear-gradient(180deg, #FFE9A8 0%, var(--c-amber) 100%); display:flex;align-items:center;justify-content:center; }
+  .f-sun .disc { width: 70px; height: 70px; border-radius: 999px; background: radial-gradient(circle at 35% 35%, #FFEE85, var(--c-sun-yellow) 70%, var(--c-amber)); box-shadow: 0 0 0 8px rgba(255, 213, 0, 0.25); }
+  .f-blob { background: var(--c-paper-2); display: flex; align-items: center; justify-content: center; }
+  .f-blob svg { width: 86%; }
+</style>
+</head><body>
+  <div class="grid">
+    <div class="cell">
+      <div class="frame f-wave">
+        <svg viewBox="0 0 240 70" preserveAspectRatio="none">
+          <path d="M0,40 C 60,10 120,60 180,30 C 220,12 240,30 240,30 L240,70 L0,70 Z" style="fill:var(--c-baltic-blue)"></path>
+          <path d="M0,55 C 60,30 120,75 180,45 C 220,30 240,50 240,50 L240,70 L0,70 Z" style="fill:var(--c-deep-sea)" opacity="0.85"></path>
+        </svg>
+      </div>
+      <div class="lbl"><b>Wave band</b>sky → paper, two-tone wave</div>
+    </div>
+    <div class="cell">
+      <div class="frame f-sun"><div class="disc"></div></div>
+      <div class="lbl"><b>Sun disc</b>amber gradient + halo</div>
+    </div>
+    <div class="cell">
+      <div class="frame f-blob">
+        <svg viewBox="0 0 200 110">
+          <path d="M30,20 C 60,-5 150,5 175,30 C 200,55 185,90 140,95 C 95,100 50,100 25,80 C 0,60 5,40 30,20 Z" style="fill:var(--c-coral)"></path>
+        </svg>
+      </div>
+      <div class="lbl"><b>Organic blob</b>image mask, coral fill</div>
+    </div>
+  </div>
+</body></html>

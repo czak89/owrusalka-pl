@@ -1,0 +1,37 @@
+<!-- @dsCard group="Components" height=180 subtitle="CTA, primary, secondary, warm, ghost, disabled" -->
+<!doctype html>
+<html lang="pl"><head>
+<meta charset="utf-8">
+<title>Buttons</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;overflow:hidden}
+  body { padding: 20px 24px; background: var(--c-paper); }
+  .btn { font-family: var(--font-body); font-weight: 700; font-size: 14px; border: 0; cursor: pointer; padding: 12px 22px; border-radius: var(--radius-pill); display: inline-flex; align-items: center; gap: 8px; line-height: 1; transition: all var(--dur) var(--ease-out); }
+  .btn.cta       { background: var(--action); color: var(--on-accent); }
+  .btn.cta.hover { background: var(--action-hover); color: var(--on-accent); box-shadow: var(--shadow-glow-sun); }
+  .btn.primary   { background: var(--primary); color: var(--on-accent); }
+  .btn.focus     { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .btn.secondary { background: transparent; color: var(--c-deep-sea); border: 1.5px solid var(--c-deep-sea); padding: 10.5px 20.5px; }
+  .btn.ghost     { background: transparent; color: var(--accent-text); padding: 12px 14px; }
+  .btn.warm      { background: var(--c-sun-yellow); color: var(--on-accent); border-radius: var(--radius-md); }
+  .btn.disabled  { background: var(--action); color: var(--on-accent); opacity: 0.45; cursor: not-allowed; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
+  .lbl { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; color: var(--fg-3); margin-left: 6px; }
+  .arrow { width: 14px; height: 14px; }
+</style>
+</head><body>
+  <div class="row">
+    <button class="btn cta">Zarezerwuj pobyt <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <button class="btn cta hover">Hover</button>
+    <button class="btn disabled">Disabled</button>
+    <button class="btn secondary focus">Focus</button>
+  </div>
+  <div class="row">
+    <button class="btn primary">Sprawdź pokoje</button>
+    <button class="btn secondary">Cennik 2026</button>
+    <button class="btn warm">Galeria</button>
+    <button class="btn ghost">Kontakt →</button>
+  </div>
+  <div class="lbl" style="margin-left:0">CTA = Coral pill, Ink label · Primary = Baltic pill, Ink label · Secondary = Deep Sea outline · Warm = Sun yellow · Ghost = link-button · Focus = 2px ring</div>
+</body></html>

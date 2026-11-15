@@ -1,0 +1,42 @@
+{
+  "v": 3,
+  "assetGroups": {
+    "Other": {
+      "files": {},
+      "name": "Other",
+      "order": []
+    },
+    "notes": {
+      "files": {},
+      "name": "notes",
+      "order": []
+    }
+  },
+  "blobs": {},
+  "createdOnFiles": {
+    "at": "2026-11-07T11:18:54.730Z",
+    "v": 1
+  },
+  "docs": {
+    "readme": "project/README.md",
+    "sections": [
+      "project/source/rusalka-info.md",
+      "project/ui_kits/website/README.md"
+    ]
+  },
+  "groups": [
+    "Other",
+    "notes"
+  ],
+  "layout": "files",
+  "libraries": [],
+  "namespace": "RusaKaDesignSystem_fd9a28",
+  "sections": {},
+  "title": "Rusałka Design System",
+  "lastChange": {
+    "by": "Claude",
+    "at": "2026-11-13T07:52:33.000Z",
+    "via": "Claude",
+    "note": "Dark theme and a role layer; solid focus ring; minimum text sizes 16/14/12 applied to the cards; Pacifico no longer faux-bold."
+  }
+}

@@ -1,0 +1,71 @@
+<!-- @dsCard group="Components" height=240 subtitle="Paper · Outline · Marine, all generously rounded" -->
+<!doctype html>
+<html lang="pl"><head>
+<meta charset="utf-8">
+<title>Cards</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;overflow:hidden}
+  body { padding: 18px 22px; background: var(--c-paper); }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: stretch; }
+  .card { border-radius: var(--radius-lg); padding: 16px 18px; font-family: var(--font-body); display: flex; flex-direction: column; gap: 8px; min-height: 200px; }
+  .card .tag { font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; margin: 0; }
+  .card h3 { font-family: var(--font-display); font-weight: 600; font-size: 19px; line-height: 1.15; margin: 0; letter-spacing: -0.01em; }
+  .card p { font-size: 14px; line-height: 1.5; margin: 0; }
+  .card .price-row { display: flex; align-items: baseline; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px dashed; }
+  .card .price { font-family: var(--font-display); font-size: 22px; font-weight: 600; }
+  .card .price small { font-size: 12px; font-weight: 400; font-family: var(--font-body); opacity: 0.7; }
+
+  /* ---- Paper (default) ---- */
+  .paper          { background: var(--c-paper-2); box-shadow: var(--shadow-md); }
+  .paper .tag     { color: var(--accent-text); }
+  .paper h3,
+  .paper .price   { color: var(--c-deep-sea); }
+  .paper p        { color: var(--c-ink-2); }
+  .paper .price-row { border-top-color: var(--border); }
+
+  /* ---- Outline ---- */
+  .outline        { background: var(--c-paper); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+  .outline .tag   { color: var(--c-deep-sea); }
+  .outline h3,
+  .outline .price { color: var(--c-deep-sea); }
+  .outline p      { color: var(--c-ink-2); }
+  .outline .price-row { border-top-color: var(--border); }
+
+  /* ---- Marine (dark) ---- */
+  /* Explicit Paper-toned overrides so global h3 / p colors don't bleed through. */
+  .marine         { background: var(--surface-strong); box-shadow: var(--shadow-md); }
+  .marine .tag    { color: var(--c-sun-yellow); }
+  .marine h3      { color: var(--on-strong); }
+  .marine p       { color: var(--on-strong); }
+  .marine .price  { color: var(--c-sun-yellow); }
+  .marine .price-row { border-top-color: rgba(255, 248, 232, 0.25); }
+</style>
+</head><body>
+  <div class="row">
+    <div class="card paper">
+      <div class="tag">Paper · default</div>
+      <h3>Pokoje rodzinne</h3>
+      <p>Dwupokojowe studia z balkonem w pawilonie głównym, do 4 osób.</p>
+      <div class="price-row">
+        <div class="price">od 220 zł<small> / noc</small></div>
+      </div>
+    </div>
+    <div class="card outline">
+      <div class="tag">Outline · list item</div>
+      <h3>Pokoje Economy</h3>
+      <p>Murowane domki szeregowe, osobne wejścia od strony placu zabaw.</p>
+      <div class="price-row">
+        <div class="price">od 160 zł<small> / noc</small></div>
+      </div>
+    </div>
+    <div class="card marine">
+      <div class="tag">Marine · feature</div>
+      <h3>Ognisko z biesiadą</h3>
+      <p>Co czwartek w sezonie, dla wszystkich gości — kiełbaski w cenie.</p>
+      <div class="price-row">
+        <div class="price">w pakiecie</div>
+      </div>
+    </div>
+  </div>
+</body></html>

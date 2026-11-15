@@ -1,0 +1,37 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="pl"><head>
+<meta charset="utf-8">
+<title>Cover</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;width:960px;height:288px;overflow:hidden;background:var(--bg)}
+  svg{position:absolute;left:0;top:0;display:block}
+  .baltic{fill:var(--c-baltic-blue)}
+  .deep{fill:var(--c-deep-sea)}
+  .sun{fill:var(--c-sun-yellow)}
+  .coral{fill:var(--c-coral)}
+  .sky{fill:var(--c-light-sky)}
+  .cut{fill:var(--bg)}
+  .name{position:absolute;left:32px;top:169px;margin:0;font-family:var(--font-display);font-weight:600;font-size:64px;line-height:.95;letter-spacing:var(--tracking-tight);color:var(--c-deep-sea);white-space:nowrap}
+  .tagline{position:absolute;left:32px;top:238px;margin:0;font-family:var(--font-body);font-size:14px;line-height:1.25;color:var(--fg-3)}
+</style>
+</head><body>
+<svg width="960" height="112" viewBox="0 0 960 112" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rusałka palette: Baltic Blue, Deep Sea, Sun Yellow, Coral and Light Sky bands with a wave edge">
+<!-- blocks: c-baltic-blue 256x112 (space-6 x 8), c-deep-sea 288x112, c-sun-yellow 96x112 (space-9), c-coral 128x112 (space-6 x 4), c-light-sky 192x112 as the relief tint.
+     arrangement: one strip of unequal flush bands bleeding off the top and both sides, 112px tall (7 x space-4); top-band skeleton, because "Rusałka Design System" is wider than the 440px zone at 64px.
+     pattern: a literal motif, waves (the logo is sun + waves; the README asks for wave shapes echoing it): 20 scallops cut from the band's lower edge in the ground colour.
+     steps and radii: scallop radius space-5 (24px), pitch space-7 (48px); text inset space-6 (32px); no corner radii on the blocks, they run off the edges. -->
+<rect class="baltic" x="0" y="0" width="256" height="112"/>
+<rect class="deep" x="256" y="0" width="288" height="112"/>
+<rect class="sun" x="544" y="0" width="96" height="112"/>
+<rect class="coral" x="640" y="0" width="128" height="112"/>
+<rect class="sky" x="768" y="0" width="192" height="112"/>
+<circle class="cut" cx="24" cy="112" r="24"/><circle class="cut" cx="72" cy="112" r="24"/><circle class="cut" cx="120" cy="112" r="24"/><circle class="cut" cx="168" cy="112" r="24"/><circle class="cut" cx="216" cy="112" r="24"/>
+<circle class="cut" cx="264" cy="112" r="24"/><circle class="cut" cx="312" cy="112" r="24"/><circle class="cut" cx="360" cy="112" r="24"/><circle class="cut" cx="408" cy="112" r="24"/><circle class="cut" cx="456" cy="112" r="24"/>
+<circle class="cut" cx="504" cy="112" r="24"/><circle class="cut" cx="552" cy="112" r="24"/><circle class="cut" cx="600" cy="112" r="24"/><circle class="cut" cx="648" cy="112" r="24"/><circle class="cut" cx="696" cy="112" r="24"/>
+<circle class="cut" cx="744" cy="112" r="24"/><circle class="cut" cx="792" cy="112" r="24"/><circle class="cut" cx="840" cy="112" r="24"/><circle class="cut" cx="888" cy="112" r="24"/><circle class="cut" cx="936" cy="112" r="24"/>
+</svg>
+<h1 class="name">Rusałka Design System</h1>
+<p class="tagline">Złóż się tu cieniem sosny.</p>
+</body></html>

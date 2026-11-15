@@ -7,8 +7,6 @@ dist/
 .omx/
 .playwright-cli/
 output/
-*.tar.gz
-*.sql
-*.mmdb
-wp-config.php
+next-env.d.ts
+*.tsbuildinfo
 Thumbs.db

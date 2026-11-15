@@ -1,0 +1,61 @@
+<!-- @dsCard group="Type" height=320 subtitle="Pacifico: enable ss01 for the Polish ł/Ł" -->
+<!doctype html>
+<html lang="pl"><head>
+<meta charset="utf-8">
+<title>Type — script (Pacifico)</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;overflow:hidden}
+  body { padding: 18px 24px; }
+  .hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .hd .ttl { font-family: var(--font-body); font-weight: 800; font-size: 14px; color: var(--c-deep-sea); }
+  .hd .official { color: var(--c-seafoam); font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; font-size: 12px; }
+  .hd .official::before { content: "● "; }
+
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
+  .col { border-radius: var(--radius-md); padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; }
+  .col.good { background: var(--c-foam-wash); }
+  .col.bad  { background: var(--error-surface); }
+  .col .stamp { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-body); font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .col.good .stamp { color: var(--success-text); }
+  .col.bad  .stamp { color: var(--error); }
+  .col .stamp::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
+
+  .script-base { font-family: var(--font-script); color: var(--c-deep-sea); line-height: 1.22; padding: 0 0 2px; white-space: nowrap; }
+  .word { font-size: 36px; }
+  .word.s { font-size: 24px; }
+  .col.good .word { font-feature-settings: "ss01" 1; }
+
+  .col .note { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; color: var(--fg-3); line-height: 1.5; margin-top: 6px; }
+  .col code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px; background: rgba(0,0,0,0.05); padding: 1px 5px; border-radius: 3px; color: var(--c-deep-sea); }
+
+  .tip { display: flex; gap: 10px; align-items: flex-start; margin-top: 12px; padding: 10px 12px; background: var(--c-sand-wash); border-radius: var(--radius-md); font-family: var(--font-body); font-size: 12px; line-height: 1.5; color: var(--c-ink-2); }
+  .tip svg { flex-shrink: 0; width: 16px; height: 16px; stroke-width: 2; color: var(--c-amber); margin-top: 1px; }
+  .tip b { color: var(--c-deep-sea); }
+</style>
+</head><body>
+  <div class="hd">
+    <div class="ttl">Script — Pacifico</div>
+    <div class="official">official brand font</div>
+  </div>
+
+  <div class="compare">
+    <div class="col bad">
+      <div class="stamp">Default — macron over l</div>
+      <div class="script-base word">rusałka</div>
+      <div class="script-base word s">w Łazach</div>
+      <div class="note">Macron <i>above</i> the l — Romanian-style, not Polish.</div>
+    </div>
+    <div class="col good">
+      <div class="stamp">ss01 — proper Polish stroke</div>
+      <div class="script-base word">rusałka</div>
+      <div class="script-base word s">w Łazach</div>
+      <div class="note">Use <code>font-feature-settings: "ss01" 1</code> or the <code>.script</code> utility.</div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+    <div><b>Rule:</b> any Pacifico render should enable <code>ss01</code>. The <code>.script</code> class in <code>components/bundle.css</code> does this for you; if you set <code>font-family: var(--font-script)</code> by hand, add <code>font-feature-settings: "ss01" 1</code> next to it.</div>
+  </div>
+</body></html>

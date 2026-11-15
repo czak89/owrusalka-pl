@@ -1,0 +1,40 @@
+<!-- @dsCard group="Brand" height=210 subtitle="Tone of voice: do, don't and a sample line" -->
+<!doctype html>
+<html lang="pl"><head>
+<meta charset="utf-8">
+<title>Voice — sample</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;overflow:hidden}
+  body { padding: 22px 26px; background: var(--c-paper); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+  .col h4 { font-family: var(--font-display); font-size: 14px; margin: 0 0 6px; color: var(--c-deep-sea); }
+  .col h4 .dot { display: inline-block; width: 8px; height: 8px; border-radius: 999px; vertical-align: middle; margin-right: 6px; }
+  .yes .dot { background: var(--c-seafoam); }
+  .no .dot  { background: var(--c-coral); }
+  ul { margin: 0; padding: 0; list-style: none; font-size: 14px; line-height: 1.45; color: var(--fg-2); }
+  li { padding: 3px 0; }
+  .no li { text-decoration: line-through; text-decoration-color: rgba(255,111,60,0.5); }
+  .quote { grid-column: 1 / -1; font-family: var(--font-display); font-style: italic; font-size: 16px; color: var(--c-deep-sea); line-height: 1.4; border-left: 3px solid var(--c-sun-yellow); padding: 6px 12px; margin-top: 4px; }
+</style>
+</head><body>
+  <div class="grid">
+    <div class="col yes">
+      <h4><span class="dot"></span>Voice — yes</h4>
+      <ul>
+        <li>warm, host-y, formal-plural <i>(Państwo)</i></li>
+        <li>concrete: „50 metrów do plaży"</li>
+        <li>lightly nostalgic — never old-fashioned</li>
+      </ul>
+    </div>
+    <div class="col no">
+      <h4><span class="dot"></span>Voice — no</h4>
+      <ul>
+        <li>„premium SPA experience"</li>
+        <li>emoji in body copy or buttons</li>
+        <li>all-caps shouting, !!!</li>
+      </ul>
+    </div>
+    <div class="quote">„Pięćdziesiąt metrów do plaży. Reszta — Państwa."</div>
+  </div>
+</body></html>

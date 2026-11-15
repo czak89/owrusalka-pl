@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 900 280" xml:space="preserve">
+  <defs>
+    
+  </defs>
+  
+  
+  <rect fill="#003B59" x="0" y="0" width="500" height="54"></rect>
+  <text class="font group-label" x="250" y="23" text-anchor="middle" fill="#FFF8E8">BASE COLORS</text>
+  <text class="font group-note" x="250" y="39" text-anchor="middle" fill="#FFF8E8">the main five brand colors - use most often</text>
+
+  <rect fill="#2EC4A6" x="500" y="0" width="200" height="54"></rect>
+  <text class="font group-label" x="600" y="23" text-anchor="middle" fill="#1B2A2F">ADDITIONAL</text>
+  <text class="font group-note" x="600" y="39" text-anchor="middle" fill="#1B2A2F">brand colors, but less frequently used</text>
+
+  <rect fill="#1B2A2F" x="700" y="0" width="200" height="54"></rect>
+  <text class="font group-label" x="800" y="23" text-anchor="middle" fill="#FFF8E8">NEUTRAL</text>
+  <text class="font group-note" x="800" y="39" text-anchor="middle" fill="#FFF8E8">backgrounds and texts</text>
+  
+  
+  <g transform="translate(0,54)">
+    <rect fill="#99E6FF" x="0" y="0" width="100" height="230"></rect>
+    <rect fill="#0A9CCC" x="100" y="0" width="100" height="230"></rect>
+    <rect fill="#003B59" x="200" y="0" width="100" height="230"></rect>
+    <rect fill="#FFD500" x="300" y="0" width="100" height="230"></rect>
+    <rect fill="#FFAA00" x="400" y="0" width="100" height="230"></rect>
+    <rect fill="#2EC4A6" x="500" y="0" width="100" height="230"></rect>
+    <rect fill="#FF6F3C" x="600" y="0" width="100" height="230"></rect>
+    <rect fill="#FFF8E8" x="700" y="0" width="100" height="230"></rect>
+    <rect fill="#1B2A2F" x="800" y="0" width="100" height="230"></rect>
+
+    
+    <g class="font role-pill" text-anchor="middle">
+      <rect fill="#FFF8E8" x="9" y="15" width="82" height="18" rx="9" opacity="0.92"></rect><text x="50" y="27" fill="#1B2A2F">BASE</text>
+      <rect fill="#FFF8E8" x="109" y="15" width="82" height="18" rx="9" opacity="0.92"></rect><text x="150" y="27" fill="#1B2A2F">BASE</text>
+      <rect fill="#FFF8E8" x="209" y="15" width="82" height="18" rx="9" opacity="0.92"></rect><text x="250" y="27" fill="#1B2A2F">BASE</text>
+      <rect fill="#FFF8E8" x="309" y="15" width="82" height="18" rx="9" opacity="0.92"></rect><text x="350" y="27" fill="#1B2A2F">BASE</text>
+      <rect fill="#FFF8E8" x="409" y="15" width="82" height="18" rx="9" opacity="0.92"></rect><text x="450" y="27" fill="#1B2A2F">BASE</text>
+      <rect fill="#1B2A2F" x="509" y="15" width="82" height="18" rx="9" opacity="0.92"></rect><text x="550" y="27" fill="#FFF8E8">ADDITIONAL</text>
+      <rect fill="#1B2A2F" x="609" y="15" width="82" height="18" rx="9" opacity="0.92"></rect><text x="650" y="27" fill="#FFF8E8">ADDITIONAL</text>
+      <rect fill="#1B2A2F" x="709" y="15" width="82" height="18" rx="9" opacity="0.92"></rect><text x="750" y="27" fill="#FFF8E8">BACKGROUNDS</text>
+      <rect fill="#FFF8E8" x="809" y="15" width="82" height="18" rx="9" opacity="0.92"></rect><text x="850" y="27" fill="#1B2A2F">TEXT</text>
+    </g>
+
+    
+   <g class="font" text-anchor="middle"> 
+      <text class="hex" x="50" y="172" fill="#1B2A2F">#99E6FF</text> 
+      <text class="name" x="50" y="188" fill="#1B2A2F">Light Sky</text> 
+      <text class="usage" x="50" y="204" fill="#1B2A2F">bright accents</text> 
+
+      <text class="hex" x="150" y="172" fill="#FFF8E8">#0A9CCC</text> 
+      <text class="name" x="150" y="188" fill="#FFF8E8">Baltic Blue</text> 
+      <text class="usage" x="150" y="204" fill="#FFF8E8">main marine</text> 
+
+      <text class="hex" x="250" y="172" fill="#FFF8E8">#003B59</text> 
+      <text class="name" x="250" y="188" fill="#FFF8E8">Deep Sea</text> 
+      <text class="usage" x="250" y="204" fill="#FFF8E8">strong base</text> 
+
+      <text class="hex" x="350" y="172" fill="#1B2A2F">#FFD500</text> 
+      <text class="name" x="350" y="188" fill="#1B2A2F">Sun Yellow</text> 
+      <text class="usage" x="350" y="204" fill="#1B2A2F">sun / energy</text> 
+
+      <text class="hex" x="450" y="172" fill="#1B2A2F">#FFAA00</text> 
+      <text class="name" x="450" y="188" fill="#1B2A2F">Amber</text> 
+      <text class="usage" x="450" y="204" fill="#1B2A2F">warm accent</text> 
+
+      <text class="hex" x="550" y="172" fill="#1B2A2F">#2EC4A6</text> 
+      <text class="name" x="550" y="188" fill="#1B2A2F">Seafoam</text> 
+      <text class="usage" x="550" y="204" fill="#1B2A2F">calm accent</text> 
+
+      <text class="hex" x="650" y="172" fill="#FFF8E8">#FF6F3C</text> 
+      <text class="name" x="650" y="188" fill="#FFF8E8">Coral</text> 
+      <text class="usage" x="650" y="204" fill="#FFF8E8">CTA / social</text> 
+
+      <text class="hex" x="750" y="172" fill="#1B2A2F">#FFF8E8</text> 
+      <text class="name" x="750" y="188" fill="#1B2A2F">Paper</text> 
+      <text class="usage" x="750" y="204" fill="#1B2A2F">backgrounds / paper</text> 
+
+      <text class="hex" x="850" y="172" fill="#FFF8E8">#1B2A2F</text> 
+      <text class="name" x="850" y="188" fill="#FFF8E8">Ink</text> 
+      <text class="usage" x="850" y="204" fill="#FFF8E8">text / contrast</text> 
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+/* =========================================================================
+   Rusałka — Colors & Type
+   Ośrodek Wypoczynkowy Rusałka, Łazy k/Mielna
+   Entry stylesheet. Colors, type scale, spacing, radii and shadows now live in
+   tokens.json and are compiled to tokens.css (fonts included). Element styles
+   and motion variables are in components/bundle.css. The previous text of this
+   file is kept at archived/colors_and_type.css.
+   ========================================================================= */
+@import url("tokens.css");
+@import url("components/bundle.css");
