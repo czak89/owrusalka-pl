@@ -4,7 +4,7 @@ import { withBase } from "./base";
 import { Icon, TopNav } from "./kit";
 import { Contact, Footer } from "./sections";
 import { Wizard } from "./rez-app";
-import { useTweaks, TweaksPanel, TweakSection, TweakRadio } from "./site-theme";
+import { useTweaks, useSiteTheme, TweaksPanel, TweakSection, TweakRadio } from "./site-theme";
 
 /* ============================================================================
    rez-page.jsx — full reservation PAGE: site nav + hero + wizard + footer.
@@ -22,6 +22,10 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "density": "comfy"
 }/*EDITMODE-END*/;
 
+/* Same fixed site options as the other pages; useSiteTheme also wires the
+   light/dark button in the nav. */
+const SITE_OPTIONS = { accent: "#FF6F3C", corners: "soft", texture: true };
+
 function scrollToWizard() {
   const el = document.getElementById('rezerwacja');
   if (el) window.scrollTo({ top: el.offsetTop - 64, behavior: 'smooth' });
@@ -29,6 +33,7 @@ function scrollToWizard() {
 
 function Site() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  useSiteTheme(SITE_OPTIONS);
   useEffectP(() => { if (window.lucide) window.lucide.createIcons(); }, []);
 
   return (

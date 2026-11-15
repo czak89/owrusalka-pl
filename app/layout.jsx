@@ -5,12 +5,11 @@ import "../styles/placeholders.css";
 import "../styles/content.css";
 import "../styles/pokoje.css";
 import "../styles/rez.css";
+import { SITE_URL, LODGING_JSON_LD, pageMeta } from "../components/site-meta";
 
-export const metadata = {
-  title: "Rusałka · Wakacje rodzinne nad Bałtykiem w Łazach",
-  description:
-    "Ośrodek Wypoczynkowy Rusałka w Łazach k/Mielna. 50 metrów od plaży, sosnowy las, domowa kuchnia. Rodzinne wakacje nad Bałtykiem.",
-};
+export const metadata = { metadataBase: new URL(SITE_URL + "/"), ...pageMeta("/") };
+
+const jsonLd = JSON.stringify(LODGING_JSON_LD).replace(/</g, "\\u003c");
 
 export const viewport = { width: "device-width", initialScale: 1 };
 
@@ -22,6 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="pl" data-theme="light" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
       </head>
       <body data-emphasis="coral" data-corners="soft" data-texture="on" suppressHydrationWarning>
         <div id="root">{children}</div>

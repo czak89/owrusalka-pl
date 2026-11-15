@@ -2,6 +2,7 @@
 import React from "react";
 import { withBase } from "./base";
 import { nightsBetween, fmtLongYear, fmtDow, ACCOMMODATION } from "./rez-data";
+import { Honeypot, ConsentField, DemoNote } from "./send-form";
 
 /* ============================================================================
    rez-steps.jsx — form steps: Dane, Osoby, Szczegóły, Podsumowanie, Potwierdzenie
@@ -17,7 +18,7 @@ function Field({ label, hint, error, children }) {
     <label className="field">
       <span className="field-label">{label}{hint && <em className="field-hint">{hint}</em>}</span>
       {children}
-      {error && <span className="field-error">{error}</span>}
+      {error && <span className="field-error" role="alert">{error}</span>}
     </label>
   );
 }
@@ -71,14 +72,17 @@ function StepDane({ data, set, errors }) {
     <div className="step-body">
       <Field label="Imię i nazwisko" error={errors.name}>
         <input className="inp" type="text" value={data.name} placeholder="np. Anna Kowalska"
+          aria-invalid={errors.name ? true : undefined}
           onChange={e => set({ name: e.target.value })} />
       </Field>
       <Field label="Numer telefonu" error={errors.phone}>
         <input className="inp" type="tel" value={data.phone} placeholder="np. 600 100 200"
+          aria-invalid={errors.phone ? true : undefined}
           onChange={e => set({ phone: e.target.value })} />
       </Field>
       <Field label="Adres e-mail" error={errors.email}>
         <input className="inp" type="email" value={data.email} placeholder="np. anna@example.com"
+          aria-invalid={errors.email ? true : undefined}
           onChange={e => set({ email: e.target.value })} />
       </Field>
     </div>
@@ -139,7 +143,7 @@ function guestSummary(d) {
   return arr.join(', ');
 }
 
-function StepPodsumowanie({ data, onEdit }) {
+function StepPodsumowanie({ data, onEdit, consent, setConsent, spam, children }) {
   const nights = data.arrival && data.departure ? nightsBetween(data.arrival, data.departure) : 0;
   const rows = [
     { k: 'Przyjazd', v: data.arrival ? cap(fmtDow(data.arrival)) + ', ' + fmtLongYear(data.arrival) : '—', step: 0 },
@@ -164,6 +168,9 @@ function StepPodsumowanie({ data, onEdit }) {
         ))}
       </div>
       <p className="step-note">Wysyłamy zapytanie do recepcji — potwierdzimy dostępność i szczegóły telefonicznie lub mailem. To nie jest jeszcze płatna rezerwacja.</p>
+      <ConsentField checked={consent} onChange={setConsent} id="rez-consent" />
+      <Honeypot value={spam.botcheck} onChange={spam.setBotcheck} />
+      {children}
     </div>
   );
 }
@@ -189,6 +196,7 @@ function Confirmation({ data, onReset }) {
         </div>
         <div className="confirm-meta">{nights} {nights === 1 ? 'noc' : (nights < 5 ? 'noce' : 'nocy')} · {guestSummary(data)}</div>
       </div>
+      <DemoNote />
       <p className="confirm-contact">W pilnej sprawie: <a href="tel:+48943182976">+48 94 318 29 76</a> · <a href="mailto:recepcja@owrusalka.pl">recepcja@owrusalka.pl</a></p>
       <button type="button" className="rbtn rbtn-ghost" onClick={onReset}>Nowa rezerwacja</button>
     </div>
@@ -201,4 +209,5 @@ function firstName(full) { return full ? full.trim().split(/\s+/)[0] : 'Państwo
 export {
   Field, NumberStepper, ChoiceCard, Toggle,
   StepDane, StepOsoby, StepSzczegoly, StepPodsumowanie, Confirmation,
+  accName, guestSummary,
 };

@@ -19,9 +19,12 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      # Canonical and Open Graph addresses point at the production domain,
+      # where the new pages do not exist until the site is deployed there.
       - uses: lycheeverse/lychee-action@v2
         with:
           args: >-
             --no-progress --root-dir "${{ github.workspace }}/out"
+            --exclude '^https://owrusalka\.pl'
             './out/**/*.html'
           fail: true

@@ -1,6 +1,7 @@
 import PokojePage from "../../components/pokoje-page";
+import { pageMeta } from "../../components/site-meta";
 
-export const metadata = { title: "Pokoje · Rusałka — wakacje rodzinne w Łazach" };
+export const metadata = pageMeta("/pokoje/");
 
 export default function Page() {
   return <PokojePage />;

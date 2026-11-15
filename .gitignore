@@ -10,3 +10,4 @@ output/
 next-env.d.ts
 *.tsbuildinfo
 Thumbs.db
+.lighthouseci/

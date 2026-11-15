@@ -30,6 +30,15 @@ NEXT_PUBLIC_BASE_PATH=/owrusalka-pl npm run build       # GitHub Pages project s
 
 Links and images go through `withBase()` (`components/base.js`), so nothing else changes.
 
+## Build variables
+
+| Variable | Meaning | Default |
+|---|---|---|
+| `NEXT_PUBLIC_BASE_PATH` | Folder the site is served from | empty (domain root) |
+| `NEXT_PUBLIC_SITE_URL` | Public origin, used for canonical links, Open Graph and the sitemap | `https://owrusalka.pl` |
+| `NEXT_PUBLIC_FORM_ENDPOINT` | Where the booking forms are posted (JSON). Web3Forms: `https://api.web3forms.com/submit` | empty: demo mode, nothing is sent |
+| `NEXT_PUBLIC_FORM_KEY` | Access key for the form service, sent as `access_key` | empty |
+
 ## Structure
 
 ```
@@ -60,9 +69,11 @@ Lucide, via `lucide-react`. `components/icons.js` lists the icons in use; after 
 npm run build && npx serve out -l 8732
 node scripts/check-pages.cjs http://localhost:8732/ ",pokoje/,cennik/,atrakcje/,galeria/,lato/,kontakt/,rezerwacja/" "" light 1280
 node scripts/check-interactions.cjs http://localhost:8732/
+node scripts/check-forms.cjs http://localhost:8732/ demo
+npm run lint:css
 ```
 
-Both need Playwright (`npx playwright install chromium`).
+The scripts need Playwright (`npx playwright install chromium`).
 
 ## Status and next steps
 
@@ -71,4 +82,4 @@ Both need Playwright (`npx playwright install chromium`).
 - `docs/Rusalka-przewodnik-po-stylu-PL-EN.docx` — the style guide, Polish and English.
 - `CLAUDE.md`, `AGENTS.md` — context and rules for AI agents.
 
-The main gap: **forms do not send anything yet.** The booking modal and the `/rezerwacja` wizard end in an on-screen confirmation only.
+The main gap: **forms run in demo mode.** Sending is built, but no endpoint is configured yet, so the booking modal and the `/rezerwacja` wizard post nothing and say so on the confirmation.

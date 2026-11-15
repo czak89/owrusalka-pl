@@ -43,6 +43,7 @@
   --bk-accent: var(--action);
   --bk-accent-hover: var(--action-hover);
   --bk-accent-fg: var(--on-accent);
+  --bk-accent-text: var(--accent-text); /* accent as small text: Coral fails 4.5:1 on Paper */
   --bk-sel: var(--c-sand-wash);
   --bk-ring: var(--focus-ring);
   --bk-surface: var(--c-paper);
@@ -64,8 +65,7 @@
 }
 .density-compact .rez-card { --day-size: 36px; }
 
-/* Variant A — Pocztówka (warm, coral, serif headers) : uses base defaults */
-.variant-a { }
+/* Variant A — Pocztówka (warm, coral, serif headers): uses base defaults, no rules needed */
 
 /* Variant B — Morski (marine deep-sea header band, baltic accent) */
 .variant-b {
@@ -141,7 +141,7 @@
 }
 .progress-step {
   font-size: var(--fs-xs); font-weight: 800; letter-spacing: var(--tracking-caps);
-  text-transform: uppercase; color: var(--bk-accent);
+  text-transform: uppercase; color: var(--bk-accent-text);
 }
 .progress-name { font-size: var(--fs-sm); font-weight: 700; color: var(--fg-2); }
 .progress-track { position: relative; height: 4px; background: var(--c-paper-3); border-radius: 999px; }
@@ -218,7 +218,7 @@ button.sel-pill { cursor: pointer; font-family: inherit; }
 .sel-pill.filled { background: var(--c-paper); }
 .sel-k { font-size: 12px; font-weight: 800; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-3); }
 .sel-v { font-size: var(--fs-sm); font-weight: 700; color: var(--c-deep-sea); }
-.sel-pill.filled .sel-v { color: var(--bk-accent); }
+.sel-pill.filled .sel-v { color: var(--bk-accent-text); }
 .sel-sep { align-self: center; color: var(--fg-3); font-weight: 700; }
 .sel-nights .sel-v { font-size: var(--fs-lg); }
 
@@ -235,7 +235,7 @@ button.sel-pill { cursor: pointer; font-family: inherit; }
   background: var(--bk-elevated); color: var(--c-deep-sea); font-size: 20px; line-height: 1;
   cursor: pointer; transition: background var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
 }
-.cal-nav:hover:not(:disabled) { border-color: var(--bk-accent); color: var(--bk-accent); }
+.cal-nav:hover:not(:disabled) { border-color: var(--bk-accent); color: var(--bk-accent-text); }
 .cal-nav:disabled { opacity: .35; cursor: not-allowed; }
 
 .cal-dow { display: grid; grid-template-columns: repeat(7, 1fr); }
@@ -244,7 +244,7 @@ button.sel-pill { cursor: pointer; font-family: inherit; }
   letter-spacing: .04em; text-transform: uppercase; color: var(--fg-3);
   padding-bottom: 4px;
 }
-.cal-dow span.we { color: var(--bk-accent); }
+.cal-dow span.we { color: var(--bk-accent-text); }
 
 .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
 
@@ -284,10 +284,10 @@ button.sel-pill { cursor: pointer; font-family: inherit; }
   width: 3px; height: 3px; border-radius: 50%; background: var(--fg-3); opacity: .5;
 }
 /* hand-blocked in/out day */
-.day.is-blocked .day-num { color: var(--c-coral); }
+.day.is-blocked .day-num { color: var(--error); }
 .day.is-blocked::after {
   content: "✕"; position: absolute; top: 2px; right: 3px; font-size: 12px;
-  color: var(--c-coral); font-weight: 800;
+  color: var(--error); font-weight: 800;
 }
 
 /* today ring */
@@ -349,6 +349,7 @@ button.sel-pill { cursor: pointer; font-family: inherit; }
   transition: border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
 }
 .inp::placeholder { color: var(--fg-3); }
+.inp[aria-invalid="true"] { border-color: var(--error); }
 .inp:focus {
   border-color: var(--focus-ring);
   outline: 2px solid var(--focus-ring); outline-offset: 2px;
@@ -379,7 +380,7 @@ button.sel-pill { cursor: pointer; font-family: inherit; }
   cursor: pointer; display: flex; align-items: center; justify-content: center;
   transition: border-color var(--dur) var(--ease-out), background var(--dur) var(--ease-out);
 }
-.stepper-btn:hover:not(:disabled) { border-color: var(--bk-accent); color: var(--bk-accent); }
+.stepper-btn:hover:not(:disabled) { border-color: var(--bk-accent); color: var(--bk-accent-text); }
 .stepper-btn:disabled { opacity: .35; cursor: not-allowed; }
 .stepper-val { min-width: 26px; text-align: center; font-size: var(--fs-lg); font-weight: 800; color: var(--c-deep-sea); }
 
@@ -404,7 +405,7 @@ button.sel-pill { cursor: pointer; font-family: inherit; }
 }
 .choice-body { display: flex; flex-direction: column; gap: 3px; }
 .choice-name { font-size: var(--fs-md); font-weight: 800; color: var(--c-deep-sea); }
-.choice-sub { font-size: var(--fs-xs); font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--bk-accent); }
+.choice-sub { font-size: var(--fs-xs); font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--bk-accent-text); }
 .choice-desc { font-size: var(--fs-sm); color: var(--fg-2); line-height: var(--lh-snug); margin-top: 2px; }
 
 /* toggle switch */
@@ -433,8 +434,8 @@ button.sel-pill { cursor: pointer; font-family: inherit; }
 .recap-k { font-size: var(--fs-xs); font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--fg-3); }
 .recap-v { font-size: var(--fs-sm); font-weight: 700; color: var(--c-deep-sea); text-align: right; }
 .recap-edit {
-  font-family: inherit; font-size: var(--fs-xs); font-weight: 800; color: var(--bk-accent);
-  background: none; border: none; cursor: pointer; padding: 4px 2px;
+  font-family: inherit; font-size: var(--fs-xs); font-weight: 800; color: var(--bk-accent-text);
+  background: none; border: none; cursor: pointer; padding: 8px 6px; margin: -4px -4px -4px 0;
 }
 .recap-edit:hover { text-decoration: underline; }
 

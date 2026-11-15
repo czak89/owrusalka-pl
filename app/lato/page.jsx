@@ -1,6 +1,7 @@
 import SubPage from "../../components/sub-page";
+import { pageMeta } from "../../components/site-meta";
 
-export const metadata = { title: "Lato 2026 · Rusałka — Łazy nad Bałtykiem" };
+export const metadata = pageMeta("/lato/");
 
 export default function Page() {
   return <SubPage page="lato" />;

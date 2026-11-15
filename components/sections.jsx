@@ -2,6 +2,7 @@
 import React from "react";
 import { withBase } from "./base";
 import { Icon, Button, Eyebrow, ROOMS, ImageSlot } from "./kit";
+import { sendEnquiry, useSpamGuard, Honeypot, ConsentField, SendError, DemoNote } from "./send-form";
 
 /* global React, Icon, Button, Badge, Eyebrow, GradientPlaceholder, ROOMS */
 /* Rusałka — pricing, amenities, timeline, gallery, story, testimonials, contact, footer, modal */
@@ -378,6 +379,9 @@ function Testimonials() {
 /* ============================================================================
    Contact + decorative map
 ============================================================================ */
+const MAPS_ROUTE = "https://www.google.com/maps/dir/?api=1&destination=" +
+  encodeURIComponent("Ośrodek Wypoczynkowy Rusałka, ul. Leśna 22, 76-002 Łazy");
+
 function Contact({ head = true }) {
   return (
     <section className="contact-band" id="kontakt">
@@ -412,7 +416,9 @@ function Contact({ head = true }) {
             </div>
             <div className="compass">N</div>
             <div className="map-action">
-              <Button variant="cta" icon="navigation" size="sm">Trasa w Google Maps</Button>
+              <a href={MAPS_ROUTE} target="_blank" rel="noopener noreferrer">
+                <Button variant="cta" icon="navigation" size="sm">Trasa w Google Maps</Button>
+              </a>
             </div>
           </div>
 
@@ -532,12 +538,19 @@ function BookingModal({ open, onClose, dates, guests, roomId, setBookingState })
   const [step, setStep] = useStateS(0);
   const [confirmed, setConfirmed] = useStateS(false);
   const [formData, setFormData] = useStateS({ name: "", email: "", phone: "", notes: "" });
+  const [consent, setConsent] = useStateS(false);
+  const [sending, setSending] = useStateS(false);
+  const [sendFailed, setSendFailed] = useStateS(false);
+  const spam = useSpamGuard(open);
 
   useEffectS(() => {
     if (!open) {
       setStep(0);
       setConfirmed(false);
       setFormData({ name: "", email: "", phone: "", notes: "" });
+      setConsent(false);
+      setSending(false);
+      setSendFailed(false);
     }
   }, [open]);
 
@@ -547,7 +560,31 @@ function BookingModal({ open, onClose, dates, guests, roomId, setBookingState })
 
   const next = () => setStep((s) => Math.min(s + 1, 3));
   const back = () => setStep((s) => Math.max(s - 1, 0));
-  const submit = () => { setConfirmed(true); setStep(3); };
+  const submit = async () => {
+    if (sending || !consent) return;
+    setSending(true);
+    setSendFailed(false);
+    const result = await sendEnquiry({
+      subject: `Zapytanie o rezerwację: ${formData.name}, ${dates.in} – ${dates.out}`,
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      lines: [
+        ["Imię i nazwisko", formData.name],
+        ["E-mail", formData.email],
+        ["Telefon", formData.phone],
+        ["Pokój", room.name],
+        ["Przyjazd", dates.in],
+        ["Wyjazd", dates.out],
+        ["Goście", guests],
+        ["Uwagi", formData.notes],
+        ["Zgoda na przetwarzanie danych", "tak"],
+      ],
+    }, spam.guard());
+    setSending(false);
+    if (result.ok) { setConfirmed(true); setStep(3); }
+    else setSendFailed(true);
+  };
 
   const stepsArr = [0, 1, 2, 3];
 
@@ -704,11 +741,15 @@ function BookingModal({ open, onClose, dates, guests, roomId, setBookingState })
                   To rezerwacja niezobowiązująca. Po wysłaniu skontaktujemy się w ciągu 24 godzin
                   z propozycją terminu i wskazaniem szczegółów płatności.
                 </p>
+                <ConsentField checked={consent} onChange={setConsent} id="modal-consent" />
+                <Honeypot value={spam.botcheck} onChange={spam.setBotcheck} />
+                {sendFailed ? <SendError /> : null}
                 <div className="actions">
-                  <Button variant="ghost" icon="arrow-left" onClick={back}>Wstecz</Button>
+                  <Button variant="ghost" icon="arrow-left" onClick={back} disabled={sending}>Wstecz</Button>
                   <div className="right">
-                    <Button variant="cta" iconRight="check" onClick={submit}>
-                      Wyślij prośbę
+                    <Button variant="cta" iconRight="check" onClick={submit}
+                            disabled={!consent || sending} aria-busy={sending}>
+                      {sending ? "Wysyłam…" : sendFailed ? "Spróbuj ponownie" : "Wyślij prośbę"}
                     </Button>
                   </div>
                 </div>
@@ -721,8 +762,9 @@ function BookingModal({ open, onClose, dates, guests, roomId, setBookingState })
             <p className="lede">Czekamy w Łazach.</p>
             <div className="confirm-msg">
               <Icon name="check-circle-2" size={18} />
-              Wysłaliśmy potwierdzenie na <b>&nbsp;{formData.email || "podany e-mail"}</b>.
+              <span>Państwa prośba trafiła do recepcji. Odpowiemy na adres <b>{formData.email || "podany e-mail"}</b>.</span>
             </div>
+            <DemoNote />
             <p style={{ fontSize: 14, color: "var(--fg-2)", lineHeight: 1.65 }}>
               W ciągu 24 godzin odezwiemy się z konkretami. Jeśli sprawa jest pilna —
               prosimy o telefon na <b style={{ color: "var(--c-deep-sea)" }}>+48 94 318 29 76</b>.

@@ -2,6 +2,18 @@
 
 What was decided, by whom, and why. Newest context first. Dates are 2026.
 
+## Forms, SEO and CI (15 Nov, second session)
+- **Form sending is provider-neutral.** `components/send-form.jsx` posts JSON to `NEXT_PUBLIC_FORM_ENDPOINT` and treats 2xx without `{ "success": false }` as sent. That is the Web3Forms contract, so either choice (Web3Forms or an own endpoint) is a build variable, not a code change. The owner has not chosen yet.
+- **No endpoint = demo mode,** not a silent fake: the flow completes so the design can be reviewed, nothing is posted, and the confirmation says the enquiry was not sent.
+- **Spam:** a honeypot field plus a 3-second minimum fill time; a caught bot gets the normal "sent" answer. No captcha until spam shows it is needed.
+- **Consent wording is a proposal.** It names the resort and its address as the data controller; the legal entity name and the privacy policy must come from the owner.
+- **The confirmation no longer says "we sent a confirmation to your e-mail":** nothing mails the guest, the enquiry goes to the reception.
+- **Stylelint checks for mistakes, not layout.** The CSS is a compact port (several declarations per line); the rules that only reformat it are off, so the hand-edited files are not rewritten. Vendor prefixes stay for `-webkit-backdrop-filter` (Safari).
+- **Accent as small text uses `--accent-text`** in the booking wizard (`--bk-accent-text`). Coral on Paper is 2.61:1; step counter, weekend labels, selected dates, "Zmień" links and option subtitles carried information in it.
+- **Canonical address** comes from `NEXT_PUBLIC_SITE_URL` (default `https://owrusalka.pl`) plus the base path. Structured data states only facts already on the site: no coordinates, prices or opening dates.
+- **Favicon** is a square crop of the logo centred on the sun; the left tail of the wave is cut. The full mark was too small to read at 16px.
+- **"Zarezerwuj" on the 404 page** goes to `/rezerwacja/` instead of opening the modal.
+
 ## Repository and process (15 Nov, owner)
 - **One repository**, the existing `czak89/owrusalka-pl`: keeps history, CI and the site address.
 - **Merge base = the newer prototype** (the non-git working folder), plus what only the older repo had: booking wizard, admin-panel mockup, intro video.
@@ -47,4 +59,6 @@ What was decided, by whom, and why. Newest context first. Dates are 2026.
 - Every page in a headless browser: light and dark at 1280px, light at 390px. No console errors, no failed requests, no unresolved icons, no text under 12px, no horizontal overflow.
 - Interaction script: theme toggle and persistence, booking modal, navigation, focus ring, date selection.
 - Both builds (root and `/owrusalka-pl`) complete; the base-path build was checked for rewritten links, not opened in a browser.
-- Not verified: the CI workflows, the design-system artifact page itself (cards were rendered locally), real devices.
+- Form script (`scripts/check-forms.cjs`): both forms in demo mode and against an intercepted endpoint (error, retry, success, payload).
+- Lighthouse CI was run locally with the repo config; lychee was not (see `TODO.md`).
+- Not verified: the workflows on GitHub itself, a real form service, the design-system artifact page (cards were rendered locally), real devices.

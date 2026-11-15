@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
 import { withBase } from "./base";
-import { nightsBetween, fmtLong, fmtDow, TODAY, TURNUS_END } from "./rez-data";
+import { nightsBetween, fmtLong, fmtLongYear, fmtDow, TODAY, TURNUS_END } from "./rez-data";
 import { Calendar } from "./rez-calendar";
-import { StepDane, StepOsoby, StepSzczegoly, StepPodsumowanie, Confirmation } from "./rez-steps";
+import { StepDane, StepOsoby, StepSzczegoly, StepPodsumowanie, Confirmation, accName, guestSummary } from "./rez-steps";
+import { sendEnquiry, useSpamGuard, SendError } from "./send-form";
 
 /* ============================================================================
    rez-app.jsx — the booking Wizard component (card shell + step flow).
@@ -103,15 +104,24 @@ function Wizard({ variant = 'a', calStyle = 'month', weekStart = 'mon', onDone }
   const [data, setDataRaw] = useStateW(EMPTY);
   const [errors, setErrors] = useStateW({});
   const [submitted, setSubmitted] = useStateW(false);
+  const [consent, setConsent] = useStateW(false);
+  const [sending, setSending] = useStateW(false);
+  const [sendFailed, setSendFailed] = useStateW(false);
+  const spam = useSpamGuard(true);
 
-  const setData = patch => setDataRaw(d => ({ ...d, ...patch }));
+  const setData = patch => {
+    setDataRaw(d => ({ ...d, ...patch }));
+    /* once errors are on screen, keep them in step with what is typed */
+    if (Object.keys(errors).length) setErrors(validateDane({ ...data, ...patch }));
+  };
 
   const stepValid = useMemoW(() => {
     if (step === 0) return !!(data.arrival && data.departure);
-    if (step === 1) return Object.keys(validateDane(data)).length === 0;
+    if (step === 1) return true; /* checked on "Dalej", so the guest sees what is missing */
     if (step === 3) return !!data.accommodation;
+    if (step === 4) return consent;
     return true;
-  }, [step, data]);
+  }, [step, data, consent]);
 
   function next() {
     if (step === 1) {
@@ -120,10 +130,41 @@ function Wizard({ variant = 'a', calStyle = 'month', weekStart = 'mon', onDone }
       if (Object.keys(e).length) return;
     }
     if (step < STEPS.length - 1) setStep(step + 1);
-    else { setSubmitted(true); onDone && onDone(); }
+    else submit();
   }
-  function back() { if (step > 0) setStep(step - 1); }
-  function reset() { setDataRaw(EMPTY); setErrors({}); setStep(0); setSubmitted(false); }
+  async function submit() {
+    if (sending || !consent) return;
+    setSending(true);
+    setSendFailed(false);
+    const nights = nightsBetween(data.arrival, data.departure);
+    const result = await sendEnquiry({
+      subject: `Zapytanie o rezerwację: ${data.name.trim()}, ${fmtLongYear(data.arrival)} – ${fmtLongYear(data.departure)}`,
+      name: data.name.trim(),
+      email: data.email.trim(),
+      phone: data.phone.trim(),
+      lines: [
+        ["Imię i nazwisko", data.name.trim()],
+        ["Telefon", data.phone.trim()],
+        ["E-mail", data.email.trim()],
+        ["Przyjazd", capW(fmtDow(data.arrival)) + ", " + fmtLongYear(data.arrival)],
+        ["Wyjazd", capW(fmtDow(data.departure)) + ", " + fmtLongYear(data.departure)],
+        ["Liczba nocy", nights],
+        ["Goście", guestSummary(data)],
+        ["Zakwaterowanie", accName(data.accommodation)],
+        ["Parking", data.parking ? "tak" : "nie"],
+        ["Łóżeczko turystyczne", data.crib ? "tak" : "nie"],
+        ["Zgoda na przetwarzanie danych", "tak"],
+      ],
+    }, spam.guard());
+    setSending(false);
+    if (result.ok) { setSubmitted(true); onDone && onDone(); }
+    else setSendFailed(true);
+  }
+  function back() { if (step > 0 && !sending) { setSendFailed(false); setStep(step - 1); } }
+  function reset() {
+    setDataRaw(EMPTY); setErrors({}); setStep(0); setSubmitted(false);
+    setConsent(false); setSendFailed(false);
+  }
 
   return (
     <div className={'rez-card variant-' + variant}>
@@ -146,15 +187,20 @@ function Wizard({ variant = 'a', calStyle = 'month', weekStart = 'mon', onDone }
             {step === 1 && <StepDane data={data} set={setData} errors={errors} />}
             {step === 2 && <StepOsoby data={data} set={setData} />}
             {step === 3 && <StepSzczegoly data={data} set={setData} />}
-            {step === 4 && <StepPodsumowanie data={data} onEdit={setStep} />}
+            {step === 4 && (
+              <StepPodsumowanie data={data} onEdit={sending ? () => {} : setStep}
+                consent={consent} setConsent={setConsent} spam={spam}>
+                {sendFailed ? <SendError /> : null}
+              </StepPodsumowanie>
+            )}
           </div>
           <footer className="bk-nav">
             {step > 0
-              ? <button type="button" className="rbtn rbtn-ghost" onClick={back}>Wstecz</button>
+              ? <button type="button" className="rbtn rbtn-ghost" onClick={back} disabled={sending}>Wstecz</button>
               : <span />}
-            <button type="button" className={'rbtn rbtn-cta' + (stepValid ? '' : ' is-disabled')}
-              onClick={next} disabled={!stepValid}>
-              {step === STEPS.length - 1 ? 'Wyślij zapytanie' : 'Dalej'}
+            <button type="button" className={'rbtn rbtn-cta' + (stepValid && !sending ? '' : ' is-disabled')}
+              onClick={next} disabled={!stepValid || sending} aria-busy={sending}>
+              {step < STEPS.length - 1 ? 'Dalej' : sending ? 'Wysyłam…' : sendFailed ? 'Spróbuj ponownie' : 'Wyślij zapytanie'}
             </button>
           </footer>
         </div>

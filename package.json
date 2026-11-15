@@ -5,12 +5,17 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "npx --yes serve out"
+    "start": "npx --yes serve out",
+    "lint:css": "stylelint \"styles/*.css\""
   },
   "dependencies": {
     "lucide-react": "^0.469.0",
     "next": "16.4.6",
     "react": "19.3.0",
     "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^38.0.0"
   }
 }

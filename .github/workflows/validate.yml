@@ -18,4 +18,4 @@ jobs:
       - name: Build
         run: npm run build
       - name: CSS
-        run: npx --yes -p stylelint@16 -p stylelint-config-standard@38 stylelint "styles/*.css"
+        run: npm run lint:css
