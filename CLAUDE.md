@@ -21,7 +21,7 @@ npx serve out -l 8732                               # serve the build
 node scripts/check-pages.cjs http://localhost:8732/ ",pokoje/,cennik/,atrakcje/,galeria/,lato/,kontakt/,rezerwacja/" "" light 1280
 node scripts/check-interactions.cjs http://localhost:8732/
 node scripts/check-forms.cjs http://localhost:8732/ demo
-node scripts/check-endpoint.cjs                     # public/api/wyslij.php; needs php
+node scripts/check-endpoint.cjs                     # public/api/wyslij.php; needs php and openssl
 npm run lint:css
 ```
 After any change: build, then run the checks in light and dark and at 390px width. They must report no errors, `emptyIcons: 0`, `small: 0` and no horizontal overflow (`sw` equals the viewport width).
@@ -34,7 +34,7 @@ After any change: build, then run the checks in light and dark and at 390px widt
 - `components/site-theme.jsx` — fixed site options (accent, corners, texture) and the light/dark switch. The prototype's Tweaks panel is stubbed out here; `useTweaks`, `SiteTweaks` and friends are kept as no-ops so the page shells stay close to the prototype.
 - `components/send-form.jsx` — form sending for the booking modal, the wizard and the contact form: `sendEnquiry`, consent, honeypot, error and demo note. Endpoint from `NEXT_PUBLIC_FORM_ENDPOINT` (+ optional `NEXT_PUBLIC_FORM_KEY`); without it the site is in demo mode and sends nothing.
 - `components/contact-form.jsx` — the "Macie pytanie?" form on `/kontakt`.
-- `public/api/wyslij.php` — the form endpoint for the company server (PHP, no dependencies): mails the reception. Exported to `out/api/` with the site. Change the JSON fields in `send-form.jsx` and here together.
+- `public/api/wyslij.php` — the form endpoint for the company server (PHP, no dependencies): mails the reception, through SMTP when `wyslij-config.php` exists on the server, else through `mail()`. Exported to `out/api/` with the site. Change the JSON fields in `send-form.jsx` and here together. The config file holds a mailbox password: it is gitignored, its template is `docs/wyslij-config.example.php`, and no real credentials go into the repo or a chat.
 - `components/site-meta.js` — titles, descriptions, canonical URLs, Open Graph and JSON-LD for every route (`pageMeta(path)`); `app/sitemap.js` and `app/robots.js` read it. A new route needs an entry in `PAGES`. Origin from `NEXT_PUBLIC_SITE_URL`.
 - `components/base.js` — `withBase()` for every internal link and asset. Base path comes from `NEXT_PUBLIC_BASE_PATH`.
 - `styles/*.css` — global CSS, imported in `app/layout.jsx` after the design-system files. `site.css` is the bulk; `content.css`, `pokoje.css`, `rez.css`, `placeholders.css` are per area.
@@ -59,4 +59,4 @@ The Rusałka Design System also lives as an artifact on claude.ai (type "Design 
 
 ## State on 2026-11-16
 Built: 7 pages plus `/rezerwacja` and a 404 page, both themes, base-path switch, design system v1.2, three forms (booking modal, wizard, contact) with their own PHP endpoint, SEO metadata, sitemap, robots. Checked in a browser: every page in light and dark at 1280px and 390px, plus the interaction, form and endpoint scripts.
-Not done: the endpoint is not uploaded to the server or tested there (a build without `NEXT_PUBLIC_FORM_ENDPOINT` is in demo mode), privacy policy page, availability data, English version, real photography. Full list in `TODO.md`.
+Not done: the endpoint and its SMTP config are not uploaded to the server or tested there (a build without `NEXT_PUBLIC_FORM_ENDPOINT` is in demo mode), privacy policy page, availability data, English version, real photography. Full list in `TODO.md`.

@@ -11,3 +11,5 @@ next-env.d.ts
 *.tsbuildinfo
 Thumbs.db
 .lighthouseci/
+# filled-in SMTP settings for the form endpoint (holds a password)
+wyslij-config.php

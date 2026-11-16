@@ -4,12 +4,12 @@ Stan na 2026-11-16. Kolejność = priorytet. Szczegóły decyzji: `docs/DECISION
 
 ## 1. Blokuje podmianę `main`
 
-- [ ] **Wysyłka formularzy: wgrać plik na serwer i sprawdzić.** Właściciel wybrał (16.11) własny endpoint na serwerze firmowym. Plik `public/api/wyslij.php` obsługuje wszystkie trzy formularze i jest sprawdzony lokalnie (`node scripts/check-endpoint.cjs`), ale **nie na prawdziwym serwerze**. Do zrobienia przez właściciela:
+- [ ] **Wysyłka formularzy: wgrać pliki na serwer i sprawdzić.** Właściciel wybrał (16.11) własny endpoint na serwerze firmowym. Plik `public/api/wyslij.php` obsługuje wszystkie trzy formularze i wysyła przez konto SMTP (to samo, którego używa formularz w WordPressie). Sprawdzony lokalnie (`node scripts/check-endpoint.cjs`), ale **nie na prawdziwym serwerze**. Do zrobienia przez właściciela:
   1. W panelu hostingu, w katalogu głównym strony (tam, gdzie leży `wp-config.php`), utworzyć folder `api` i wgrać do niego `wyslij.php`.
-  2. Otworzyć `https://owrusalka.pl/api/wyslij.php`: ma się pokazać linijka JSON z tekstem „Form endpoint is up".
-  3. Wysłać próbną wiadomość (polecenie w `README.md`, sekcja „Form endpoint") i sprawdzić skrzynkę recepcji, także folder spam.
-  4. Jeśli mail nie dochodzi: hosting może blokować funkcję `mail()` albo wymagać wysyłki przez SMTP. Wtedy skrypt trzeba przerobić (osobne zadanie).
-  Strona zbudowana bez `NEXT_PUBLIC_FORM_ENDPOINT` nadal działa w trybie pokazowym. Budowanie na GitHub Pages (`pages.yml`) ma już ustawiony adres `https://owrusalka.pl/api/wyslij.php`, więc plik musi być na serwerze przed podmianą `main`.
+  2. Skopiować `docs/wyslij-config.example.php` jako `wyslij-config.php`, wpisać dane skrzynki (serwer, port, login, hasło: te same co we wtyczce pocztowej WordPressa) i wgrać **katalog wyżej niż katalog strony**, żeby pliku nie dało się otworzyć z sieci. Tego pliku nigdy nie wrzucać do repo.
+  3. Otworzyć `https://owrusalka.pl/api/wyslij.php`: ma się pokazać linijka JSON z tekstem „Form endpoint is up (transport: smtp)". Jeśli jest „transport: mail", skrypt nie znalazł pliku z konfiguracją.
+  4. Wysłać próbną wiadomość (polecenie i znaczenie błędów w `README.md`, sekcja „Form endpoint") i sprawdzić skrzynkę recepcji, także folder spam.
+  Strona zbudowana bez `NEXT_PUBLIC_FORM_ENDPOINT` nadal działa w trybie pokazowym. Budowanie na GitHub Pages (`pages.yml`) ma już ustawiony adres `https://owrusalka.pl/api/wyslij.php`, więc pliki muszą być na serwerze przed podmianą `main`.
 - [ ] **RODO: potwierdzić treść zgody i dodać politykę prywatności.** Zgoda przy formularzach (rezerwacja i kontakt) podaje jako administratora „Ośrodek Wypoczynkowy „Rusałka”, ul. Leśna 22, 76-002 Łazy". Właściciel musi podać pełną nazwę prawną administratora. Link „Polityka prywatności" w stopce prowadzi donikąd (`#`): potrzebna strona z treścią od właściciela.
 - [ ] **Otworzyć pull request `next` → `main`** (szkic, bez scalania). Integracja Claude z GitHubem nie ma uprawnienia do tworzenia PR (błąd 403), więc trzeba to zrobić ręcznie na GitHubie albo nadać uprawnienie. Workflowy (`validate`, `lighthouse`, `links`) zostały 15.11 uruchomione ręcznie na `next` (`workflow_dispatch`) i przechodzą.
 - [ ] **Akceptacja właściciela** wyglądu `next` w obu motywach i na telefonie, potem podmiana `main`.
@@ -38,7 +38,7 @@ Stan na 2026-11-16. Kolejność = priorytet. Szczegóły decyzji: `docs/DECISION
 
 ## 5. Później
 
-- [ ] **Przenosiny na serwer firmowy.** Budować bez `NEXT_PUBLIC_BASE_PATH`, wgrać `out/`. Serwer musi podawać `index.html` z katalogów (adresy kończą się ukośnikiem) i własną stronę 404. Przepisać lub wyłączyć `pages.yml`.
+- [ ] **Przenosiny na serwer firmowy.** Budować bez `NEXT_PUBLIC_BASE_PATH`, ale z `NEXT_PUBLIC_FORM_ENDPOINT=https://owrusalka.pl/api/wyslij.php`, wgrać `out/`. Przy sprzątaniu po WordPressie nie skasować `wyslij-config.php`: bez niego formularze po cichu przejdą na `mail()`. Serwer musi podawać `index.html` z katalogów (adresy kończą się ukośnikiem) i własną stronę 404. Przepisać lub wyłączyć `pages.yml`.
 - [ ] **Prawdziwa dostępność terminów.** Kalendarz używa reguł sezonu z `components/rez-data.jsx`. Wymaga backendu.
 - [ ] **Panel administracyjny.** Makieta na gałęzi `html-prototype` (`admin-panel/`). Odłożony; wymaga serwera, logowania i decyzji, czy to część RusałkaHub.
 - [ ] **Z `MIGRATION.md`:** aktualności z Facebooka pobierane przy budowaniu, cennik z plików Markdown.
@@ -49,6 +49,7 @@ Stan na 2026-11-16. Kolejność = priorytet. Szczegóły decyzji: `docs/DECISION
 
 - [x] **Formularz kontaktowy na `/kontakt`** („Macie pytanie?"): imię i nazwisko, e-mail, telefon opcjonalnie, wiadomość; ta sama wysyłka, zgoda i obsługa błędów co w rezerwacjach. Na telefonie pasek „Zarezerwuj pobyt" chowa się, gdy formularz jest na ekranie.
 - [x] **Własny endpoint formularzy** `public/api/wyslij.php`: mail na recepcja@owrusalka.pl, „Odpowiedz" trafia do gościa, lista dozwolonych stron, pułapka na boty, limit 5 wiadomości na 10 minut z jednego adresu IP, bez haseł w pliku. Testy: `scripts/check-endpoint.cjs` (także w CI).
+- [x] **Wysyłka przez SMTP** w tym samym pliku: szyfrowane połączenie (port 465 albo STARTTLS na 587), dane skrzynki w osobnym `wyslij-config.php` tylko na serwerze (szablon: `docs/wyslij-config.example.php`). Bez tego pliku skrypt używa `mail()`.
 
 ## Zrobione (2026-11-15, druga sesja)
 

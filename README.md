@@ -41,17 +41,33 @@ Links and images go through `withBase()` (`components/base.js`), so nothing else
 
 ## Form endpoint
 
-The booking modal, the `/rezerwacja` wizard and the `/kontakt` form post to `public/api/wyslij.php`, a single PHP file that mails the reception. It holds no passwords and needs PHP 7.4 or newer with a working `mail()`.
+The booking modal, the `/rezerwacja` wizard and the `/kontakt` form post to `public/api/wyslij.php`, a single PHP file that mails the reception. It needs PHP 7.4 or newer and has no dependencies.
 
-1. Upload it to the web root of the server as `api/wyslij.php` (the build also copies it to `out/api/`).
-2. Open `https://owrusalka.pl/api/wyslij.php` in a browser: a JSON line saying the endpoint is up means PHP runs it.
-3. Send a test message, with your own address in place of `you@example.com`, and check the reception's mailbox, spam folder included. PowerShell:
+It sends through an SMTP mailbox when it finds `wyslij-config.php`, and through the server's own `mail()` when it does not. The config file holds the mailbox password, so it exists only on the server: it is not in this repository (`.gitignore` blocks it) and must never be committed.
+
+1. Upload `public/api/wyslij.php` to the web root of the server as `api/wyslij.php` (the build also copies it to `out/api/`).
+2. Copy `docs/wyslij-config.example.php` as `wyslij-config.php`, fill in the mailbox (the same data as in the WordPress mail plugin) and upload it **one folder above the web root**, where it cannot be opened from the web. The script also finds it next to itself, in `api/`.
+3. Open `https://owrusalka.pl/api/wyslij.php` in a browser: a JSON line saying the endpoint is up means PHP runs it, and `transport: smtp` means the config file was found.
+4. Send a test message, with your own address in place of `you@example.com`, and check the reception's mailbox, spam folder included. PowerShell:
 
 ```powershell
-Invoke-RestMethod -Method Post -Uri "https://owrusalka.pl/api/wyslij.php" -ContentType "application/json" -Headers @{ Origin = "https://owrusalka.pl" } -Body '{"name":"Test strony","email":"you@example.com","subject":"Test formularza","message":"Proba wysylki z nowego formularza."}'
+try { Invoke-RestMethod -Method Post -Uri "https://owrusalka.pl/api/wyslij.php" -ContentType "application/json" -Headers @{ Origin = "https://owrusalka.pl" } -Body '{"name":"Test strony","email":"you@example.com","subject":"Test formularza","message":"Proba wysylki z nowego formularza."}' } catch { $_.ErrorDetails.Message; $_.Exception.Message }
 ```
 
-The answer should show `success` as `True`. Sites allowed to post are listed in `ALLOWED_ORIGINS` at the top of the file; at most 5 messages per 10 minutes are accepted from one IP address.
+The answer should show `success` as `True`. A failure names the step:
+
+| Message ends with | Meaning |
+|---|---|
+| `(smtp: connect)` | Wrong server name or port, or the server's certificate does not match its name |
+| `(smtp: tls)` | The STARTTLS handshake failed, usually the certificate again |
+| `(smtp: auth)` | Wrong login or password |
+| `(smtp: sender)`, `(smtp: recipient)` | The server refuses the address; the sender normally has to be the mailbox itself |
+| `(config)` | `wyslij-config.php` is incomplete |
+| `(mail)` | No config file, and `mail()` failed |
+
+The server's own answer is written to the PHP error log, never the password. With a config file present the script does not fall back to `mail()`.
+
+Sites allowed to post are listed in `ALLOWED_ORIGINS` at the top of `wyslij.php`; at most 5 messages per 10 minutes are accepted from one IP address.
 
 ## Structure
 
@@ -84,7 +100,7 @@ npm run build && npx serve out -l 8732
 node scripts/check-pages.cjs http://localhost:8732/ ",pokoje/,cennik/,atrakcje/,galeria/,lato/,kontakt/,rezerwacja/" "" light 1280
 node scripts/check-interactions.cjs http://localhost:8732/
 node scripts/check-forms.cjs http://localhost:8732/ demo
-node scripts/check-endpoint.cjs     # the PHP endpoint, against a fake sendmail; needs php
+node scripts/check-endpoint.cjs     # the PHP endpoint, against a fake sendmail and fake SMTP servers; needs php and openssl
 npm run lint:css
 ```
 
