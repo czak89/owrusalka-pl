@@ -36,8 +36,22 @@ Links and images go through `withBase()` (`components/base.js`), so nothing else
 |---|---|---|
 | `NEXT_PUBLIC_BASE_PATH` | Folder the site is served from | empty (domain root) |
 | `NEXT_PUBLIC_SITE_URL` | Public origin, used for canonical links, Open Graph and the sitemap | `https://owrusalka.pl` |
-| `NEXT_PUBLIC_FORM_ENDPOINT` | Where the booking forms are posted (JSON). Web3Forms: `https://api.web3forms.com/submit` | empty: demo mode, nothing is sent |
-| `NEXT_PUBLIC_FORM_KEY` | Access key for the form service, sent as `access_key` | empty |
+| `NEXT_PUBLIC_FORM_ENDPOINT` | Where the forms are posted (JSON): `https://owrusalka.pl/api/wyslij.php` | empty: demo mode, nothing is sent |
+| `NEXT_PUBLIC_FORM_KEY` | Access key, sent as `access_key`. Only for a form service such as Web3Forms; the own endpoint does not use it | empty |
+
+## Form endpoint
+
+The booking modal, the `/rezerwacja` wizard and the `/kontakt` form post to `public/api/wyslij.php`, a single PHP file that mails the reception. It holds no passwords and needs PHP 7.4 or newer with a working `mail()`.
+
+1. Upload it to the web root of the server as `api/wyslij.php` (the build also copies it to `out/api/`).
+2. Open `https://owrusalka.pl/api/wyslij.php` in a browser: a JSON line saying the endpoint is up means PHP runs it.
+3. Send a test message, with your own address in place of `you@example.com`, and check the reception's mailbox, spam folder included. PowerShell:
+
+```powershell
+Invoke-RestMethod -Method Post -Uri "https://owrusalka.pl/api/wyslij.php" -ContentType "application/json" -Headers @{ Origin = "https://owrusalka.pl" } -Body '{"name":"Test strony","email":"you@example.com","subject":"Test formularza","message":"Proba wysylki z nowego formularza."}'
+```
+
+The answer should show `success` as `True`. Sites allowed to post are listed in `ALLOWED_ORIGINS` at the top of the file; at most 5 messages per 10 minutes are accepted from one IP address.
 
 ## Structure
 
@@ -46,7 +60,7 @@ design-system/   Rusałka Design System: tokens.json, tokens.css, fonts, compone
 app/             Routes: /, /pokoje, /cennik, /atrakcje, /lato, /galeria, /kontakt, /rezerwacja
 components/      kit.jsx (atoms, nav, hero), sections.jsx, content-*.jsx, rez-*.jsx (booking wizard)
 styles/          Layout and component CSS. No colour or font values of its own: it reads the design-system tokens.
-public/          Logos, backdrop, photos
+public/          Logos, backdrop, photos; api/wyslij.php (the form endpoint for the company server)
 ```
 
 ## Design system
@@ -70,10 +84,11 @@ npm run build && npx serve out -l 8732
 node scripts/check-pages.cjs http://localhost:8732/ ",pokoje/,cennik/,atrakcje/,galeria/,lato/,kontakt/,rezerwacja/" "" light 1280
 node scripts/check-interactions.cjs http://localhost:8732/
 node scripts/check-forms.cjs http://localhost:8732/ demo
+node scripts/check-endpoint.cjs     # the PHP endpoint, against a fake sendmail; needs php
 npm run lint:css
 ```
 
-The scripts need Playwright (`npx playwright install chromium`).
+The browser scripts need Playwright (`npx playwright install chromium`).
 
 ## Status and next steps
 
@@ -82,4 +97,4 @@ The scripts need Playwright (`npx playwright install chromium`).
 - `docs/Rusalka-przewodnik-po-stylu-PL-EN.docx` — the style guide, Polish and English.
 - `CLAUDE.md`, `AGENTS.md` — context and rules for AI agents.
 
-The main gap: **forms run in demo mode.** Sending is built, but no endpoint is configured yet, so the booking modal and the `/rezerwacja` wizard post nothing and say so on the confirmation.
+The main gap: **the form endpoint is not on the server yet.** Sending is built and tested locally; until `api/wyslij.php` is uploaded and a build sets `NEXT_PUBLIC_FORM_ENDPOINT`, the forms run in demo mode: they post nothing and say so on the confirmation.

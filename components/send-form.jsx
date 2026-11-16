@@ -93,15 +93,16 @@ function Honeypot({ value, onChange }) {
   );
 }
 
-/* GDPR consent. Required before sending. */
-function ConsentField({ checked, onChange, id = "send-consent" }) {
+/* GDPR consent. Required before sending. `purpose` finishes the phrase
+   "w celu …" and names what the data is used for. */
+function ConsentField({ checked, onChange, id = "send-consent", purpose = "obsługi tego zapytania o rezerwację" }) {
   return (
     <label className="send-consent" htmlFor={id}>
       <input id={id} type="checkbox" checked={checked} required
         onChange={(e) => onChange(e.target.checked)} />
       <span>
         Wyrażam zgodę na przetwarzanie moich danych osobowych przez Ośrodek Wypoczynkowy „Rusałka”
-        (ul. Leśna 22, 76-002 Łazy) w celu obsługi tego zapytania o rezerwację. Zgodę można
+        (ul. Leśna 22, 76-002 Łazy) w celu {purpose}. Zgodę można
         wycofać w każdej chwili, pisząc na adres{" "}
         <a href="mailto:recepcja@owrusalka.pl">recepcja@owrusalka.pl</a>.
       </span>
@@ -122,13 +123,16 @@ function SendError() {
   );
 }
 
-/* Shown on the confirmation when the build has no form endpoint. */
-function DemoNote() {
+/* Shown on the confirmation when the build has no form endpoint.
+   `message`: the wording for a plain message instead of a booking enquiry. */
+function DemoNote({ message = false }) {
   if (!FORM_DEMO) return null;
   return (
     <p className="send-demo" role="note">
-      <b>Wersja pokazowa strony:</b> zapytanie nie zostało wysłane. Rezerwacje przyjmujemy
-      telefonicznie i mailowo.
+      <b>Wersja pokazowa strony:</b>{" "}
+      {message
+        ? "wiadomość nie została wysłana. Prosimy o kontakt telefoniczny lub mailowy."
+        : "zapytanie nie zostało wysłane. Rezerwacje przyjmujemy telefonicznie i mailowo."}
     </p>
   );
 }

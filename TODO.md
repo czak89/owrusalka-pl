@@ -1,11 +1,16 @@
 # TODO
 
-Stan na 2026-11-15 (po drugiej sesji). Kolejność = priorytet. Szczegóły decyzji: `docs/DECISIONS.md`.
+Stan na 2026-11-16. Kolejność = priorytet. Szczegóły decyzji: `docs/DECISIONS.md`.
 
 ## 1. Blokuje podmianę `main`
 
-- [ ] **Wysyłka formularzy: podłączyć adres.** Kod jest gotowy (`components/send-form.jsx`): wysyłka, stan „Wysyłam…", błąd z ponowieniem, zgoda RODO, pułapka na boty. Bez `NEXT_PUBLIC_FORM_ENDPOINT` strona działa w trybie pokazowym: nic nie wysyła i mówi o tym na potwierdzeniu. Właściciel jeszcze nie zdecydował (pytany 15.11): Web3Forms (plan z `MIGRATION.md`; wtedy `NEXT_PUBLIC_FORM_ENDPOINT=https://api.web3forms.com/submit` i klucz w `NEXT_PUBLIC_FORM_KEY`) czy własny endpoint na serwerze firmowym (ma przyjąć JSON metodą POST i odpowiedzieć 2xx). Potem dopisać zmienne w `pages.yml` i sprawdzić: `node scripts/check-forms.cjs <adres> live`.
-- [ ] **RODO: potwierdzić treść zgody i dodać politykę prywatności.** Zgoda przy formularzu podaje jako administratora „Ośrodek Wypoczynkowy „Rusałka”, ul. Leśna 22, 76-002 Łazy". Właściciel musi podać pełną nazwę prawną administratora. Link „Polityka prywatności" w stopce prowadzi donikąd (`#`): potrzebna strona z treścią od właściciela.
+- [ ] **Wysyłka formularzy: wgrać plik na serwer i sprawdzić.** Właściciel wybrał (16.11) własny endpoint na serwerze firmowym. Plik `public/api/wyslij.php` obsługuje wszystkie trzy formularze i jest sprawdzony lokalnie (`node scripts/check-endpoint.cjs`), ale **nie na prawdziwym serwerze**. Do zrobienia przez właściciela:
+  1. W panelu hostingu, w katalogu głównym strony (tam, gdzie leży `wp-config.php`), utworzyć folder `api` i wgrać do niego `wyslij.php`.
+  2. Otworzyć `https://owrusalka.pl/api/wyslij.php`: ma się pokazać linijka JSON z tekstem „Form endpoint is up".
+  3. Wysłać próbną wiadomość (polecenie w `README.md`, sekcja „Form endpoint") i sprawdzić skrzynkę recepcji, także folder spam.
+  4. Jeśli mail nie dochodzi: hosting może blokować funkcję `mail()` albo wymagać wysyłki przez SMTP. Wtedy skrypt trzeba przerobić (osobne zadanie).
+  Strona zbudowana bez `NEXT_PUBLIC_FORM_ENDPOINT` nadal działa w trybie pokazowym. Budowanie na GitHub Pages (`pages.yml`) ma już ustawiony adres `https://owrusalka.pl/api/wyslij.php`, więc plik musi być na serwerze przed podmianą `main`.
+- [ ] **RODO: potwierdzić treść zgody i dodać politykę prywatności.** Zgoda przy formularzach (rezerwacja i kontakt) podaje jako administratora „Ośrodek Wypoczynkowy „Rusałka”, ul. Leśna 22, 76-002 Łazy". Właściciel musi podać pełną nazwę prawną administratora. Link „Polityka prywatności" w stopce prowadzi donikąd (`#`): potrzebna strona z treścią od właściciela.
 - [ ] **Otworzyć pull request `next` → `main`** (szkic, bez scalania). Integracja Claude z GitHubem nie ma uprawnienia do tworzenia PR (błąd 403), więc trzeba to zrobić ręcznie na GitHubie albo nadać uprawnienie. Workflowy (`validate`, `lighthouse`, `links`) zostały 15.11 uruchomione ręcznie na `next` (`workflow_dispatch`) i przechodzą.
 - [ ] **Akceptacja właściciela** wyglądu `next` w obu motywach i na telefonie, potem podmiana `main`.
 
@@ -39,6 +44,11 @@ Stan na 2026-11-15 (po drugiej sesji). Kolejność = priorytet. Szczegóły decy
 - [ ] **Z `MIGRATION.md`:** aktualności z Facebooka pobierane przy budowaniu, cennik z plików Markdown.
 - [ ] **Porządki na `main` przy podmianie:** w repo są śledzone foldery narzędziowe `.omc/`, `.omx/`, `.playwright-cli/` (na `next` już ich nie ma) oraz `intro.mp4` w LFS, którego żadna strona nie używa.
 - [ ] **Lokalne foldery właściciela.** `Github/owrusalka` było dwa merge'e za GitHubem (wymaga `git pull`); `Github/project/owrusalka-pl` (bez gita) jest zbędną kopią, bo całość jest w repo.
+
+## Zrobione (2026-11-16)
+
+- [x] **Formularz kontaktowy na `/kontakt`** („Macie pytanie?"): imię i nazwisko, e-mail, telefon opcjonalnie, wiadomość; ta sama wysyłka, zgoda i obsługa błędów co w rezerwacjach. Na telefonie pasek „Zarezerwuj pobyt" chowa się, gdy formularz jest na ekranie.
+- [x] **Własny endpoint formularzy** `public/api/wyslij.php`: mail na recepcja@owrusalka.pl, „Odpowiedz" trafia do gościa, lista dozwolonych stron, pułapka na boty, limit 5 wiadomości na 10 minut z jednego adresu IP, bez haseł w pliku. Testy: `scripts/check-endpoint.cjs` (także w CI).
 
 ## Zrobione (2026-11-15, druga sesja)
 

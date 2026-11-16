@@ -6,6 +6,7 @@ import { Gallery, Contact, Footer, BookCtaBand, BookingModal } from "./sections"
 import { Facilities, Surroundings } from "./content-atrakcje";
 import { PriceTable2026, PriceNotes } from "./content-cennik";
 import { SeasonPlan, DayPlan, GalleryGroups, ContactFacts } from "./content-misc";
+import { ContactForm } from "./contact-form";
 import { useTweaks, useSiteTheme, SiteTweaks } from "./site-theme";
 
 /* ============================================================================
@@ -99,7 +100,7 @@ const PAGES = {
         lede="Niedaleko Mielna, na końcu Leśnej, między sosnami a wydmą. Odpisujemy w ciągu doby."
       />
     ),
-    body: () => <><Contact head={false} /><ContactFacts /></>,
+    body: () => <><Contact head={false} /><ContactForm /><ContactFacts /></>,
     cta: false,
   },
 };

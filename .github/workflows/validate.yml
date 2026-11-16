@@ -19,3 +19,7 @@ jobs:
         run: npm run build
       - name: CSS
         run: npm run lint:css
+      - name: Form endpoint
+        run: |
+          php -l public/api/wyslij.php
+          node scripts/check-endpoint.cjs

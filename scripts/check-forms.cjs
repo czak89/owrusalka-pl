@@ -100,6 +100,41 @@ function verdict(r, posts) {
     await page.close();
   }
 
+  /* 3. contact form on /kontakt/ */
+  {
+    const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+    page.on('pageerror', (e) => errs.push(String(e).slice(0, 150)));
+    page.on('console', (m) => { if (m.type() === 'error' && !/500/.test(m.text())) errs.push(m.text().slice(0, 150)); });
+    const posts = await watch(page);
+    await page.goto(BASE + 'kontakt/', { waitUntil: 'networkidle' });
+    const r = {};
+    const submit = '#napisz button[type="submit"]';
+    await page.click(submit); // empty form: nothing may be sent, errors must show
+    r.errorsShown = await page.locator('#napisz .cf-error').count();
+    await page.fill('#cf-name', 'Anna Kowalska');
+    await page.fill('#cf-email', 'anna@example.com');
+    await page.fill('#cf-message', 'Czy przyjmujecie zwierzęta w pokojach parterowych?');
+    await page.click(submit); // valid but no consent
+    r.consentRequired = (await page.locator('#napisz .cf-error').allInnerTexts()).some((t) => /zgoda/i.test(t));
+    await page.locator('#cf-consent').check();
+    await page.waitForTimeout(3100);
+    await page.click(submit);
+    r.busyLabel = await page.locator(submit).innerText().catch(() => '');
+    if (MODE === 'live') {
+      await page.waitForSelector('#napisz .send-error', { timeout: 5000 });
+      r.retryLabel = await page.locator(submit).innerText();
+      await page.click(submit);
+    }
+    await page.waitForSelector('#napisz .cf-done', { timeout: 5000 });
+    r.demoNote = await page.locator('#napisz .send-demo').count();
+    const sent = MODE === 'live'
+      ? posts.length === 2 && /ponownie/i.test(r.retryLabel) && r.demoNote === 0 && /Wiadomość: Czy przyjmujecie/.test(posts[1].message)
+      : posts.length === 0 && r.demoNote === 1;
+    r.ok = r.errorsShown >= 3 && r.consentRequired && /Wysyłam/.test(r.busyLabel) && sent;
+    console.log(JSON.stringify({ form: 'contact', mode: MODE, ...r, posts: posts.length }));
+    await page.close();
+  }
+
   console.log(JSON.stringify({ errs }));
   await browser.close();
 })();

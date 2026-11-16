@@ -239,7 +239,8 @@ body[data-texture="off"] #root { background-image: none; }
 .mobile-menu .mm-phone svg { color: var(--accent-text); }
 .mobile-menu .mm-foot .btn-cta { justify-content: center; padding: 16px; font-size: 15px; }
 body.menu-locked { overflow: hidden; }
-body.menu-locked .sticky-cta { display: none; }
+body.menu-locked .sticky-cta,
+body.cta-hidden .sticky-cta { display: none; }
 
 /* ============================================================================
    Page hero — shared subpage header
@@ -1269,6 +1270,48 @@ footer .bottom {
   margin-top: 8px;
 }
 .modal .actions .right { display: flex; gap: 8px; margin-left: auto; }
+
+/* ============================================================================
+   Contact form (/kontakt/)
+============================================================================ */
+.cf-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: start; }
+.cf-intro { margin-bottom: 0; }
+.cf-card {
+  background: var(--c-paper-2); border: 1px solid var(--border);
+  border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-sm);
+}
+.cf-card form { display: flex; flex-direction: column; gap: 18px; }
+.cf-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 900px) { .cf-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
+@media (max-width: 640px) { .cf-card { padding: 22px 18px; } .cf-row { grid-template-columns: minmax(0, 1fr); } }
+.cf-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.cf-field label { font-size: 14px; font-weight: 800; color: var(--c-deep-sea); }
+.cf-field label em { font-weight: 400; font-style: italic; color: var(--fg-3); margin-left: 6px; }
+.cf-field input,
+.cf-field textarea {
+  font-family: var(--font-body); font-size: 16px; color: var(--c-deep-sea);
+  padding: 13px 15px; border-radius: var(--radius-md);
+  border: 1.5px solid var(--border); background: var(--c-paper);
+  width: 100%; min-width: 0; resize: vertical;
+}
+.cf-field textarea { min-height: 140px; line-height: 1.55; }
+.cf-field input::placeholder,
+.cf-field textarea::placeholder { color: var(--fg-3); }
+.cf-field input:focus,
+.cf-field textarea:focus { border-color: var(--focus-ring); outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.cf-field [aria-invalid="true"] { border-color: var(--error); }
+.cf-error { font-size: 14px; font-weight: 700; color: var(--error); }
+.cf-card .send-consent { margin: 0; }
+.cf-actions { display: flex; justify-content: flex-end; }
+.cf-done { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.cf-done .confirm-msg {
+  background: var(--c-foam-wash); color: var(--success-text);
+  padding: 16px 18px; border-radius: var(--radius-md);
+  font-size: 14px; font-weight: 700; display: flex; gap: 10px; align-items: center; margin: 0;
+}
+.cf-done .send-demo { margin: 0; }
+.cf-urgent { margin: 20px 0 0; font-size: 16px; line-height: 1.55; color: var(--fg-2); }
+.cf-urgent a { color: var(--link); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 
 /* ============================================================================
    Form sending — consent, error and demo note (booking modal and wizard)

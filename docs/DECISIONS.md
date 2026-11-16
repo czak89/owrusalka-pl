@@ -2,6 +2,16 @@
 
 What was decided, by whom, and why. Newest context first. Dates are 2026.
 
+## Contact form and own form endpoint (16 Nov, owner)
+- **Forms post to an own endpoint, not a form service.** The owner confirmed that the "company server" is the hosting owrusalka.pl runs on today (WordPress, PHP 8.4, LiteSpeed) and that he has panel access. One PHP file there means guests' data never passes through a third party, no data-processing agreement is needed, there is no monthly limit and no cost. Web3Forms was the alternative: quicker, but US-hosted and without such an agreement.
+- **`public/api/wyslij.php` serves all three forms.** It lives in `public/` so the build copies it to `out/api/` and it travels with the site once the site moves to that server. Until then the owner uploads the one file by hand.
+- **Mail goes through the server's `mail()`,** sender `recepcja@owrusalka.pl` (an address on the server's own domain, so it is not rejected as forged), `Reply-To` the guest. No passwords or keys in the file. If the host turns out to block `mail()`, the script needs an SMTP variant.
+- **Abuse limits:** only listed origins or the endpoint's own host may post (browsers always send `Origin` with a POST, most scripted spam does not), the honeypot is checked again on the server, 5 messages per 10 minutes per IP address. The address is not stored: only its hash, as a file name in the system temp folder.
+- **Contact form on `/kontakt`** ("Macie pytanie?") sits between the map and "Warto wiedzieć": heading on the left, form on the right, stacked under 900px. It is for questions, so the consent names "udzielenia odpowiedzi na tę wiadomość" as the purpose instead of the booking enquiry.
+- **The phone-only "Zarezerwuj pobyt" bar hides while the contact form is on screen,** so two Coral buttons do not sit on top of each other.
+- **Push of `next` approved** for this work. Not a standing permission.
+- **Verified:** the endpoint script against PHP's built-in server with a fake sendmail (`scripts/check-endpoint.cjs`), and all three forms end to end in a browser against that local endpoint. **Not verified:** the real server: whether `mail()` is allowed there and whether the reception's mailbox accepts the messages.
+
 ## Owner's answers (15 Nov, second session)
 - **Card copy may be 14–15px.** The 16px rule is relaxed for supporting copy inside cards; running text stays 16px. No layout change.
 - **The "PL · EN" label stays** in the nav as it is until there is an English version.
